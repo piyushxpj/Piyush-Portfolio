@@ -22,6 +22,7 @@ function applyTheme(isDark) {
     root.style.setProperty('--figma-text-tertiary', '#666666');
     root.style.setProperty('--figma-blue-bg', 'rgba(13, 153, 255, 0.15)');
     root.style.setProperty('--figma-focus', '#58b8ff');
+    root.style.setProperty('--figma-image-outline', 'oklch(1 0 0 / 0.1)');
   } else {
     root.style.setProperty('--figma-bg', '#f5f5f5');
     root.style.setProperty('--figma-surface', '#ffffff');
@@ -32,6 +33,7 @@ function applyTheme(isDark) {
     root.style.setProperty('--figma-text-tertiary', '#999999');
     root.style.setProperty('--figma-blue-bg', 'rgba(13, 153, 255, 0.1)');
     root.style.setProperty('--figma-focus', '#0068b8');
+    root.style.setProperty('--figma-image-outline', 'oklch(0 0 0 / 0.1)');
   }
 }
 

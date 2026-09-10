@@ -23,7 +23,7 @@ function MobileCard({ project, index = 0 }) {
           width={488}
           height={382}
           decoding="async"
-          fetchpriority={index < 2 ? 'high' : 'auto'}
+          fetchPriority={index < 2 ? 'high' : 'auto'}
           loading={index < 2 ? 'eager' : 'lazy'}
           style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
         />

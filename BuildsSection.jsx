@@ -51,14 +51,15 @@ export const BUILDS_PROJECTS = [
 
 function BuildCard({ project, x, y }) {
   return (
-    <motion.div
+    <motion.a
       data-card
-      onClick={(e) => {
-        e.stopPropagation();
-        if (project.url) window.open(project.url, '_blank', 'noopener,noreferrer');
-      }}
+      href={project.url}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`Open ${project.title}`}
+      onClick={(e) => e.stopPropagation()}
       whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.985 }}
+      whileTap={{ scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
       style={{
         position: 'absolute',
@@ -67,19 +68,33 @@ function BuildCard({ project, x, y }) {
         width: 420,
         cursor: 'pointer',
         zIndex: 1,
-        willChange: 'transform',
+        color: 'inherit',
+        textDecoration: 'none',
       }}
     >
-      <img
-        src={project.image}
-        alt={project.title}
-        draggable={false}
-        style={{
-          width: '100%',
-          display: 'block',
-          cursor: 'pointer',
-        }}
-      />
+      <div style={{
+        width: '100%',
+        aspectRatio: '488 / 382',
+        overflow: 'hidden',
+        borderRadius: 6,
+        background: '#eee',
+        outline: '1px solid var(--figma-image-outline)',
+        outlineOffset: -1,
+      }}>
+        <img
+          src={project.image}
+          alt=""
+          draggable={false}
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            objectFit: 'cover',
+          }}
+        />
+      </div>
 
       <div style={{
         marginTop: 16,
@@ -103,6 +118,7 @@ function BuildCard({ project, x, y }) {
         WebkitLineClamp: 2,
         WebkitBoxOrient: 'vertical',
         overflow: 'hidden',
+        minHeight: '2.8em',
       }}>
         {project.description}
       </div>
@@ -137,7 +153,7 @@ function BuildCard({ project, x, y }) {
           );
         })}
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
