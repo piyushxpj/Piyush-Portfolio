@@ -2,7 +2,12 @@ import React from 'react';
 import { BUILDS_PROJECTS } from './BuildsSection.jsx';
 
 const TAG_STYLES = {
-  'Product': { color: '#00B25D', bg: 'rgba(0, 178, 93, 0.10)' },
+  'Branding': { color: '#009EFF', bg: 'rgba(0, 158, 255, 0.10)' },
+  'Brand Design': { color: '#009EFF', bg: 'rgba(0, 158, 255, 0.10)' },
+  'Visual Design': { color: '#FF5100', bg: 'rgba(255, 81, 0, 0.10)' },
+  'Product Design': { color: '#00B25D', bg: 'rgba(0, 178, 93, 0.10)' },
+  'Website Design': { color: '#8253FF', bg: 'rgba(130, 83, 255, 0.10)' },
+  'Mini App Design': { color: '#FF2ADF', bg: 'rgba(255, 42, 223, 0.10)' },
 };
 
 function MobileCard({ project, index = 0 }) {
