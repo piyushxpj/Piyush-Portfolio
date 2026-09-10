@@ -42,7 +42,7 @@ export const BUILDS_PROJECTS = [
   {
     id: 'myob',
     title: 'MYOB',
-    description: 'Make Your Own Breakfast.',
+    description: 'Community back recipes. You tell it what you have, and it tells you what you can make.',
     image: '/builds/myob.png',
     tags: ['Product'],
     url: 'https://makeyourownbreakfast.in',
