@@ -38,7 +38,7 @@ function LazyVideo({ src }) {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let visible = false;
     const syncPlayback = () => {
-      if (visible && !reduceMotion.matches) element.play().catch(() => {});
+      if (visible && !document.hidden && !reduceMotion.matches) element.play().catch(() => {});
       else element.pause();
     };
     const observer = new IntersectionObserver(([entry]) => {
@@ -48,9 +48,11 @@ function LazyVideo({ src }) {
 
     observer.observe(element);
     reduceMotion.addEventListener('change', syncPlayback);
+    document.addEventListener('visibilitychange', syncPlayback);
     return () => {
       observer.disconnect();
       reduceMotion.removeEventListener('change', syncPlayback);
+      document.removeEventListener('visibilitychange', syncPlayback);
       element.pause();
     };
   }, []);

@@ -63,7 +63,7 @@ const DraggableImage = memo(function DraggableImage({ src, x, y, w, rotate, zInd
     let visible = false;
 
     const syncPlayback = () => {
-      if (visible && !reduceMotion.matches) element.play().catch(() => {});
+      if (visible && !document.hidden && !reduceMotion.matches) element.play().catch(() => {});
       else element.pause();
     };
 
@@ -77,15 +77,19 @@ const DraggableImage = memo(function DraggableImage({ src, x, y, w, rotate, zInd
 
     observer.observe(element);
     reduceMotion.addEventListener('change', syncPlayback);
+    document.addEventListener('visibilitychange', syncPlayback);
 
     return () => {
       observer.disconnect();
       reduceMotion.removeEventListener('change', syncPlayback);
+      document.removeEventListener('visibilitychange', syncPlayback);
       element.pause();
     };
   }, [video]);
 
   const handleMouseDown = (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
     e.stopPropagation();
     setLifted(true);
 
@@ -133,7 +137,7 @@ const DraggableImage = memo(function DraggableImage({ src, x, y, w, rotate, zInd
     left: posRef.current.x,
     top: posRef.current.y,
     width: w,
-    transform: `rotate(${rotate}deg)${lifted ? ' scale(1.05)' : ''} translateZ(0)`,
+    transform: `rotate(${rotate}deg)${lifted ? ' scale(1.05)' : ''}`,
     cursor: 'grab',
     userSelect: 'none',
     filter: lifted

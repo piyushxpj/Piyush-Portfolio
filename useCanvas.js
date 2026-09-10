@@ -16,6 +16,7 @@ export default function useCanvas(initialTransform = { x: -50, y: -50, scale: 0.
   const startTransform = useRef(initialTransform);
   const animRef = useRef(null);
   const frameRef = useRef(null);
+  const boundsRef = useRef(null);
 
   const flushTransform = useCallback(() => {
     frameRef.current = null;
@@ -43,6 +44,9 @@ export default function useCanvas(initialTransform = { x: -50, y: -50, scale: 0.
     commitTransform();
     return () => {
       if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+      animRef.current?.stop?.();
+      animRef.current = null;
     };
   }, [commitTransform]);
 
@@ -55,12 +59,21 @@ export default function useCanvas(initialTransform = { x: -50, y: -50, scale: 0.
     const el = containerRef.current;
     if (!el) return;
 
+    // Keep layout reads outside the high-frequency wheel handler.
+    const measure = () => { boundsRef.current = el.getBoundingClientRect(); };
+    measure();
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(el);
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', measure, true);
+
     const handleWheel = (e) => {
       e.preventDefault();
       e.stopPropagation();
       stopAnimation();
 
-      const rect = el.getBoundingClientRect();
+      const rect = boundsRef.current;
+      if (!rect) return;
       const cursorX = e.clientX - rect.left;
       const cursorY = e.clientY - rect.top;
 
@@ -82,7 +95,12 @@ export default function useCanvas(initialTransform = { x: -50, y: -50, scale: 0.
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
+    return () => {
+      el.removeEventListener('wheel', handleWheel);
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', measure, true);
+    };
   }, [stopAnimation, applyTransform]);
 
   const handleMouseDown = useCallback((e) => {
@@ -140,7 +158,8 @@ export default function useCanvas(initialTransform = { x: -50, y: -50, scale: 0.
           y: from.y + (destY - from.y) * t,
           scale: from.scale + (scale - from.scale) * t,
         };
-        applyTransform();
+        // Motion already runs on the animation clock. Commit in that frame.
+        commitTransform();
       },
     });
   }, [stopAnimation, applyTransform, commitTransform]);

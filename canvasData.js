@@ -1,3 +1,6 @@
+import { BUILDS_PROJECTS } from './BuildsSection.jsx';
+import { getBuildPosition } from './buildLayout.js';
+
 export const PAGES = [
   { id: 'about', label: 'About', x: 620, y: 300 },
   { id: 'work', label: 'Work', x: 2860, y: 500 },
@@ -20,10 +23,16 @@ export const PROJECTS = [
   { id: 'playground-collage', title: 'Playground Collage', page: 'playground', x: 0, y: 1700, width: 1400, height: 900, color: 'transparent', description: 'Experiments and explorations' },
 
   // Builds region — rendered by BuildsSection component
-  { id: 'build-farfield', title: 'Farfield', page: 'builds', x: 3300, y: 1700, width: 420, height: 380, color: 'transparent', description: 'Social store for creatives to sell their assets onchain' },
-  { id: 'build-dither-matrix', title: 'Dither Matrix', page: 'builds', x: 3760, y: 1700, width: 420, height: 380, color: 'transparent', description: 'Dither tool made for designers' },
-  { id: 'build-pixel-pop', title: 'Pixel Pop Tool', page: 'builds', x: 4220, y: 1700, width: 420, height: 380, color: 'transparent', description: 'Convert any image into pixel art' },
-  { id: 'build-freetype-writer', title: 'Freetype Writer', page: 'builds', x: 3760, y: 2220, width: 420, height: 380, color: 'transparent', description: 'Write like a typewriter and export' },
+  ...BUILDS_PROJECTS.map((project, index) => ({
+    id: `build-${project.id}`,
+    title: project.title,
+    page: 'builds',
+    ...getBuildPosition(index, BUILDS_PROJECTS.length),
+    width: 420,
+    height: 380,
+    color: 'transparent',
+    description: project.description,
+  })),
 ];
 
 export const SOCIAL_LINKS = [
