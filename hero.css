@@ -1,0 +1,509 @@
+/* Hero typefaces, local preview only: replace trial files with licensed
+   webfonts before publishing. The existing site's type remains unchanged. */
+@font-face {
+  font-family: 'Season Mix Trial';
+  src: url('/fonts/SeasonMix-TRIAL-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hero Roobert';
+  src: url('/fonts/RoobertTRIAL-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hero Roobert';
+  src: url('/fonts/RoobertTRIAL-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-display: swap;
+}
+
+.portfolio-hero {
+  height: 100vh;
+  height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  background: #252525;
+  color: #000;
+  font-family: 'Hero Roobert', Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+.portfolio-hero:focus-visible { outline: 2px solid #faf6e5; outline-offset: -2px; }
+
+.portfolio-hero img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.hero-ambience {
+  position: fixed;
+  z-index: 10;
+  right: 26px;
+  bottom: 26px;
+}
+.hero-sound-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #252525;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.hero-sound-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid #252525;
+  border-radius: 50%;
+  background: #faf6e5;
+}
+.hero-sound-toggle svg { position: relative; }
+.hero-sound-toggle:focus-visible { outline: 2px solid #faf6e5; outline-offset: 2px; box-shadow: 0 0 0 2px #252525; }
+.hero-sound-toggle:hover::before { background: #fff; }
+.hero-ambience__error {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  width: max-content;
+  max-width: min(250px, calc(100vw - 48px));
+  padding: 8px 12px;
+  border: 1px solid #252525;
+  background: #faf6e5;
+  color: #252525;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.hero-ambience__error:empty { display: none; }
+
+.hero-stage {
+  container-type: size;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 480px;
+  -webkit-user-select: none;
+  user-select: none;
+  /* One design pixel at 1280 × 832; proportions stay intact on wider screens. */
+  --u: min(0.078125cqw, 0.1201923cqh);
+}
+
+/* A normal-flow continuation of the stamp, sharing the same dark backdrop.
+   Empty cards are layout previews, not links to unpublished projects. */
+.home-projects {
+  padding: 48px clamp(24px, 5.46875vw, 96px) 96px;
+  color: #faf6e5;
+}
+.home-projects > h2 {
+  margin: 0 0 32px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.home-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px 24px;
+}
+.home-project-card { min-width: 0; }
+.home-project-card__cover {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  background: #f0efea;
+  color: #64635e;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.home-project-card h3 {
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+@media (max-width: 39.99rem) {
+  .home-projects { padding-top: 32px; padding-bottom: 80px; }
+  .home-projects > h2 { font-size: 28px; margin-bottom: 24px; }
+  .home-projects__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}
+
+.hero-paper {
+  position: absolute;
+  inset: calc(20 * var(--u));
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask: url('/hero/stamp-mask.svg') 0 0 / 100% 100% no-repeat;
+}
+
+/* The paper and its matching mask deliberately fill the viewport frame. */
+.hero-paper__asset {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-pattern {
+  /* Preserve the SVG's 1240 × 253 aspect ratio at every viewport height. */
+  --pattern-height: calc(32.8125cqh - 20 * var(--u));
+  --pattern-unit: calc(var(--pattern-height) / 253);
+  --pattern-tile-width: calc(var(--pattern-unit) * 1240);
+  --ship-width: clamp(88px, calc(128 * var(--u)), 144px);
+  --ship-crossing-duration: 75s;
+  --ship-crossing-phase: -18s;
+  --ship-swell-duration: 4.8s;
+  --ship-bob-height: calc(3 * var(--u));
+  --ship-roll: 3deg;
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--pattern-height);
+  overflow: hidden;
+  background: #a9dbfd;
+}
+
+.hero-pattern__row {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--row-start) * var(--pattern-unit));
+  height: calc(var(--row-height) * var(--pattern-unit));
+  overflow: hidden;
+}
+
+.hero-pattern__track {
+  position: absolute;
+  inset: 0 calc(-1 * var(--pattern-tile-width)) 0 0;
+  background-image: url('/hero/blue-pattern.svg');
+  background-size: var(--pattern-tile-width) var(--pattern-height);
+  background-position: 0 calc(-1 * var(--row-start) * var(--pattern-unit));
+  background-repeat: repeat-x;
+}
+
+@keyframes hero-pattern-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-1 * var(--pattern-tile-width))); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pattern__track { animation: hero-pattern-drift 60s linear infinite; }
+  .hero-pattern__row:nth-child(even) .hero-pattern__track { animation-direction: reverse; }
+}
+
+/* SHIP STORYBOARD
+ *  0–75s  sail left → right, with both loop endpoints outside the clipped sea
+ *  0–4.8s small swell: dip/tilt → rise/opposite tilt → dip; repeat independently
+ * -18s    start already on the water, rather than making visitors wait
+ * The default, non-animated pose keeps the boat visible for reduced motion.
+ */
+.hero-ship-crossing {
+  position: absolute;
+  top: 36%;
+  left: calc(-1 * var(--ship-width));
+  width: calc(100% + 2 * var(--ship-width));
+  pointer-events: none;
+  transform: translateX(22%);
+}
+.hero-ship-bob {
+  width: var(--ship-width);
+  transform-origin: 50% 88%;
+}
+.hero-ship {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@keyframes hero-ship-sail {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes hero-ship-swell {
+  0%, 100% { transform: translateY(var(--ship-bob-height)) rotate(calc(-1 * var(--ship-roll))); }
+  50% { transform: translateY(calc(-1 * var(--ship-bob-height))) rotate(var(--ship-roll)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-ship-crossing {
+    animation: hero-ship-sail var(--ship-crossing-duration) linear var(--ship-crossing-phase) infinite;
+  }
+  .hero-ship-bob {
+    animation: hero-ship-swell var(--ship-swell-duration) ease-in-out infinite;
+  }
+}
+
+.hero-intro {
+  position: absolute;
+  top: 8.4134615%;
+  left: 5.46875%;
+  width: calc(416 * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--u));
+}
+
+.hero-intro h1 {
+  margin: 0;
+  font-family: 'Season Mix Trial', Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(44 * var(--u));
+  line-height: 1.87927;
+  letter-spacing: -0.04em;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.hero-intro p {
+  font-size: calc(16 * var(--u));
+  line-height: 1.4375;
+}
+
+.hero-contact {
+  position: absolute;
+  right: 5.46875%;
+  top: 8.4134615%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(32 * var(--u));
+  padding: 0 calc(10 * var(--u));
+  background: #000;
+  color: #fff;
+  font-size: calc(16 * var(--u));
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.hero-contact::after {
+  content: '';
+  position: absolute;
+  inset: -6px 0;
+}
+
+.hero-portrait {
+  position: absolute;
+  left: calc(50% + 44.42 * var(--u));
+  top: 26.4423077%;
+  width: calc(394 * var(--u));
+  height: calc(411 * var(--u));
+  background: #7d7d7d;
+}
+
+.hero-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-portrait__background { object-fit: cover; }
+.hero-portrait__foreground { object-fit: fill; object-position: bottom; }
+
+.hero-tile {
+  position: absolute;
+  left: calc(50% - 36.58 * var(--u));
+  top: calc(26.4423077% - 81 * var(--u));
+  width: calc(81 * var(--u));
+  height: calc(81 * var(--u));
+  pointer-events: auto;
+}
+
+.hero-tile__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-tile__circle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes hero-tile-circle-pop {
+  0%, 100% { transform: scale(1); }
+  28% { transform: scale(0.4); }
+  56% { transform: scale(1.18); }
+  76% { transform: scale(0.88); }
+  90% { transform: scale(1.04); }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-tile:hover .hero-tile__circle {
+    animation: hero-tile-circle-pop 1.2s cubic-bezier(0.2, 0, 0, 1) var(--pop-delay) infinite;
+  }
+}
+
+.hero-bird {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  --flap-duration: 2.8s;
+  --flap-phase: -0.6s;
+  --flap-angle: 16deg;
+  --flight-duration: 18s;
+  --flight-phase: -4s;
+  --flight-x: calc(80 * var(--u));
+  --flight-y: calc(-8 * var(--u));
+  --flight-arc: calc(10 * var(--u));
+}
+.hero-bird--top { left: 66.794%; top: 8.447%; width: calc(49.8 * var(--u)); }
+.hero-bird--portrait { left: calc(50% - 91.04 * var(--u)); top: calc(26.4423077% - 30.494 * var(--u)); width: calc(77.3145 * var(--u)); }
+.hero-bird--left { left: 4.123%; top: 26.735%; width: calc(50.5219 * var(--u)); transform: rotate(-6.05deg); }
+.hero-bird--right { right: 5.39%; top: 37.34%; width: calc(37.8132 * var(--u)); transform: rotate(7.21deg); }
+
+/* WING STORYBOARD: original pose → small downstroke → original pose/glide.
+   Each wing shears around its shoulder boundary; the body stays rigid within
+   its traveling wrapper. Mirrored angles keep the shoulders connected. */
+.hero-bird--portrait { --flap-duration: 3.2s; --flap-phase: -1.5s; --flap-angle: 14deg; }
+.hero-bird--left { --flap-duration: 3s; --flap-phase: -2.2s; }
+.hero-bird--right { --flap-duration: 2.6s; --flap-phase: -0.9s; }
+
+/* FLIGHT STORYBOARD: origin → lifted midpoint → destination → lower return
+   arc → origin. Independent translate leaves the original asset rotation
+   and nested wing flaps intact. Different phases avoid flock-like lockstep. */
+.hero-bird--portrait {
+  --flight-duration: 22s;
+  --flight-phase: -11s;
+  --flight-x: calc(-28 * var(--u));
+  --flight-y: calc(34 * var(--u));
+}
+.hero-bird--left {
+  --flight-duration: 20s;
+  --flight-phase: -7s;
+  --flight-x: calc(52 * var(--u));
+  --flight-y: calc(26 * var(--u));
+}
+.hero-bird--right {
+  --flight-duration: 19s;
+  --flight-phase: -14s;
+  --flight-x: calc(-46 * var(--u));
+  --flight-y: calc(-22 * var(--u));
+}
+@keyframes hero-bird-travel {
+  0%, 100% { translate: 0 0; }
+  25% { translate: calc(var(--flight-x) * 0.45) calc(var(--flight-y) * 0.25 - var(--flight-arc)); }
+  50% { translate: var(--flight-x) var(--flight-y); }
+  75% { translate: calc(var(--flight-x) * 0.45) calc(var(--flight-y) * 0.75 + var(--flight-arc)); }
+}
+.hero-bird__part { position: absolute; inset: 0; }
+.hero-bird__part img { display: block; width: 100%; height: 100%; }
+.hero-bird__part--left { clip-path: inset(-25% 56% -25% -10%); --wing-angle: calc(-1 * var(--flap-angle)); }
+.hero-bird__part--left img { transform-origin: 44% 50%; }
+.hero-bird__part--body { clip-path: inset(0 40% 0 44%); }
+.hero-bird__part--right { clip-path: inset(-25% -10% -25% 60%); --wing-angle: var(--flap-angle); }
+.hero-bird__part--right img { transform-origin: 60% 50%; }
+
+@keyframes hero-bird-flap {
+  0%, 70%, 100% { transform: skewY(0deg); }
+  35% { transform: skewY(var(--wing-angle)); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-bird {
+    animation: hero-bird-travel var(--flight-duration) ease-in-out var(--flight-phase) infinite;
+  }
+  .hero-bird__part--left img,
+  .hero-bird__part--right img {
+    animation: hero-bird-flap var(--flap-duration) ease-in-out var(--flap-phase) infinite;
+  }
+}
+
+.hero-clients {
+  position: absolute;
+  left: 5.46875%;
+  top: 50.2403846%;
+  width: calc(345 * var(--u));
+}
+.hero-clients h2 {
+  font-size: calc(18 * var(--u));
+  font-weight: 600;
+  line-height: 1.27778;
+  margin-bottom: calc(18 * var(--u));
+}
+.hero-client-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(15 * var(--u)) calc(30 * var(--u));
+}
+.hero-client-logos img {
+  display: block;
+  flex: none;
+  width: calc(var(--logo-width) * var(--u));
+  height: calc(var(--logo-height) * var(--u));
+}
+
+.hero-navigation {
+  position: absolute;
+  right: 5.46875%;
+  top: 51.0817308%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(12 * var(--u));
+}
+.hero-navigation a {
+  position: relative;
+  color: #000;
+  font-weight: 600;
+  font-size: calc(18 * var(--u));
+  line-height: 1.11111;
+  text-decoration: none;
+}
+.hero-navigation a::after { content: ''; position: absolute; inset: -5px 0; }
+.portfolio-hero a:focus-visible { outline: 2px solid #0068b8; outline-offset: 5px; }
+@media (hover: hover) {
+  .hero-navigation a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .hero-contact:hover { background: #333; }
+}
+
+/* The reference is desktop-only. Reflow its same assets, copy and navigation
+   for narrow screens instead of shrinking the type into an unreadable poster. */
+@media (max-width: 47.99rem) {
+  .hero-ambience { right: 18px; bottom: 18px; }
+  .hero-bird { --flight-arc: 4px; }
+  .hero-bird--top { --flight-x: -20px; --flight-y: -8px; }
+  .hero-bird--portrait { --flight-x: 20px; --flight-y: -15px; }
+  .hero-bird--left { --flight-x: 12px; --flight-y: -18px; }
+  .hero-bird--right { --flight-x: -12px; --flight-y: 12px; }
+  .hero-stage { min-height: 800px; --u: 1px; }
+  .hero-paper { inset: 12px; }
+  .hero-pattern {
+    --pattern-height: calc((100cqh - 24px) * 0.16);
+    --ship-width: 88px;
+    --ship-crossing-duration: 48s;
+    --ship-crossing-phase: -12s;
+  }
+  .hero-intro { top: 40px; left: 32px; width: calc(100% - 64px); gap: 20px; }
+  .hero-intro h1 { font-size: 36px; }
+  .hero-intro p { font-size: 16px; max-width: 390px; }
+  .hero-contact { top: 41px; right: 32px; font-size: 14px; min-height: 32px; padding-inline: 8px; }
+  .hero-portrait { top: 33%; left: 50%; width: min(60%, 280px); height: auto; aspect-ratio: 394 / 411; transform: translateX(-50%); }
+  .hero-tile { top: calc(33% - 48px); left: calc(50% - min(30%, 140px) - 48px); width: 48px; height: 48px; }
+  .hero-bird--portrait { top: calc(33% - 19px); left: calc(50% - min(30%, 140px) - 62px); width: 48px; }
+  .hero-bird--top { top: 25%; left: 70%; width: 35px; }
+  .hero-bird--left { top: 53%; left: 8%; width: 30px; }
+  .hero-bird--right { top: 43%; right: 7%; width: 28px; }
+  .hero-clients { top: 64.5%; left: 32px; width: calc(100% - 64px); }
+  .hero-clients h2 { font-size: 16px; margin-bottom: 12px; }
+  .hero-client-logos { gap: 10px 18px; max-width: 310px; }
+  .hero-client-logos img { width: calc(var(--logo-width) * 0.85px); height: calc(var(--logo-height) * 0.85px); }
+  .hero-navigation { top: calc(64.5% + 92px); bottom: auto; left: 32px; right: 32px; flex-direction: row; justify-content: space-between; gap: 12px; }
+  .hero-navigation a { font-size: 16px; line-height: 44px; }
+  .hero-navigation a::after { inset: 0; }
+}
+@media (max-width: 22rem) {
+  .hero-intro h1 { font-size: 29px; }
+  .hero-intro p { font-size: 15px; }
+  .hero-contact { top: 38px; }
+  .hero-client-logos { gap: 10px 14px; }
+}

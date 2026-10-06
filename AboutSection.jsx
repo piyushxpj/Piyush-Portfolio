@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import GitHubContributions from './GitHubContributions.jsx';
 
 const INITIAL_ITEMS = [
   { id: 'notebook', src: '/about/notebook.webp', x: -40, y: 80, width: 320, rotate: -3, zIndex: 0 },
@@ -293,6 +294,20 @@ function AboutSection({ transformRef }) {
         transform: 'rotate(-1deg)',
       }}>
         yep, this is not figma feel free to<br />explore however you like :)
+      </div>
+
+      <div
+        data-no-pan
+        style={{
+          position: 'absolute',
+          left: 90,
+          top: 780,
+          width: 1120,
+          pointerEvents: 'auto',
+          zIndex: 12,
+        }}
+      >
+        <GitHubContributions />
       </div>
     </div>
   );

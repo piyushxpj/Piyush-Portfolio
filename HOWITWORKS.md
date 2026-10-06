@@ -1,0 +1,27 @@
+# How It Works
+
+_Last updated: 2026-10-06_
+
+Piyush Jain's portfolio is a React 18 application served by Vite. `App.jsx` owns navigation, theme state, responsive shells, and project modals. `/` now renders `HeroSection.jsx`, styled independently in `hero.css`, outside the old canvas. The existing desktop work/builds sections use `Canvas.jsx` and `useCanvas.js` for pan and zoom; mobile uses `MobileShell.jsx`. `PlaygroundPage.jsx` is a normal-scrolling masonry page.
+
+The hero matches Figma file `bCf51Jh7ebnEUdQ3Pyn4th`, node `1025:1136` (1280 × 832). Its wrapper fills `100svh`; proportional desktop positioning preserves the reference geometry. Below 768px the same assets and copy reflow; a minimum 800px composition can scroll on short phones. The portrait remains two image layers, the birds and client marks use individual exports, and the background pattern is clipped by the original stamp mask. It is not a flattened screenshot of the design.
+
+The homepage scrolls inside `.portfolio-hero`, with one continuous #252525 background. The viewport-height `.hero-stage` and its entire stamp composition scroll away together, followed by a normal-flow `.home-projects` section. Four non-interactive project placeholders form two columns, collapsing to one below 640px. They are layout-only, not wired to existing project data. The main scroll region supports keyboard focus; no scroll interception, sticky hero, or parallax is used. The sound toggle remains fixed so audio can still be muted below the hero.
+
+Work and Case Study link to the existing work collection at `/?section=work`. Builds remains accessible at `/?section=builds`; Playground uses `/playground`. History and reloads restore the selected section. Contact is a mail link to the existing portfolio email. No separate case-study landing page was invented.
+
+The blue band uses the refreshed vector export `public/hero/blue-pattern.svg` from Figma node `1021:8644` (1240 × 253), including its corrected full-width central divider. Eight CSS row windows split the source at gaps between motifs (0, 33, 50, 99, 140, 178, 193, 210, 253). Each row repeats the same unmodified SVG with the corresponding vertical offset; an oversized track ensures both edges stay covered throughout a 60-second loop. Adjacent rows alternate left/right via animation-direction. The tracks remain clipped inside the stamp mask and preserve aspect ratio on desktop/mobile. Only transforms animate, with no React state or per-frame JavaScript. The motion button was removed at the user's request. With `prefers-reduced-motion: reduce`, all rows stay static.
+
+Project data lives in `canvasData.js`; media is served from `public/`. `styles.css` contains shared styles. `api/github-contributions.js` requests GitHub's GraphQL contribution calendar server-side using `GITHUB_TOKEN`; `vite.config.js` provides the matching local endpoint. Never expose that token in client code.
+
+The yellow tile retains its original circles at rest. Fine-pointer hover runs staggered circle pops on a 1.2-second CSS loop (40% contraction, 118% overshoot, then settling). The square stays fixed and the SVG viewport clips the animation. Pointer exit restores the original circles. Reduced-motion and touch-only devices keep the artwork static.
+
+All four decorative hero birds follow short, curved out-and-back flight paths around their original positions on independent 18–22-second loops. CSS translate moves each wrapper without overwriting its original rotation. Mobile uses smaller 12–20px horizontal routes to stay inside the composition. Three clipped copies of each unchanged SVG isolate the left wing, rigid body, and right wing. Opposing 14–16-degree skew transforms hinge at the clip boundaries, keeping shoulders connected. Independent 2.6–3.2-second wing loops continue during travel; reduced-motion disables both travel and flapping entirely.
+
+Run `npm install`, then `npm run dev`. Validate production output with `npm run build`. Vercel routing is configured in `vercel.json`, including `/cv` and `/playground`.
+
+`HeroAmbience.jsx` owns the homepage-only audio element and fixed bottom-right sound toggle. The supplied `/hero/beach-ambience.mp3` loops at 35% volume after a user gesture, with `preload="none"` and no autoplay. A 32px visible control has a 44px button target, keyboard focus and `aria-pressed` state. Failed playback leaves it off and announces a retry message. Unmount pauses the audio and invalidates pending playback requests; returning home starts off again.
+
+The generated transparent `public/hero/sailboat-v2.png` sits inside the blue pattern's clipped container, behind foreground content. Its folk-print charcoal hull, cream sails, blue geometric marks, and yellow pennant echo the hero assets. A full-width crossing wrapper translates from entirely off the left edge to beyond the right edge over 75 seconds (48 on mobile), with a negative phase so it starts visible. A nested wrapper independently bobs ±3 design pixels and rolls ±3 degrees over 4.8 seconds. Both loops animate transforms only; reduced-motion leaves a visible, stationary boat. The source image and generation prompt are documented in `public/hero/ASSETS.md`.
+
+The hero fonts in `public/fonts/` are the locally installed trial versions used in Figma. Replace them with properly licensed webfonts before publishing. The new homepage does not request GitHub data; the retained canvas still needs a valid server-side `GITHUB_TOKEN` for contributions.

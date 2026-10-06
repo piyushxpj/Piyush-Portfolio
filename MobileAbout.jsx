@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SOCIAL_LINKS } from './canvasData.js';
+import GitHubContributions from './GitHubContributions.jsx';
 
 // Positions in % of collage container WIDTH for x, and % of collage HEIGHT for y.
 const MOBILE_ITEMS = [
@@ -163,6 +164,10 @@ export default function MobileAbout() {
             </motion.span>
           </AnimatePresence>
         </div>
+      </div>
+
+      <div style={{ padding: '36px 10px 0' }}>
+        <GitHubContributions compact />
       </div>
 
       {/* Fixed socials + footer pinned to bottom of viewport */}

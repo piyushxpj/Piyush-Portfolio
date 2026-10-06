@@ -3,6 +3,10 @@
     {
       "source": "/cv",
       "destination": "/cv.pdf"
+    },
+    {
+      "source": "/playground",
+      "destination": "/index.html"
     }
   ]
 }

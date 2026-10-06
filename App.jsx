@@ -9,9 +9,19 @@ import useNarrowDesktop from './useNarrowDesktop.js';
 import MobileShell from './MobileShell.jsx';
 import WorkModal from './WorkModal.jsx';
 import Loader from './Loader.jsx';
+import PlaygroundPage from './PlaygroundPage.jsx';
+import HeroSection from './HeroSection.jsx';
+import { PAGES } from './canvasData.js';
+
+function pageFromPath() {
+  if (window.location.pathname === '/playground') return 'playground';
+  const section = new URLSearchParams(window.location.search).get('section');
+  return ['work', 'builds'].includes(section) ? section : 'about';
+}
 
 function applyTheme(isDark) {
   const root = document.documentElement;
+  root.dataset.theme = isDark ? 'dark' : 'light';
   if (isDark) {
     root.style.setProperty('--figma-bg', '#1e1e1e');
     root.style.setProperty('--figma-surface', '#2c2c2c');
@@ -41,8 +51,23 @@ export default function App() {
   const isMobile = useIsMobile();
   const [isDark, setIsDark] = useState(false);
   const [modalProject, setModalProject] = useState(null);
+  const [activePage, setActivePage] = useState(pageFromPath);
 
   useEffect(() => { applyTheme(isDark); }, [isDark]);
+
+  useEffect(() => {
+    const handlePopState = () => setActivePage(pageFromPath());
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateToPage = useCallback((pageId) => {
+    const nextPath = pageId === 'playground' ? '/playground' : pageId === 'about' ? '/' : `/?section=${pageId}`;
+    if (window.location.pathname + window.location.search !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
+    setActivePage(pageId);
+  }, []);
 
   const toggleTheme = useCallback(() => {
     const transitionBlocker = document.createElement('style');
@@ -63,19 +88,20 @@ export default function App() {
 
   return (
     <>
-      <Loader />
-      {isMobile
-        ? <MobileShell isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />
-        : <DesktopApp isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />}
+      {activePage !== 'about' && <Loader />}
+      {activePage === 'about'
+        ? <HeroSection onPageChange={navigateToPage} />
+        : isMobile
+        ? <MobileShell activePage={activePage} onPageChange={navigateToPage} isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />
+        : <DesktopApp activePage={activePage} onPageChange={navigateToPage} isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />}
       <WorkModal project={modalProject} onClose={closeModal} onNavigate={setModalProject} />
     </>
   );
 }
 
-function DesktopApp({ isDark, onToggleTheme, onOpenWork }) {
+function DesktopApp({ activePage, onPageChange, isDark, onToggleTheme, onOpenWork }) {
   const narrowDesktop = useNarrowDesktop();
   const { worldRef, handlers, containerRef, transformRef, panTo } = useCanvas();
-  const [activePage, setActivePage] = useState('about');
   const [selectedCard, setSelectedCard] = useState(null);
   const [canvasBg, setCanvasBg] = useState(isDark ? '#1e1e1e' : '#F2F2F2');
   const [activeTool, setActiveTool] = useState('move');
@@ -86,10 +112,17 @@ function DesktopApp({ isDark, onToggleTheme, onOpenWork }) {
   // Sync canvas bg with theme
   useEffect(() => { setCanvasBg(isDark ? '#1e1e1e' : '#F2F2F2'); }, [isDark]);
 
-  // Pan to About section on initial load (instant — happens behind the loader)
+  // Keep the canvas focused on the selected canvas page. Playground uses normal document scrolling.
   useEffect(() => {
-    panTo(620, 300, undefined, true);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (activePage === 'playground') return undefined;
+    const page = PAGES.find((item) => item.id === activePage);
+    if (!page) return undefined;
+    const scales = { about: 0.7, work: 0.5, builds: 0.5 };
+    const frame = requestAnimationFrame(() => {
+      panTo(page.x, page.y, scales[page.id] || 0.7, page.id === 'about');
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activePage, panTo]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -112,11 +145,9 @@ function DesktopApp({ isDark, onToggleTheme, onOpenWork }) {
   }, []);
 
   const handlePageClick = useCallback((page) => {
-    setActivePage(page.id);
+    onPageChange(page.id);
     setSelectedCard(null);
-    const scales = { about: 0.7, work: 0.5, playground: 0.5, builds: 0.5 };
-    panTo(page.x, page.y, scales[page.id] || 0.7);
-  }, [panTo]);
+  }, [onPageChange]);
 
   const handleCardClick = useCallback((project) => {
     if (typeof project === 'string' || project === null) {
@@ -124,9 +155,9 @@ function DesktopApp({ isDark, onToggleTheme, onOpenWork }) {
       return;
     }
     setSelectedCard(project.id);
-    setActivePage(project.page);
-    panTo(project.x - 100, project.y - 100, 0.7);
-  }, [panTo]);
+    onPageChange(project.page);
+    requestAnimationFrame(() => panTo(project.x - 100, project.y - 100, 0.7));
+  }, [onPageChange, panTo]);
 
   const resetTool = useCallback(() => { setActiveTool('move'); }, []);
 
@@ -143,13 +174,18 @@ function DesktopApp({ isDark, onToggleTheme, onOpenWork }) {
         {!narrowDesktop && (
           <LeftSidebar activePage={activePage} onPageClick={handlePageClick} selectedCard={selectedCard} onCardClick={handleCardClick} />
         )}
-        <Canvas worldRef={worldRef} handlers={handlers} containerRef={containerRef} transformRef={transformRef}
-          selectedCard={selectedCard} onSelectCard={setSelectedCard} onOpenWork={onOpenWork} canvasBg={canvasBg}
-          activeTool={activeTool} shapeType={shapeType} onCanvasClick={handleCanvasClick}
-          canvasItems={canvasItems} setCanvasItems={setCanvasItems} onResetTool={resetTool} stickyColor={stickyColor} />
-        <BottomToolbar activeTool={activeTool} shapeType={shapeType} stickyColor={stickyColor}
-          onToolChange={setActiveTool} onShapeTypeChange={setShapeType} onStickyColorChange={setStickyColor} />
-        {!narrowDesktop && (
+        <div style={{ display: activePage === 'playground' ? 'none' : 'flex', flex: 1, minWidth: 0 }}>
+          <Canvas worldRef={worldRef} handlers={handlers} containerRef={containerRef} transformRef={transformRef}
+            selectedCard={selectedCard} onSelectCard={setSelectedCard} onOpenWork={onOpenWork} canvasBg={canvasBg}
+            activeTool={activeTool} shapeType={shapeType} onCanvasClick={handleCanvasClick}
+            canvasItems={canvasItems} setCanvasItems={setCanvasItems} onResetTool={resetTool} stickyColor={stickyColor} />
+        </div>
+        {activePage === 'playground' && <PlaygroundPage withSidebar={!narrowDesktop} />}
+        {activePage !== 'playground' && (
+          <BottomToolbar activeTool={activeTool} shapeType={shapeType} stickyColor={stickyColor}
+            onToolChange={setActiveTool} onShapeTypeChange={setShapeType} onStickyColorChange={setStickyColor} />
+        )}
+        {!narrowDesktop && activePage !== 'playground' && (
           <RightSidebar selectedCard={selectedCard} canvasBg={canvasBg} onCanvasBgChange={setCanvasBg}
             isDark={isDark} onToggleTheme={onToggleTheme} />
         )}
