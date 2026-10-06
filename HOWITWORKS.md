@@ -4,6 +4,8 @@ _Last updated: 2026-10-07_
 
 ## Production hosting
 
+Social-sharing metadata in `index.html` points to `https://piyushjain.in/og-portfolio-stamp.png` for both Open Graph and Twitter large-image cards. This is the unmodified user-supplied 2400 × 1260 PNG. The shared HTML serves this preview on all portfolio routes; the previous `og-image.webp` remains available but is no longer referenced by metadata.
+
 Vercel project `piyush-portfolio` tracks `codex/figma-hero` for Production, with automatic assignment to the existing `piyushjain.in` and `www.piyushjain.in` domains. Pushes to this branch publish the new portfolio. `main` is deliberately preserved at `56433b69fdd3b3f19fab79ce6aa30cc1b1280ae3` with the original Figma-style portfolio; do not merge or overwrite it as part of new-design releases. To restore the old site, change Production branch tracking to `main` and deploy that branch (changing tracking alone does not replace the active deployment). The previous production deployment is `54fwgh141oJdQuBeEdcWrDxVkbGQ`.
 
 The Experiments placeholder uses Hero Roobert sans-serif with an inline transparent icon sized to 1.2em tall.

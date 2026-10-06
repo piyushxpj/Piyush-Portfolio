@@ -3,6 +3,7 @@
 ## 2026-10-07
 
 ### Changed
+- Set Open Graph and Twitter previews to the supplied stamp artwork, with an absolute public image URL, dimensions, and descriptive alt text.
 - Set Vercel Production branch tracking to `codex/figma-hero` with existing custom-domain auto-assignment; preserved the original Figma-style portfolio on `main`.
 - Increased the inline Experiments icon slightly and switched its heading to Hero Roobert sans-serif.
 
