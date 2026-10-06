@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1851" height="850" viewBox="0 0 1851 850" fill="none">
+  <title>Animated geometric color panels</title>
+  <desc>Vector recreation of the supplied pattern: purple waves, blue and yellow stripes, coral and pink triangles, and green arches.</desc>
+  <style>
+    /* MOTION STORYBOARD: fixed diagonal panel boundaries, independent tracks.
+       Each track moves exactly one repeat per loop; overscan covers both ends.
+       Waves ←/→ 3.5/4.5s; stripes → 3s; triangles ↑ 5.5s; arches ↓ 4s.
+       Bold continuous travel: 4–5× the original speed, no flashing or resets. */
+    .wave-left { --duration: 3.5s; --travel-x: -180px; --travel-y: 0px; }
+    .wave-right { --duration: 4.5s; --travel-x: 180px; --travel-y: 0px; }
+    .stripes { --duration: 3s; --travel-x: 88px; --travel-y: 0px; }
+    .triangles { --duration: 5.5s; --travel-x: 0px; --travel-y: -280px; }
+    .arches { --duration: 4s; --travel-x: 0px; --travel-y: 160px; }
+    @keyframes tile-travel {
+      from { transform: translate(0, 0); }
+      to { transform: translate(var(--travel-x), var(--travel-y)); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .track { animation: tile-travel var(--duration) linear infinite; }
+    }
+  </style>
+  <defs>
+    <pattern id="waves" width="180" height="420" patternUnits="userSpaceOnUse">
+      <rect width="180" height="420" fill="#7929DC"/>
+      <path d="M0 24H180V60H0ZM0 340H180V376H0Z" fill="#D6A8FA"/>
+      <path d="M-90 120C-60 120-30 90 0 90S60 150 90 150S150 90 180 90S240 150 270 150
+               M-90 190C-60 190-30 160 0 160S60 220 90 220S150 160 180 160S240 220 270 220
+               M-90 260C-60 260-30 230 0 230S60 290 90 290S150 230 180 230S240 290 270 290"
+        stroke="#D6A8FA" stroke-width="32"/>
+    </pattern>
+    <pattern id="stripes" width="88" height="88" patternUnits="userSpaceOnUse">
+      <rect width="88" height="88" fill="#4B8EE2"/>
+      <rect width="44" height="88" fill="#FCCC30"/>
+    </pattern>
+    <pattern id="triangles" width="280" height="280" patternUnits="userSpaceOnUse">
+      <rect width="280" height="280" fill="#F77FCE"/>
+      <path d="M0 0H140L0 140ZM140 0H280L140 140ZM0 140L140 280H0ZM140 140L280 280H140Z" fill="#EF4E3B"/>
+    </pattern>
+    <pattern id="arches" width="144" height="160" patternUnits="userSpaceOnUse">
+      <rect width="144" height="160" fill="#FCCC30"/>
+      <path d="M0 160C8-53 136-53 144 160Z" fill="#6DA53D"/>
+    </pattern>
+    <clipPath id="panel-left"><path d="M0 0H87L382 850H0Z"/></clipPath>
+    <clipPath id="panel-stripes"><path d="M87 0H520L799 850H382Z"/></clipPath>
+    <clipPath id="panel-triangles"><path d="M520 0H964L1220 850H799Z"/></clipPath>
+    <clipPath id="panel-arches"><path d="M964 0H1392L1706 850H1220Z"/></clipPath>
+    <clipPath id="panel-right"><path d="M1392 0H1851V850H1706Z"/></clipPath>
+  </defs>
+  <rect width="1851" height="850" fill="#7929DC"/>
+  <g clip-path="url(#panel-left)">
+    <g class="track wave-left"><rect x="-400" y="-420" width="2651" height="1690" fill="url(#waves)"/></g>
+  </g>
+  <g clip-path="url(#panel-stripes)">
+    <g transform="skewX(19)">
+      <g class="track stripes"><rect x="-600" y="-420" width="3051" height="1690" fill="url(#stripes)"/></g>
+    </g>
+  </g>
+  <g clip-path="url(#panel-triangles)">
+    <g class="track triangles"><rect x="-280" y="-560" width="2411" height="1970" fill="url(#triangles)"/></g>
+  </g>
+  <g clip-path="url(#panel-arches)">
+    <g class="track arches"><rect x="-288" y="-320" width="2427" height="1490" fill="url(#arches)"/></g>
+  </g>
+  <g clip-path="url(#panel-right)">
+    <g class="track wave-right"><rect x="-400" y="-420" width="2651" height="1690" fill="url(#waves)"/></g>
+  </g>
+</svg>

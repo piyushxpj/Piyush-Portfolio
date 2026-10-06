@@ -10,10 +10,11 @@ import MobileShell from './MobileShell.jsx';
 import WorkModal from './WorkModal.jsx';
 import Loader from './Loader.jsx';
 import PlaygroundPage from './PlaygroundPage.jsx';
-import HeroSection from './HeroSection.jsx';
+import HeroSectionV2 from './HeroSectionV2.jsx';
 import { PAGES } from './canvasData.js';
 
 function pageFromPath() {
+  if (window.location.pathname === '/work') return 'work';
   if (window.location.pathname === '/playground') return 'playground';
   const section = new URLSearchParams(window.location.search).get('section');
   return ['work', 'builds'].includes(section) ? section : 'about';
@@ -62,7 +63,7 @@ export default function App() {
   }, []);
 
   const navigateToPage = useCallback((pageId) => {
-    const nextPath = pageId === 'playground' ? '/playground' : pageId === 'about' ? '/' : `/?section=${pageId}`;
+    const nextPath = pageId === 'playground' ? '/playground' : pageId === 'work' ? '/work' : pageId === 'about' ? '/' : `/?section=${pageId}`;
     if (window.location.pathname + window.location.search !== nextPath) {
       window.history.pushState({}, '', nextPath);
     }
@@ -88,9 +89,9 @@ export default function App() {
 
   return (
     <>
-      {activePage !== 'about' && <Loader />}
-      {activePage === 'about'
-        ? <HeroSection onPageChange={navigateToPage} />
+      {!['about', 'work'].includes(activePage) && <Loader />}
+      {['about', 'work'].includes(activePage)
+        ? <HeroSectionV2 activePage={activePage} onPageChange={navigateToPage} />
         : isMobile
         ? <MobileShell activePage={activePage} onPageChange={navigateToPage} isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />
         : <DesktopApp activePage={activePage} onPageChange={navigateToPage} isDark={isDark} onToggleTheme={toggleTheme} onOpenWork={setModalProject} />}

@@ -25,13 +25,11 @@
   height: 100svh;
   overflow-x: hidden;
   overflow-y: auto;
-  overscroll-behavior-y: contain;
   background: #252525;
   color: #000;
   font-family: 'Hero Roobert', Arial, sans-serif;
   letter-spacing: -0.02em;
 }
-.portfolio-hero:focus-visible { outline: 2px solid #faf6e5; outline-offset: -2px; }
 
 .portfolio-hero img {
   -webkit-user-drag: none;
@@ -97,67 +95,38 @@
   --u: min(0.078125cqw, 0.1201923cqh);
 }
 
-/* A normal-flow continuation of the stamp, sharing the same dark backdrop.
-   Empty cards are layout previews, not links to unpublished projects. */
-.home-projects {
-  padding: 48px clamp(24px, 5.46875vw, 96px) 96px;
-  color: #faf6e5;
-}
-.home-projects > h2 {
-  margin: 0 0 32px;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.2;
-}
-.home-projects__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px 24px;
-}
-.home-project-card { min-width: 0; }
-.home-project-card__cover {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  border-radius: 4px;
-  background: #f0efea;
-  color: #64635e;
-  font-size: 14px;
-  letter-spacing: 0;
-}
-.home-project-card h3 {
-  margin-top: 16px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-@media (max-width: 39.99rem) {
-  .home-projects { padding-top: 32px; padding-bottom: 80px; }
-  .home-projects > h2 { font-size: 28px; margin-bottom: 24px; }
-  .home-projects__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-}
-
 .hero-paper {
+  --stamp-radius: 8px;
+  --stamp-pitch: 24px;
   position: absolute;
   inset: calc(20 * var(--u));
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  mask: url('/hero/stamp-mask.svg') 0 0 / 100% 100% no-repeat;
+  background: #fff;
+  /* Repeat round perforations instead of stretching a whole-frame SVG. */
+  mask:
+    radial-gradient(circle at 50% 0, transparent calc(var(--stamp-radius) - 0.5px), #000 var(--stamp-radius)) top center / var(--stamp-pitch) 100% round no-repeat,
+    radial-gradient(circle at 50% 100%, transparent calc(var(--stamp-radius) - 0.5px), #000 var(--stamp-radius)) bottom center / var(--stamp-pitch) 100% round no-repeat,
+    radial-gradient(circle at 0 50%, transparent calc(var(--stamp-radius) - 0.5px), #000 var(--stamp-radius)) left center / 100% var(--stamp-pitch) no-repeat round,
+    radial-gradient(circle at 100% 50%, transparent calc(var(--stamp-radius) - 0.5px), #000 var(--stamp-radius)) right center / 100% var(--stamp-pitch) no-repeat round;
+  mask-composite: intersect;
 }
 
-/* The paper and its matching mask deliberately fill the viewport frame. */
+/* Hide the raster export's baked-in perforations; only the CSS edge is visible. */
 .hero-paper__asset {
+  position: absolute;
+  inset: -3%;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 106%;
+  max-width: none;
+  height: 106%;
 }
 
 .hero-pattern {
   /* Preserve the SVG's 1240 × 253 aspect ratio at every viewport height. */
   --pattern-height: calc(32.8125cqh - 20 * var(--u));
   --pattern-unit: calc(var(--pattern-height) / 253);
-  --pattern-tile-width: calc(var(--pattern-unit) * 1240);
   --ship-width: clamp(88px, calc(128 * var(--u)), 144px);
   --ship-crossing-duration: 75s;
   --ship-crossing-phase: -18s;
@@ -168,10 +137,11 @@
   inset: auto 0 0;
   height: var(--pattern-height);
   overflow: hidden;
-  background: #a9dbfd;
+  background: #d6a8fa;
 }
 
 .hero-pattern__row {
+  --pattern-tile-width: calc(var(--pattern-unit) * var(--tile-width));
   position: absolute;
   inset-inline: 0;
   top: calc(var(--row-start) * var(--pattern-unit));
@@ -182,9 +152,9 @@
 .hero-pattern__track {
   position: absolute;
   inset: 0 calc(-1 * var(--pattern-tile-width)) 0 0;
-  background-image: url('/hero/blue-pattern.svg');
-  background-size: var(--pattern-tile-width) var(--pattern-height);
-  background-position: 0 calc(-1 * var(--row-start) * var(--pattern-unit));
+  background-image: var(--row-art);
+  background-size: var(--pattern-tile-width) 100%;
+  background-position: 0 0;
   background-repeat: repeat-x;
 }
 
@@ -194,7 +164,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-pattern__track { animation: hero-pattern-drift 60s linear infinite; }
+  .hero-pattern__track { animation: hero-pattern-drift var(--row-duration) linear infinite; }
   .hero-pattern__row:nth-child(even) .hero-pattern__track { animation-direction: reverse; }
 }
 
@@ -443,6 +413,10 @@
 }
 
 .hero-navigation {
+  --nav-duration: 150ms;
+  --letter-duration: 240ms;
+  --letter-stagger: 18ms;
+  --letter-ease: cubic-bezier(0.2, 0, 0, 1);
   position: absolute;
   right: 5.46875%;
   top: 51.0817308%;
@@ -460,9 +434,53 @@
   text-decoration: none;
 }
 .hero-navigation a::after { content: ''; position: absolute; inset: -5px 0; }
+.hero-navigation__label { display: inline-flex; vertical-align: top; }
+.hero-navigation__letter-window { display: inline-block; overflow: hidden; }
+.hero-navigation__letter { position: relative; display: block; }
+.hero-navigation__letter::after {
+  content: attr(data-letter);
+  position: absolute;
+  inset: 100% 0 auto;
+}
+.hero-navigation__arrow {
+  position: absolute;
+  inset-inline-start: calc(100% + 6px);
+  top: 50%;
+  margin-top: -9px;
+  opacity: 0;
+  pointer-events: none;
+}
+/* NAV STORYBOARD:
+     0ms  hover/focus: blue cue and arrow; first letter rolls up one line
+    18ms  each following letter begins (240ms travel, at most 402ms total)
+    exit  all letters return together in 150ms; transitions are interruptible.
+   The link hit area stays still. Reduced motion keeps the static arrow cue. */
+.hero-navigation a:focus-visible { color: #0068b8; }
+.hero-navigation a:focus-visible .hero-navigation__arrow { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-navigation a:hover { color: #0068b8; }
+  .hero-navigation a:hover .hero-navigation__arrow { opacity: 1; }
+}
+@media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
+  .hero-navigation__letter { transition: transform var(--nav-duration) var(--letter-ease); }
+  .hero-navigation__arrow { transform: translateX(-8px); transition: opacity var(--nav-duration) ease-out, transform var(--nav-duration) cubic-bezier(0.2, 0, 0, 1); }
+  .hero-navigation a:focus-visible .hero-navigation__letter {
+    transform: translateY(-100%);
+    transition-duration: var(--letter-duration);
+    transition-delay: calc(var(--letter-index) * var(--letter-stagger));
+  }
+  .hero-navigation a:focus-visible .hero-navigation__arrow { transform: translateX(0); }
+}
+@media (min-width: 48rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-navigation a:hover .hero-navigation__letter {
+    transform: translateY(-100%);
+    transition-duration: var(--letter-duration);
+    transition-delay: calc(var(--letter-index) * var(--letter-stagger));
+  }
+  .hero-navigation a:hover .hero-navigation__arrow { transform: translateX(0); }
+}
 .portfolio-hero a:focus-visible { outline: 2px solid #0068b8; outline-offset: 5px; }
 @media (hover: hover) {
-  .hero-navigation a:hover { text-decoration: underline; text-underline-offset: 4px; }
   .hero-contact:hover { background: #333; }
 }
 
@@ -476,7 +494,7 @@
   .hero-bird--left { --flight-x: 12px; --flight-y: -18px; }
   .hero-bird--right { --flight-x: -12px; --flight-y: 12px; }
   .hero-stage { min-height: 800px; --u: 1px; }
-  .hero-paper { inset: 12px; }
+  .hero-paper { inset: 12px; --stamp-radius: 6px; --stamp-pitch: 20px; }
   .hero-pattern {
     --pattern-height: calc((100cqh - 24px) * 0.16);
     --ship-width: 88px;
@@ -487,9 +505,13 @@
   .hero-intro h1 { font-size: 36px; }
   .hero-intro p { font-size: 16px; max-width: 390px; }
   .hero-contact { top: 41px; right: 32px; font-size: 14px; min-height: 32px; padding-inline: 8px; }
-  .hero-portrait { top: 33%; left: 50%; width: min(60%, 280px); height: auto; aspect-ratio: 394 / 411; transform: translateX(-50%); }
-  .hero-tile { top: calc(33% - 48px); left: calc(50% - min(30%, 140px) - 48px); width: 48px; height: 48px; }
-  .hero-bird--portrait { top: calc(33% - 19px); left: calc(50% - min(30%, 140px) - 62px); width: 48px; }
+  /* Keep the portrait above the clients, including wide but short tablets. */
+  .hero-portrait,
+  .hero-tile,
+  .hero-bird--portrait { --portrait-width: min(60cqw, 280px, calc((31.5cqh - 24px) * 394 / 411)); }
+  .hero-portrait { top: 33%; left: 50%; width: var(--portrait-width); height: auto; aspect-ratio: 394 / 411; transform: translateX(-50%); }
+  .hero-tile { top: calc(33% - 48px); left: calc(50% - var(--portrait-width) / 2 - 48px); width: 48px; height: 48px; }
+  .hero-bird--portrait { top: calc(33% - 19px); left: calc(50% - var(--portrait-width) / 2 - 62px); width: 48px; }
   .hero-bird--top { top: 25%; left: 70%; width: 35px; }
   .hero-bird--left { top: 53%; left: 8%; width: 30px; }
   .hero-bird--right { top: 43%; right: 7%; width: 28px; }
@@ -497,8 +519,9 @@
   .hero-clients h2 { font-size: 16px; margin-bottom: 12px; }
   .hero-client-logos { gap: 10px 18px; max-width: 310px; }
   .hero-client-logos img { width: calc(var(--logo-width) * 0.85px); height: calc(var(--logo-height) * 0.85px); }
-  .hero-navigation { top: calc(64.5% + 92px); bottom: auto; left: 32px; right: 32px; flex-direction: row; justify-content: space-between; gap: 12px; }
-  .hero-navigation a { font-size: 16px; line-height: 44px; }
+  .hero-navigation { top: calc(64.5% + 92px); bottom: auto; left: 32px; right: 32px; flex-direction: row; justify-content: space-between; gap: 8px; }
+  .hero-navigation a { font-size: 14px; line-height: 44px; white-space: nowrap; }
+  .hero-navigation__arrow { display: none; }
   .hero-navigation a::after { inset: 0; }
 }
 @media (max-width: 22rem) {

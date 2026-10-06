@@ -1,0 +1,242 @@
+@font-face {
+  font-family: 'Hero Morganite';
+  src: url('/fonts/Morganite-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hero Roobert';
+  src: url('/fonts/RoobertTRIAL-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+.hero-v2 {
+  height: 100vh;
+  height: 100svh;
+  overflow: auto;
+  background: #252525;
+  color: #000;
+  font-family: 'Hero Roobert', Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+.hero-v2__stage {
+  --frame-inset: 20px;
+  --content-inset: 5.46875%;
+  --stage-height: max(680px, 100svh);
+  --pattern-height: calc((var(--stage-height) - 2 * var(--frame-inset)) * 257 / 792);
+  container-type: size;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: 1fr auto calc(var(--pattern-height) + var(--frame-inset));
+  height: var(--stage-height);
+}
+.hero-v2__paper {
+  inset: var(--frame-inset);
+  background: #fff url('/hero-v2/paper.svg') center / 106% 106% no-repeat;
+  /* Fixed pitches prevent the side perforations from re-counting on every
+     frame while the stamp collapses. Top anchoring keeps the cuts stationary. */
+  mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-position: top left, bottom left, top left, top right;
+}
+.hero-v2__paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #252525;
+  opacity: 0;
+  pointer-events: none;
+}
+.hero-v2__pattern {
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--pattern-height);
+  overflow: hidden;
+}
+.hero-v2__pattern img {
+  position: absolute;
+  left: 0;
+  top: -79.17%;
+  width: 100%;
+  max-width: none;
+  height: 221.74%;
+  object-fit: cover;
+}
+.hero-v2 img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.hero-v2__navigation {
+  position: absolute;
+  inset: 58px var(--content-inset) auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.hero-v2__navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.hero-v2 a:focus-visible {
+  outline: 2px solid #7929dc;
+  outline-offset: 5px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero-v2__navigation a:hover { color: #7929dc; }
+}
+.hero-v2__content {
+  grid-row: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  margin-inline: var(--content-inset);
+  padding-bottom: 50px;
+}
+.hero-v2__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 466px;
+  min-width: 0;
+}
+.hero-v2__identity {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.hero-v2__portrait {
+  flex: none;
+  width: 83px;
+  height: 74px;
+}
+.hero-v2__identity h1 {
+  margin: 0;
+  font-family: 'Hero Morganite', 'Arial Narrow', sans-serif;
+  font-size: 105px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 74px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+.hero-v2__intro p {
+  margin: 0;
+  max-width: 459px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.hero-v2__clients {
+  flex: none;
+  width: 345px;
+}
+.hero-v2__clients h2 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: -0.02em;
+}
+.hero-v2__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px 30px;
+}
+.hero-v2__logos img { flex: none; max-width: none; }
+
+/* The desktop artwork has no phone frame: reflow the same content and assets. */
+@media (max-width: 62rem) {
+  .hero-v2__stage { --stage-height: max(780px, 100svh); --content-inset: 40px; }
+  .hero-v2__content { flex-direction: column; align-items: flex-start; gap: 36px; padding-bottom: 40px; }
+  .hero-v2__intro { width: min(100%, 466px); }
+  .hero-v2__navigation { gap: 16px; }
+}
+@media (max-width: 35rem) {
+  .hero-v2__stage {
+    --frame-inset: 12px;
+    --content-inset: 32px;
+    --pattern-height: calc((var(--stage-height) - 24px) * 0.24);
+    --stage-height: max(760px, 100svh);
+  }
+  .hero-v2__paper { --stamp-radius: 6px; --stamp-pitch: 20px; }
+  .hero-v2__pattern img { top: 0; height: 100%; }
+  .hero-v2__navigation { top: 32px; gap: 12px; }
+  .hero-v2__navigation a { font-size: 14px; }
+  .hero-v2__content { gap: 32px; padding-bottom: 36px; }
+  .hero-v2__intro { gap: 20px; }
+  .hero-v2__identity { gap: 10px; }
+  .hero-v2__portrait { width: 58px; height: auto; }
+  .hero-v2__identity h1 { font-size: 72px; line-height: 52px; }
+  .hero-v2__intro p { font-size: 16px; line-height: 1.5; }
+  .hero-v2__clients { width: min(100%, 345px); }
+  .hero-v2__clients h2 { font-size: 16px; margin-bottom: 16px; }
+  .hero-v2__logos { gap: 14px 20px; }
+}
+@media (max-width: 22rem) {
+  .hero-v2__stage { --content-inset: 28px; }
+  .hero-v2__navigation { gap: 8px; }
+  .hero-v2__navigation a { font-size: 13px; }
+  .hero-v2__identity h1 { font-size: 62px; line-height: 46px; }
+  .hero-v2__portrait { width: 50px; }
+  .hero-v2__logos { gap: 14px 16px; }
+}
+
+/* ANIMATION STORYBOARD — shared stamp shell, no duplicate navigation.
+     0ms  Work opens: intro/pattern exit; paper crossfades to charcoal.
+   180ms  Hero content is gone; fixed-pitch stamp continues contracting.
+   300ms  Gallery fades in and rises 16px over 300ms.
+   600ms  Stamp's lower edge settles at 80px; navigation stays available.
+   Direct /work loads start in the compact state. Reduced motion is instant. */
+.hero-v2 {
+  --stamp-fold-duration: 600ms;
+  --stamp-exit-duration: 180ms;
+  --stamp-color-duration: 300ms;
+  --stamp-reveal-delay: 300ms;
+  --stamp-reveal-duration: 300ms;
+  --stamp-fold-ease: cubic-bezier(.22, 1, .36, 1);
+}
+.hero-v2__stage { overflow: hidden; }
+.hero-v2__navigation { color: #000; }
+.hero-v2--work { background: #fff; }
+.hero-v2--work .hero-v2__stage { position: sticky; top: 0; z-index: 10; height: 80px; color: #fff; }
+.hero-v2--work .hero-v2__paper {
+  inset: -24px var(--frame-inset) 0;
+}
+.hero-v2--work .hero-v2__paper::before { opacity: 1; }
+.hero-v2--work .hero-v2__navigation { inset: 15px 7.96875% auto; color: #fff; }
+.hero-v2--work .hero-v2__content { opacity: 0; visibility: hidden; transform: translateY(-24px); pointer-events: none; }
+.hero-v2--work .hero-v2__pattern { opacity: 0; visibility: hidden; transform: translateY(-24px); }
+.hero-v2--work .hero-v2__navigation a:focus-visible { outline-color: #fff; }
+.hero-v2--work .hero-v2__navigation a:hover { color: #d6a8fa; }
+.work-skip { position: fixed; inset-block-start: 8px; inset-inline-start: 28px; z-index: 30; padding: 10px 14px; background: #fff; color: #252525; transform: translateY(-200%); }
+.work-skip:focus { transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-v2 { transition: background-color var(--stamp-fold-duration) var(--stamp-fold-ease); }
+  .hero-v2__stage { transition: height var(--stamp-fold-duration) var(--stamp-fold-ease); }
+  .hero-v2__paper { transition: inset var(--stamp-fold-duration) var(--stamp-fold-ease); }
+  .hero-v2__paper::before { transition: opacity var(--stamp-color-duration) ease-out; }
+  .hero-v2__navigation { transition: inset var(--stamp-fold-duration) var(--stamp-fold-ease), color var(--stamp-color-duration) ease-out; }
+  .hero-v2__content, .hero-v2__pattern { transition: transform var(--stamp-exit-duration) ease-out, opacity var(--stamp-exit-duration) ease-out, visibility var(--stamp-exit-duration); }
+  .hero-v2--work .work-page { animation: work-reveal var(--stamp-reveal-duration) var(--stamp-reveal-delay) var(--stamp-fold-ease) both; }
+  @keyframes work-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (max-width: 35rem) {
+  .hero-v2--work .hero-v2__navigation { inset-inline: 32px; }
+}
