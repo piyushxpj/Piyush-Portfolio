@@ -146,6 +146,27 @@
   line-height: 1.4;
   letter-spacing: -0.02em;
 }
+.hero-v2__socials { font-size: 18px; font-weight: 600; font-style: italic; line-height: 20px; letter-spacing: -0.02em; }
+.hero-v2__social-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; }
+.hero-v2__social-links :is(a, button) {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 0; border: 0; background: none; color: inherit; font: inherit;
+  letter-spacing: inherit; text-decoration: none; cursor: pointer;
+}
+.hero-v2__social-links button { min-width: 3.4em; }
+.hero-v2__social-links :is(a, button):focus-visible { outline: 2px solid #7929dc; outline-offset: 4px; }
+.hero-v2__social-status {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.hero-v2__social-error { display: block; margin-top: 8px; font-size: 14px; }
+.hero-v2__social-error span { user-select: text; overflow-wrap: anywhere; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-v2__social-links :is(a, button):hover { color: #7929dc; }
+}
+@media (forced-colors: active) {
+  .hero-v2__social-links :is(a, button):focus-visible { outline-color: Highlight; }
+}
 .hero-v2__clients {
   flex: none;
   width: 345px;
@@ -189,6 +210,8 @@
   .hero-v2__portrait { width: 58px; height: auto; }
   .hero-v2__identity h1 { font-size: 72px; line-height: 52px; }
   .hero-v2__intro p { font-size: 16px; line-height: 1.5; }
+  .hero-v2__socials { font-size: 14px; }
+  .hero-v2__social-links { column-gap: 16px; }
   .hero-v2__clients { width: min(100%, 345px); }
   .hero-v2__clients h2 { font-size: 16px; margin-bottom: 16px; }
   .hero-v2__logos { gap: 14px 20px; }
@@ -197,6 +220,7 @@
   .hero-v2__stage { --content-inset: 28px; }
   .hero-v2__navigation { gap: 8px; }
   .hero-v2__nav-link { font-size: 13px; }
+  .hero-v2__socials { font-size: 13px; }
   .hero-v2__identity h1 { font-size: 62px; line-height: 46px; }
   .hero-v2__portrait { width: 50px; }
   .hero-v2__logos { gap: 14px 16px; }

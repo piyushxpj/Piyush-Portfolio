@@ -56,6 +56,10 @@ const cards = [
     { file: 'event-30387', x: 24, y: 56.3, width: 260.374, height: 260.374 },
     { file: 'event-30435', x: 304.63, y: 56.3, width: 260.374, height: 260.374 },
   ] },
+  // Reuse the original Experiments media without removing it from that gallery.
+  { id: 'bento-identity', title: 'Bento — animated brand identity', video: 'bento-identity', videoSrc: '/playground/twitter-gif-1988869773401215143.mp4', poster: `${MEDIA}bento-identity.png` },
+  { id: 'ship-future-ai', title: 'Ship the Future with AI — website concept', video: 'ship-future-ai', videoSrc: '/playground/twitter-gif-2037805436561453374.mp4', poster: `${MEDIA}ship-future-ai.png` },
+  { id: 'knox-brand', title: 'Knox — brand identity and stationery', src: '/playground/01.webp', inset: true },
 ];
 
 function SoundIcon({ muted }) {
@@ -128,8 +132,8 @@ function WorkVideo({ card, audible, onSound, onQuiet }) {
   };
 
   return <>
-    <video ref={videoRef} src={load ? `${MEDIA}${card.video}.mp4` : undefined}
-      poster={`${MEDIA}${card.video}.jpg`} loop muted={!audible} playsInline preload="metadata"
+    <video ref={videoRef} src={load ? card.videoSrc || `${MEDIA}${card.video}.mp4` : undefined}
+      poster={card.poster || `${MEDIA}${card.video}.jpg`} loop muted={!audible} playsInline preload="metadata"
       aria-label={card.title} aria-hidden={!load || undefined} onCanPlay={() => syncRef.current()}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
       onError={() => { setFailed(true); setPlaying(false); }} />
@@ -152,6 +156,7 @@ function WorkVideo({ card, audible, onSound, onQuiet }) {
 }
 
 function WorkArtwork({ card }) {
+  if (card.src) return <img className={`work-art-image${card.inset ? ' work-art-image--inset' : ''}`} src={card.src} alt={card.title} loading="lazy" decoding="async" />;
   if (card.layers) return <div className="work-art work-art--layers" style={{ background: card.background }} role="img" aria-label={card.title}>
     {card.layers.map(layer => <div className={`work-art-layer${layer.insetShadow ? ' work-art-layer--inset' : ''}`} key={layer.file}
       style={{ left: `${layer.x / 590 * 100}%`, top: `${layer.y / 372 * 100}%`, width: `${layer.width / 590 * 100}%`, height: `${layer.height / 372 * 100}%`, borderRadius: layer.radius ? `${layer.radius / 590 * 100}cqw` : undefined }}>
@@ -197,7 +202,7 @@ export default function WorkPage() {
     <h1 id="work-title" tabIndex={-1} data-node-id="1071:22784">Designing<br />Across Everything</h1>
     <section className="work-grid" aria-label="Selected design work" data-node-id="1071:22785">
       {cards.map(card => <figure className={`work-card${card.startsRow ? ' work-card--starts-row' : ''}`}
-        key={card.id} data-node-id={card.nodeId || `1071:${card.id}`}>
+        key={card.id} data-node-id={card.nodeId || (card.src || card.videoSrc ? undefined : `1071:${card.id}`)}>
         {card.video ? <WorkVideo card={card} audible={audibleId === card.id} onSound={sound} onQuiet={quiet} />
           : <WorkArtwork card={card} />}
       </figure>)}

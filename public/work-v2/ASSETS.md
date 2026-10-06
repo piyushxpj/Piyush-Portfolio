@@ -45,6 +45,20 @@ Eight 590 × 372 cards, in source row order. Source PNGs are unmodified; individ
 
 ## User-provided media
 
+### Reused Experiments pieces
+
+Three additional cards follow the original 30 Work cards. They reference the existing Experiments assets directly, preserving that gallery and avoiding duplicate media. Both videos use centered `object-fit: cover` to fill the 590 × 372 frames edge to edge. The Knox artwork uses a centered 84% image area with `object-fit: contain`, leaving breathing room inside the unchanged card frame per the user's follow-up.
+
+| Work card | Existing source | Work poster |
+| --- | --- | --- |
+| Bento — animated brand identity | `/playground/twitter-gif-1988869773401215143.mp4` | `media/bento-identity.png` |
+| Ship the Future with AI — website concept | `/playground/twitter-gif-2037805436561453374.mp4` | `media/ship-future-ai.png` |
+| Knox — brand identity and stationery | `/playground/01.webp` | Not applicable |
+
+Both videos are silent and reuse Work's visibility-aware playback, play/pause, and reduced-motion handling. Posters are first frames extracted from the existing videos. The supplied screenshots identify the pieces; they are not substituted for the original assets.
+
+### Original supplied clips
+
 Sources are the exact files supplied from `/Users/PIYUSH/Documents/`. Originals are unchanged. Web derivatives use H.264/yuv420p, CRF 21, maximum 1440px width, AAC 128kbps where present, and fast-start metadata. Posters are the first frame. The GIF uses MP4 for native pause/reduced-motion control without audio.
 
 | Slot | Source | Local derivative | Audio |

@@ -1,5 +1,27 @@
 # Journal
 
+## 2026-10-07 — Publish the new branch without replacing main
+
+The user chose to serve the new portfolio on the existing domain while retaining the Figma-style portfolio on `main`. Verified both local and remote `main` at `56433b69fdd3b3f19fab79ce6aa30cc1b1280ae3`, matching the existing Vercel production deployment `54fwgh141oJdQuBeEdcWrDxVkbGQ`. Changed the existing project's Production branch tracking from `main` to `codex/figma-hero`, leaving automatic production-domain assignment enabled. No domain transfer, new hosting project, merge, or force push is needed. The latest design passed the production build before publication. The following push triggers the new production deployment; verify its Ready status and public routes before considering the cutover complete.
+
+To revert, restore branch tracking to `main` and deploy the preserved revision, or use Vercel's previous production deployment rollback. The Experiments placeholder now uses sans-serif Hero Roobert and a 1.2em-tall transparent icon on one line.
+
+## 2026-10-06 — Experiments coming-soon state
+
+Follow-up: switched to a small inline icon with a genuine transparent background and kept the icon/heading together on one responsive line. The built-in image editor preserved the construction illustration while extracting its background; saved the result as `public/experiments-icon-transparent.png`. Prompt: remove only the white/off-white background and internal white gaps to alpha transparency; preserve shapes, colors, textures, proportions, and arrangement; no new shadows or text; tightly crop with a small transparent margin. Original supplied image remains available.
+
+Removed the gallery from the Experiments page and replaced it with the supplied construction illustration and exact “Experiments coming soon” heading. The shared navigation stays intact, and the illustration is centered above the heading using the existing Season Mix typeface. CSS trims the icon's white margins without modifying the original image. Preserved all original Experiments media and its manifest so the three recently added Work cards continue to function; only their display on Experiments was removed.
+
+## 2026-10-06 — Experiments artwork added to Work
+
+Follow-up: reduced only Knox to a centered 84% image area with contain fitting, keeping its frame unchanged and the two videos filled. Verified all three original assets load in Work and the Knox inset in the browser; production build and whitespace checks pass.
+
+Matched the three supplied references to Experiments' original assets: Bento's silent 0.8-second identity loop, the 12.97-second Ship the Future with AI website clip, and the 1800px Knox stationery image. Added them after the existing 30 Work cards without duplicating the original media or removing them from Experiments. Extracted local video posters and reused Work's play/pause and reduced-motion behavior. After the user requested frame-filling media, switched the three new cards from contain to centered cover crops to remove letterboxing.
+
+## 2026-10-06 — Inline social links and calendar contact
+
+Replaced the Contact hover disclosure with the calendar URL already used by the legacy sidebar. Moved Twitter, LinkedIn, Instagram, and the email-copy action below the homepage description, then matched the navigation's bold italic type and removed underlines per the user's follow-up. Deleted the unused popover component and stylesheet; their prior version is recoverable in Git. Email displays “Copied” only after the Clipboard API resolves, with a screen-reader status and manual-copy fallback. Project notes now describe the inline links rather than the superseded dropdown.
+
 ## 2026-10-06 — Contact disclosure across the shared navigation
 
 Reused existing social URLs and email rather than introducing duplicate profile data. Contact is now a button with a hover/click panel, a padded pointer bridge, delayed mouse exit, keyboard tab flow, and Escape/outside/focus-leave dismissal. Scoped existing navigation styles to top-level link/trigger classes so dropdown links do not inherit oversized italic navbar styling. Removed stage-level overflow clipping while retaining the stamp paper and pattern masks.

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import WorkPage from './WorkPage.jsx';
 import AboutPage from './AboutPage.jsx';
 import PlaygroundPage from './PlaygroundPage.jsx';
-import ContactPopover from './ContactPopover.jsx';
+import HeroSocialLinks from './HeroSocialLinks.jsx';
 import './hero.css';
 import './hero-v2.css';
 
@@ -20,7 +20,7 @@ const navigation = [
   { label: 'About', href: '/about', page: 'about' },
   { label: 'Work', href: '/work', page: 'work' },
   { label: 'Experiments', href: '/playground', page: 'playground' },
-  { label: 'Contact', href: 'mailto:hey@piyushjain.in' },
+  { label: 'Contact', href: 'https://cal.com/piyushxpj' },
 ];
 const clients = [
   ['coinbase.svg', 'Coinbase', 94, 16],
@@ -71,11 +71,10 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
         </div>
 
         <nav className="hero-v2__navigation" aria-label="Portfolio" data-node-id="1063:9848">
-          {navigation.map(({ label, href, page }) => label === 'Contact' ? (
-            <ContactPopover key={label} activePage={activePage} onAccent={() => advanceAccent(href)}
-              style={{ '--nav-accent-dark': (linkAccents[href] || navAccents[0])[0], '--nav-accent-light': (linkAccents[href] || navAccents[0])[1] }} />
-          ) : (
+          {navigation.map(({ label, href, page }) => (
             <a className="hero-v2__nav-link" key={label} href={href} onClick={event => navigate(event, page)}
+              target={page ? undefined : '_blank'} rel={page ? undefined : 'noopener noreferrer'}
+              title={page ? undefined : 'Book a call — opens in a new tab'}
               style={{
                 '--nav-accent-dark': (linkAccents[href] || navAccents[0])[0],
                 '--nav-accent-light': (linkAccents[href] || navAccents[0])[1],
@@ -97,6 +96,7 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
               <h1 id="hero-v2-title" tabIndex={-1} data-node-id="1012:7592">Piyush Jain</h1>
             </div>
             <p data-node-id="1012:7593">Designing things across products, brands &amp; everything between, building with AI, breaking things to understand them, and making them better.</p>
+            <HeroSocialLinks activePage={activePage} />
           </header>
 
           <section className="hero-v2__clients" aria-labelledby="hero-v2-clients-title" data-node-id="1063:9882">

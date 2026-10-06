@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07
+
+### Changed
+- Set Vercel Production branch tracking to `codex/figma-hero` with existing custom-domain auto-assignment; preserved the original Figma-style portfolio on `main`.
+- Increased the inline Experiments icon slightly and switched its heading to Hero Roobert sans-serif.
+
 ## 2026-10-06
 
 ### Fixed
@@ -9,6 +15,7 @@
 - Repaired cut and overlapping motifs across all eight animated sea rows using seamless tiles extracted from the original SVG; preserved alternating directions and movement speed.
 
 ### Added
+- Added Bento's animated identity, the Ship the Future with AI website concept, and Knox stationery to Work using original Experiments assets; kept Experiments unchanged and filled Work's frames edge to edge with centered crops.
 - Added a shared Contact hover/click popover with Twitter, LinkedIn, Instagram, selectable email, and copy-email feedback; supports keyboard access, Escape/outside dismissal, and narrow screens.
 - Highlighted the fourteen selected About passages with alternating portfolio-color tints and start/end bars, preserving natural wrapping and the MYOB hyperlink.
 - Added the Inner Circle / 100ft. Times photo to the About marquee (18 photos total).
@@ -27,6 +34,10 @@
 - Gentle, independently timed flight motion for all four hero birds, disabled for reduced-motion preferences.
 
 ### Changed
+- Made the Experiments coming-soon icon transparent and text-height, aligned on one responsive line with the heading.
+- Replaced the Experiments gallery with the supplied construction icon and “Experiments coming soon”; preserved the original media files used by Work.
+- Reduced only the new Knox stationery artwork to a centered 84% image area inside its unchanged Work card frame.
+- Replaced the Contact hover menu with a direct calendar link and moved social links below the homepage intro; matched navigation's bold italic font without underlines and retained Email-to-Copied feedback.
 - Replaced the browser favicon with the supplied black-and-white portrait, using a new PNG asset URL to avoid the old favicon cache.
 - Matched the About title to Work's 36px desktop / 32px mobile sizing and line spacing, without changing body text or highlights.
 - Made only the About story's Poki Studios and MYOB hyperlinks open in new tabs; navigation retains its same-page transitions.
