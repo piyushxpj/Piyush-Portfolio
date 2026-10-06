@@ -6,16 +6,15 @@ const MEDIA = '/work-v2/media/';
 // Figma 1071:22785: row-major order, 590 × 372 cards with 20px gutters.
 const cards = [
   { id: '22786', title: 'Built for people who actually ship things', crop: 'top' },
-  { id: '22789', title: 'Inner Circle — Build Something Wonderful', video: 'inner-circle', audio: true },
-  { id: '22790', title: 'Server animation', video: 'server', audio: true },
   { id: '22791', title: 'The AI that just works', composition: 'ai' },
+  { id: '22790', title: 'Server animation', video: 'server', audio: true },
+  { id: '22789', title: 'Inner Circle — Build Something Wonderful', video: 'inner-circle', audio: true },
   { id: '22796', title: 'Trading app interface', crop: 'top' },
   { id: '22798', title: 'Claim rewards interaction', video: 'claim-rewards', audio: true },
   { id: '22799', title: 'Code effect', video: 'code-effect' },
   { id: '22800', title: 'Crowwd — creators and initiatives', crop: 'top' },
   { id: '22803', title: 'Velar — DeFi liquidity on Bitcoin', composition: 'velar' },
   { id: '22804', title: 'What have you created?', video: 'created' },
-  { id: '22805', empty: true },
   { id: '22806', title: 'Nexus brand identity', crop: 'full' },
   { id: '22811', title: 'Velar product metrics', composition: 'metrics' },
   { id: '22813', title: 'Character chat mobile app', crop: 'top' },
@@ -197,10 +196,10 @@ export default function WorkPage() {
   return <main className="work-page" id="work-content" aria-labelledby="work-title" data-node-id="1071:22783">
     <h1 id="work-title" tabIndex={-1} data-node-id="1071:22784">Designing<br />Across Everything</h1>
     <section className="work-grid" aria-label="Selected design work" data-node-id="1071:22785">
-      {cards.map(card => <figure className={`work-card${card.empty ? ' work-card--empty' : ''}${card.startsRow ? ' work-card--starts-row' : ''}`}
-        key={card.id} data-node-id={card.nodeId || `1071:${card.id}`} aria-hidden={card.empty || undefined}>
+      {cards.map(card => <figure className={`work-card${card.startsRow ? ' work-card--starts-row' : ''}`}
+        key={card.id} data-node-id={card.nodeId || `1071:${card.id}`}>
         {card.video ? <WorkVideo card={card} audible={audibleId === card.id} onSound={sound} onQuiet={quiet} />
-          : !card.empty && <WorkArtwork card={card} />}
+          : <WorkArtwork card={card} />}
       </figure>)}
     </section>
   </main>;

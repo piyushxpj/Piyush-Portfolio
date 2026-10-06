@@ -52,7 +52,7 @@ function LazyVideo({ src, index }) {
 
 export default function PlaygroundPage({ withSidebar = false }) {
   return (
-    <main className={`playground-page${withSidebar ? ' playground-page--with-sidebar' : ''}`}>
+    <main id="playground-content" tabIndex={-1} aria-label="Experiments" className={`playground-page${withSidebar ? ' playground-page--with-sidebar' : ''}`}>
       <div className="playground-page__inner">
         <section className="playground-masonry" aria-label="Playground gallery">
           {PLAYGROUND_IMAGES.map((src, index) => (

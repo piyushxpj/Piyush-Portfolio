@@ -1,0 +1,120 @@
+.about-page {
+  width: 100%;
+  padding-block: 64px 64px;
+  color: #252525;
+  font-family: 'Hero Roobert', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+  user-select: text;
+}
+.about-page > article {
+  width: min(100% - 80px, 720px);
+  margin-inline: auto;
+}
+.about-page h1 {
+  max-width: 15ch;
+  margin: 0 0 48px;
+  font-family: 'Season Mix Trial', Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 43px;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+  scroll-margin-top: 112px;
+}
+.about-page__story { max-width: 68ch; }
+.about-page__story p { margin: 0 0 1.25em; }
+.about-page__story p:last-child { margin-bottom: 0; }
+.about-highlight {
+  color: inherit;
+  background: linear-gradient(to bottom, transparent .1em, var(--highlight-fill) .1em, var(--highlight-fill) calc(100% - .1em), transparent calc(100% - .1em));
+  border-inline: 2px solid var(--highlight-edge);
+  padding: .18em .12em;
+  /* Slice a single inline box: wrapped lines get tint, only the endpoints get bars. */
+  -webkit-box-decoration-break: slice;
+  box-decoration-break: slice;
+}
+.about-highlight--purple { --highlight-edge: #7929dc; --highlight-fill: rgb(214 168 250 / .35); }
+.about-highlight--blue { --highlight-edge: #4b8ee2; --highlight-fill: rgb(75 142 226 / .22); }
+.about-highlight--yellow { --highlight-edge: #fccc30; --highlight-fill: rgb(252 204 48 / .28); }
+.about-highlight--green { --highlight-edge: #6da53d; --highlight-fill: rgb(109 165 61 / .22); }
+.about-highlight--pink { --highlight-edge: #f77fce; --highlight-fill: rgb(247 127 206 / .25); }
+@media (forced-colors: active) {
+  .about-highlight { background: transparent; border-color: Mark; text-decoration: underline; }
+}
+.about-page__story a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+@media (max-width: 42rem) {
+  .about-page { padding-block: 40px; font-size: 16px; }
+  .about-page > article { width: calc(100% - 40px); }
+  .about-page h1 { font-size: 32px; line-height: 1.2; margin-bottom: 32px; }
+}
+
+.about-photos {
+  position: relative;
+  --photo-size: clamp(140px, 14.4vw, 204px);
+  --photo-gap: clamp(16px, 1.76vw, 26px);
+  margin-top: 48px;
+}
+.about-photos__viewport {
+  overflow: hidden;
+  padding-block: 20px;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+.about-photos__viewport:focus-visible { outline: 2px solid #7929dc; outline-offset: -4px; }
+.about-photos__track { display: flex; width: max-content; }
+.about-photos__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--photo-gap);
+  padding-inline-end: var(--photo-gap);
+  min-width: 100vw;
+  flex-shrink: 0;
+}
+.about-photos__card {
+  flex: 0 0 var(--photo-size);
+  width: var(--photo-size);
+  height: var(--photo-size);
+  margin: 0;
+  transform: rotate(var(--photo-tilt));
+}
+.about-photos__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+  outline: 1px solid rgb(0 0 0 / .1);
+  outline-offset: -1px;
+}
+.about-photos__toggle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.about-photos__toggle:focus-visible { outline: 2px solid #7929dc; outline-offset: -4px; }
+@media (prefers-reduced-motion: no-preference) {
+  .about-photos__track { animation: about-photo-drift 60s linear infinite; }
+  .about-photos:focus-within .about-photos__track { animation-play-state: paused; }
+  @keyframes about-photo-drift { to { transform: translateX(-50%); } }
+}
+@media (hover: hover) and (pointer: fine) {
+  .about-photos:hover .about-photos__track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-photos__viewport { overflow-x: auto; mask-image: none; padding-inline: 20px; }
+  .about-photos__group[aria-hidden], .about-photos__toggle { display: none; }
+}

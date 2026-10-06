@@ -71,13 +71,15 @@
   user-select: none;
 }
 .hero-v2__navigation {
+  z-index: 20;
   position: absolute;
   inset: 58px var(--content-inset) auto;
   display: flex;
   justify-content: space-between;
   gap: 24px;
 }
-.hero-v2__navigation a {
+.hero-v2__nav-link {
+  --nav-accent: var(--nav-accent-light, #7929dc);
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -94,8 +96,10 @@
   outline-offset: 5px;
 }
 @media (hover: hover) and (pointer: fine) {
-  .hero-v2__navigation a:hover { color: #7929dc; }
+  .hero-v2__nav-link:hover { color: var(--nav-accent); }
 }
+.hero-v2__nav-link:focus-visible,
+.hero-v2__nav-link:active { color: var(--nav-accent); }
 .hero-v2__content {
   grid-row: 2;
   display: flex;
@@ -177,8 +181,8 @@
   }
   .hero-v2__paper { --stamp-radius: 6px; --stamp-pitch: 20px; }
   .hero-v2__pattern img { top: 0; height: 100%; }
-  .hero-v2__navigation { top: 32px; gap: 12px; }
-  .hero-v2__navigation a { font-size: 14px; }
+  .hero-v2__navigation { top: 32px; inset-inline: 24px; gap: 8px; }
+  .hero-v2__nav-link { font-size: 14px; }
   .hero-v2__content { gap: 32px; padding-bottom: 36px; }
   .hero-v2__intro { gap: 20px; }
   .hero-v2__identity { gap: 10px; }
@@ -192,7 +196,7 @@
 @media (max-width: 22rem) {
   .hero-v2__stage { --content-inset: 28px; }
   .hero-v2__navigation { gap: 8px; }
-  .hero-v2__navigation a { font-size: 13px; }
+  .hero-v2__nav-link { font-size: 13px; }
   .hero-v2__identity h1 { font-size: 62px; line-height: 46px; }
   .hero-v2__portrait { width: 50px; }
   .hero-v2__logos { gap: 14px 16px; }
@@ -212,19 +216,20 @@
   --stamp-reveal-duration: 300ms;
   --stamp-fold-ease: cubic-bezier(.22, 1, .36, 1);
 }
-.hero-v2__stage { overflow: hidden; }
+.hero-v2__stage { overflow: visible; }
 .hero-v2__navigation { color: #000; }
-.hero-v2--work { background: #fff; }
-.hero-v2--work .hero-v2__stage { position: sticky; top: 0; z-index: 10; height: 80px; color: #fff; }
-.hero-v2--work .hero-v2__paper {
+.hero-v2--inner { background: #fff; }
+.hero-v2--inner .playground-page { height: auto; overflow: visible; scrollbar-gutter: auto; }
+.hero-v2--inner .hero-v2__stage { position: sticky; top: 0; z-index: 10; height: 80px; color: #fff; }
+.hero-v2--inner .hero-v2__paper {
   inset: -24px var(--frame-inset) 0;
 }
-.hero-v2--work .hero-v2__paper::before { opacity: 1; }
-.hero-v2--work .hero-v2__navigation { inset: 15px 7.96875% auto; color: #fff; }
-.hero-v2--work .hero-v2__content { opacity: 0; visibility: hidden; transform: translateY(-24px); pointer-events: none; }
-.hero-v2--work .hero-v2__pattern { opacity: 0; visibility: hidden; transform: translateY(-24px); }
-.hero-v2--work .hero-v2__navigation a:focus-visible { outline-color: #fff; }
-.hero-v2--work .hero-v2__navigation a:hover { color: #d6a8fa; }
+.hero-v2--inner .hero-v2__paper::before { opacity: 1; }
+.hero-v2--inner .hero-v2__navigation { inset: 15px 7.96875% auto; color: #fff; }
+.hero-v2--inner .hero-v2__content { opacity: 0; visibility: hidden; transform: translateY(-24px); pointer-events: none; }
+.hero-v2--inner .hero-v2__pattern { opacity: 0; visibility: hidden; transform: translateY(-24px); }
+.hero-v2--inner .hero-v2__nav-link:focus-visible { outline-color: #fff; }
+.hero-v2--inner .hero-v2__nav-link { --nav-accent: var(--nav-accent-dark, #d6a8fa); }
 .work-skip { position: fixed; inset-block-start: 8px; inset-inline-start: 28px; z-index: 30; padding: 10px 14px; background: #fff; color: #252525; transform: translateY(-200%); }
 .work-skip:focus { transform: none; }
 @media (prefers-reduced-motion: no-preference) {
@@ -234,9 +239,9 @@
   .hero-v2__paper::before { transition: opacity var(--stamp-color-duration) ease-out; }
   .hero-v2__navigation { transition: inset var(--stamp-fold-duration) var(--stamp-fold-ease), color var(--stamp-color-duration) ease-out; }
   .hero-v2__content, .hero-v2__pattern { transition: transform var(--stamp-exit-duration) ease-out, opacity var(--stamp-exit-duration) ease-out, visibility var(--stamp-exit-duration); }
-  .hero-v2--work .work-page { animation: work-reveal var(--stamp-reveal-duration) var(--stamp-reveal-delay) var(--stamp-fold-ease) both; }
+  .hero-v2--inner :is(.work-page, .about-page, .playground-page) { animation: work-reveal var(--stamp-reveal-duration) var(--stamp-reveal-delay) var(--stamp-fold-ease) both; }
   @keyframes work-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 }
 @media (max-width: 35rem) {
-  .hero-v2--work .hero-v2__navigation { inset-inline: 32px; }
+  .hero-v2--inner .hero-v2__navigation { inset-inline: 24px; }
 }

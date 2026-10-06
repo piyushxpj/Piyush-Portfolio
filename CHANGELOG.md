@@ -9,6 +9,14 @@
 - Repaired cut and overlapping motifs across all eight animated sea rows using seamless tiles extracted from the original SVG; preserved alternating directions and movement speed.
 
 ### Added
+- Added a shared Contact hover/click popover with Twitter, LinkedIn, Instagram, selectable email, and copy-email feedback; supports keyboard access, Escape/outside dismissal, and narrow screens.
+- Highlighted the fourteen selected About passages with alternating portfolio-color tints and start/end bars, preserving natural wrapping and the MYOB hyperlink.
+- Added the Inner Circle / 100ft. Times photo to the About marquee (18 photos total).
+- Added four supplied photos to the About marquee (17 total) and reshuffled the full sequence to mix personal, creative, food, and event moments.
+- Added the cafe mirror photo, group selfie, and ice-cream photo to the About marquee (13 photos total), retaining the smaller cards.
+- Added seven supplied photos above the About story as a full-width, gently tilted, seamlessly looping marquee with faded edges, pause/play, and a reduced-motion scrollable alternative.
+- Linked Poki Studios and MYOB in the About story to their supplied websites, with underlined native text links.
+- Added `/about` with the complete supplied story and “I Never Really Had a Plan” title, responsive reading layout, and shared stamp navigation; separated Home and About routes.
 - Added all eight artwork cards from Figma `1073:29141` below the existing Work gallery, preserving their four row pairings, original layers, and responsive layout.
 - Built `/work` from Figma `1071:22783`: responsive two-column artwork gallery, five supplied looping videos, sound controls for audio clips, and one intentionally empty slot.
 - Added a shared stamp-to-navbar transition between Home and Work, sticky Work navigation, direct-route support, and keyboard/reduced-motion behavior.
@@ -19,6 +27,15 @@
 - Gentle, independently timed flight motion for all four hero birds, disabled for reduced-motion preferences.
 
 ### Changed
+- Replaced the browser favicon with the supplied black-and-white portrait, using a new PNG asset URL to avoid the old favicon cache.
+- Matched the About title to Work's 36px desktop / 32px mobile sizing and line spacing, without changing body text or highlights.
+- Made only the About story's Poki Studios and MYOB hyperlinks open in new tabs; navigation retains its same-page transitions.
+- Swapped the Inner Circle video and blue AI cloud artwork in Work, and removed the empty media card so the gallery flows without a blank slot.
+- Moved the About photo marquee below the full story and removed its circular pause icon; clicking or keyboard-activating the strip still toggles playback.
+- Made About marquee cards and gaps about 20% smaller and added the album, corn flakes, and Designathon photos, bringing the loop to ten images.
+- Standardized navigation to Home, About, Work, Experiments, Contact on every active portfolio page, including Experiments; all five remain visible at 320px.
+- Nav highlights now cycle yellow, pink, green, blue, and lilac on hover, keyboard focus, or touch, with darker equivalents on the white hero.
+- Reduced About body text to 18px desktop / 16px mobile and the title to 36–56px, retaining comfortable line spacing.
 - Softened Work video controls from translucent white to light grey, retaining their sizing, placement, and dark icons.
 - Made every Work video and its poster fill the card edge to edge with centered, proportional cropping instead of letterboxing.
 - Grouped Work video pause and sound controls at the bottom right with smaller translucent-white circles and retained 44px touch targets.

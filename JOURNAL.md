@@ -1,5 +1,47 @@
 # Journal
 
+## 2026-10-06 — Contact disclosure across the shared navigation
+
+Reused existing social URLs and email rather than introducing duplicate profile data. Contact is now a button with a hover/click panel, a padded pointer bridge, delayed mouse exit, keyboard tab flow, and Escape/outside/focus-leave dismissal. Scoped existing navigation styles to top-level link/trigger classes so dropdown links do not inherit oversized italic navbar styling. Removed stage-level overflow clipping while retaining the stamp paper and pattern masks.
+
+Verified desktop and 320px layout, keyboard opening and tab focus, Escape focus restoration, outside dismissal, and both Home and About. Clipboard API resolved and displayed success, but the browser automation clipboard readback was empty, so end-to-end clipboard contents were not confirmed. Build and whitespace checks passed. Physical touch, pointer-only hover traversal, OS clipboard paste, and full screen-reader testing were not run.
+
+## 2026-10-06 — Inline highlights from selected passages
+
+The follow-up selections add “Robin and Shweta,” “rejection,” and “I met people who became some of my closest friends.” The fourteen highlights have no identical neighboring palette colors; their rendered text and classes were checked in the browser, and the build passed again.
+
+Matched eleven exact screenshot selections without changing the story. Used inline `mark` elements with sliced decoration so translucent backgrounds follow wrapping while solid vertical bars appear only at the start and end of each selected passage. The renderer applies existing link markup inside highlighted segments, preserving MYOB's underlined new-tab link. The five portfolio tints retain dark text with measured contrast ratios from 12.12:1 to 13.56:1 on the white page. Verified all eleven matches, 23 paragraphs, desktop appearance, and no clipped highlights or horizontal overflow at 320px. Build and whitespace checks passed; screen-reader and forced-colors behavior were not manually tested.
+
+## 2026-10-06 — Reshuffled seventeen-photo strip
+
+Added the outdoor friends photo, arched-door portrait, event banner, and sticker photo, then reordered the complete set to interleave people, creative work, food, and events. Kept the order deterministic so both loop groups match and the sequence does not change during playback. Corrected the sideways portrait at render time without changing its source. Confirmed 17 unique images, all 34 loop instances loaded, equal group widths, and the upright portrait in the browser. Build and whitespace checks passed; smaller sizing, bottom placement, and icon-free controls remain unchanged.
+
+## 2026-10-06 — Photos after the story
+
+Moved the existing marquee after the article and restored the title's original top spacing. Removed the separate circular pause/play icon as requested; retained playback control through a transparent native button covering the strip, with an accessible name and keyboard focus outline. Hover/focus pause and the reduced-motion scrollable alternative remain. Verified the section follows all 23 paragraphs, no marquee SVG icon remains, and click toggles pause/play. Build and whitespace checks passed; screen-reader and OS reduced-motion testing were not rerun.
+
+## 2026-10-06 — Personal photo marquee on About
+
+Used the first seven attachments as photos and the last as visual guidance only. Placed the strip above the story, with full-width overflow clipping, slightly rotated square crops, rounded corners, and faded edges. Moved the existing reading-width constraint onto the article so the biography remains narrow while the photos span the page. Two identically sized groups make the 50% translation seamless without timing JavaScript. The native pause button, focus/hover pause, offscreen pause, and reduced-motion scrollable strip follow the motion/accessibility guidance without changing the supplied story.
+
+Confirmed all 14 rendered images loaded, both loop groups had equal widths, the paused transform stayed unchanged, and Play resumed the animation. Verified desktop appearance at 1280px and 320px mobile layout with no page overflow. Production build and whitespace checks passed. Reduced-motion rules were code-reviewed; OS preference switching, full screen-reader, zoom, and RTL testing were not run.
+
+## 2026-10-06 — One consistent portfolio navigation
+
+Replaced page-specific link lists with one fixed Home, About, Work, Experiments, Contact list. Kept current-page links visible with `aria-current`, native URLs, and cycling highlights. Experiments now uses the shared stamp shell instead of the legacy canvas sidebar, retaining its masonry gallery and playback behavior; its main region is the navigation focus/skip target. Reduced mobile nav insets/gaps to fit all five links without hiding or scrolling them.
+
+Verified identical link order on Home, About, Work, and Experiments through browser navigation, and measured a 272px-wide nav with no overflow at a 320px viewport. Build and whitespace checks pass. Contact's mail action was not launched; full screen-reader, zoom, and RTL audits were not run.
+
+## 2026-10-06 — Cycling navigation accents
+
+Replaced the fixed purple nav highlight with a repeatable yellow/pink/green/blue/lilac cycle using the existing pattern palette. Each new hover, keyboard-focus entry, or touch press advances once; mouse focus does not advance again after pointer entry. Darker counterparts keep the same hue families legible on the white homepage. Declared color contrast is at least 4.57:1 on charcoal and 5.56:1 on white. Keyboard verification showed yellow, pink, then green on successive focus entries, with the existing white focus ring intact. Build and whitespace checks passed; touch hardware, full screen-reader, and frame-by-frame transition checks were not run.
+
+## 2026-10-06 — A dedicated About story
+
+Preserved the supplied autobiography verbatim as 23 paragraphs, with “I Never Really Had a Plan” as its title. Split the previous homepage `about` state into distinct Home and About routes so navbar links now have separate destinations. Reused the compact stamp shell and existing local fonts; layout, typography, and accessibility guidance informed the narrow reading column, generous line spacing, selectable text, heading focus, and skip link.
+
+Verified direct About loading, Home/About navigation including Enter-key activation, all 23 paragraphs and closing text, desktop layout at 1280px, and no article overflow at 320px. Production build passes. Full screen-reader, 200% zoom, and RTL audits were not run. No push was attempted for this change.
+
 ## 2026-10-06 — Stable stamp-to-navbar motion
 
 The shared mask used `round` repetition, which recalculated the number and pitch of side perforations during every height change. Work also swapped the paper background for another stamp asset immediately and moved the footer by a full viewport. Switched V2 to fixed-pitch, top-anchored repeats, faded a charcoal overlay over the existing paper, reduced exiting layers to a 24px lift, and coordinated the gallery reveal with the second half of a 600ms collapse. CSS variables document the motion timing; reverse navigation remains interruptible and reduced motion remains static.
