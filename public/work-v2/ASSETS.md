@@ -49,15 +49,17 @@ Eight 590 × 372 cards, in source row order. Source PNGs are unmodified; individ
 
 ### Reused Experiments pieces
 
-Three additional cards follow the original 30 Work cards. They reference the existing Experiments assets directly, preserving that gallery and avoiding duplicate media. Both videos use centered `object-fit: cover` to fill the 590 × 372 frames edge to edge. The Knox artwork uses a centered 84% image area with `object-fit: contain`, leaving breathing room inside the unchanged card frame per the user's follow-up.
+Bento identity occupies card 11, beside Velar metrics at card 12. Ship the Future with AI occupies card 14, beside Nexus. Knox remains the final card. They reference the preserved Experiments assets directly, avoiding duplicate media. Both videos use centered `object-fit: cover` to fill the 590 × 372 frames edge to edge. The Knox artwork uses a centered 84% image area with `object-fit: contain`, leaving breathing room inside the unchanged card frame per the user's follow-up.
 
 | Work card | Existing source | Work poster |
 | --- | --- | --- |
 | Bento — animated brand identity | `/playground/twitter-gif-1988869773401215143.mp4` | `media/bento-identity.png` |
-| Ship the Future with AI — website concept | `/playground/twitter-gif-2037805436561453374.mp4` | `media/ship-future-ai.png` |
+| Ship the Future with AI — website concept | `media/ship-future-ai-cropped.mp4` (original: `/playground/twitter-gif-2037805436561453374.mp4`) | `media/ship-future-ai-cropped.jpg` |
 | Knox — brand identity and stationery | `/playground/01.webp` | Not applicable |
 
 Both videos are silent and reuse Work's visibility-aware playback, play/pause, and reduced-motion handling. Posters are first frames extracted from the existing videos. The supplied screenshots identify the pieces; they are not substituted for the original assets.
+
+Ship the Future's 720 × 534 source has a baked-in white margin. Its Work derivative uses FFmpeg `crop=636:450:42:42`, H.264 CRF 18, yuv420p and fast-start metadata. The 2px safety inset removes anti-aliased border pixels. Its JPEG poster is extracted from the cropped clip. The card retains centered `object-fit: cover`; the original clip and uncropped PNG poster remain unchanged.
 
 ### Original supplied clips
 

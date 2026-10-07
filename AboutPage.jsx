@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import useHighlightSelection from './useHighlightSelection.js';
 import AboutPhotoMarquee from './AboutPhotoMarquee.jsx';
 import './about-page.css';
 
@@ -97,10 +98,14 @@ Right now, I’m exploring how far I can push AI to build my own products, tools
 I still don’t know exactly what I want to be, and I think I’m okay with that. I just want to keep learning, making things, and seeing where they take me.`;
 
 export default function AboutPage() {
+  const storyRef = useRef(null);
+  const decorationRef = useRef(null);
+  useHighlightSelection(storyRef, decorationRef);
   return <main className="about-page" id="about-content" aria-labelledby="about-title">
     <article>
       <h1 id="about-title" tabIndex={-1}>I Never Really Had a Plan</h1>
-      <div className="about-page__story">
+      <div ref={storyRef} className="about-page__story">
+        <div ref={decorationRef} className="about-selections" aria-hidden="true" />
         {story.split('\n\n').map((paragraph, index) => <p key={index}>{renderStoryText(paragraph)}</p>)}
       </div>
     </article>

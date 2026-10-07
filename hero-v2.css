@@ -112,7 +112,7 @@
 .hero-v2__intro {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
   width: 466px;
   min-width: 0;
 }
@@ -120,6 +120,7 @@
   display: flex;
   align-items: flex-end;
   gap: 12px;
+  margin-block-end: 16px;
 }
 .hero-v2__portrait {
   flex: none;
@@ -172,7 +173,7 @@
   width: 345px;
 }
 .hero-v2__clients h2 {
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   font-size: 18px;
   font-weight: 600;
   line-height: 23px;
@@ -185,6 +186,41 @@
   gap: 15px 30px;
 }
 .hero-v2__logos img { flex: none; max-width: none; }
+.hero-v2__client-link { position: relative; display: inline-flex; flex: none; }
+.hero-v2__client-link img { display: block; }
+/* Enlarge the logo's hit area without moving its visual alignment or wrapping. */
+.hero-v2__client-link::after { content: ''; position: absolute; inset: -5px; }
+
+/* Shared rows align the paragraph/heading and socials/logo group without
+   offsets that drift when text wraps or fonts finish loading. */
+@media (min-width: 62.001rem) {
+  .hero-v2__content {
+    display: grid;
+    grid-template-columns: minmax(0, 466px) 345px;
+    grid-template-rows: auto auto auto;
+    gap: 8px 48px;
+    align-items: stretch;
+  }
+  .hero-v2__intro {
+    display: grid;
+    grid-column: 1;
+    grid-row: 1 / 4;
+    grid-template-rows: subgrid;
+    width: auto;
+  }
+  .hero-v2__socials { align-self: end; }
+  .hero-v2__social-links :is(a, button) { align-items: flex-end; }
+  .hero-v2__clients {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2 / 4;
+    grid-template-rows: subgrid;
+    row-gap: 8px;
+    width: auto;
+  }
+  .hero-v2__clients h2 { align-self: end; margin: 0 0 8px; }
+  .hero-v2__logos { align-self: end; }
+}
 
 /* The desktop artwork has no phone frame: reflow the same content and assets. */
 @media (max-width: 62rem) {
@@ -205,8 +241,8 @@
   .hero-v2__navigation { top: 32px; inset-inline: 24px; gap: 8px; }
   .hero-v2__nav-link { font-size: 14px; }
   .hero-v2__content { gap: 32px; padding-bottom: 36px; }
-  .hero-v2__intro { gap: 20px; }
-  .hero-v2__identity { gap: 10px; }
+  .hero-v2__intro { gap: 4px; }
+  .hero-v2__identity { gap: 10px; margin-block-end: 16px; }
   .hero-v2__portrait { width: 58px; height: auto; }
   .hero-v2__identity h1 { font-size: 72px; line-height: 52px; }
   .hero-v2__intro p { font-size: 16px; line-height: 1.5; }
@@ -231,6 +267,8 @@
    180ms  Hero content is gone; fixed-pitch stamp continues contracting.
    300ms  Gallery fades in and rises 16px over 300ms.
    600ms  Stamp's lower edge settles at 80px; navigation stays available.
+   Return Home: stamp unfolds immediately; pattern follows at 180ms and
+   text fades in at 300ms, after most of the downward travel has settled.
    Direct /work loads start in the compact state. Reduced motion is instant. */
 .hero-v2 {
   --stamp-fold-duration: 600ms;
@@ -239,6 +277,8 @@
   --stamp-reveal-delay: 300ms;
   --stamp-reveal-duration: 300ms;
   --stamp-fold-ease: cubic-bezier(.22, 1, .36, 1);
+  --stamp-home-reveal-duration: 180ms;
+  --stamp-home-reveal-ease: cubic-bezier(.23, 1, .32, 1);
 }
 .hero-v2__stage { overflow: visible; }
 .hero-v2__navigation { color: #000; }
@@ -263,9 +303,21 @@
   .hero-v2__paper::before { transition: opacity var(--stamp-color-duration) ease-out; }
   .hero-v2__navigation { transition: inset var(--stamp-fold-duration) var(--stamp-fold-ease), color var(--stamp-color-duration) ease-out; }
   .hero-v2__content, .hero-v2__pattern { transition: transform var(--stamp-exit-duration) ease-out, opacity var(--stamp-exit-duration) ease-out, visibility var(--stamp-exit-duration); }
+  /* Keep the stamp unfolding downwards. Reveal readable content late in
+     the ease-out, without adding a separate translate to its layout travel. */
+  .hero-v2:not(.hero-v2--inner) .hero-v2__content {
+    transition: opacity var(--stamp-home-reveal-duration) var(--stamp-home-reveal-ease) var(--stamp-reveal-delay);
+  }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__pattern {
+    transition: opacity var(--stamp-reveal-duration) var(--stamp-home-reveal-ease) var(--stamp-exit-duration);
+  }
   .hero-v2--inner :is(.work-page, .about-page, .playground-page) { animation: work-reveal var(--stamp-reveal-duration) var(--stamp-reveal-delay) var(--stamp-fold-ease) both; }
   @keyframes work-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 }
+.hero-v2.hero-v2--instant,
+.hero-v2.hero-v2--instant :is(.hero-v2__stage, .hero-v2__paper, .hero-v2__navigation, .hero-v2__content, .hero-v2__pattern),
+.hero-v2.hero-v2--instant .hero-v2__paper::before { transition: none; }
+.hero-v2--instant :is(.work-page, .about-page, .playground-page) { animation: none; }
 @media (max-width: 35rem) {
   .hero-v2--inner .hero-v2__navigation { inset-inline: 24px; }
 }

@@ -2,10 +2,25 @@
 
 ## 2026-10-07
 
+### Added
+- Linked all seven client logos to their websites in new tabs, using the author's confirmed Dacoit and Bricx URLs; retained logo layout and visible keyboard focus.
+- Added a one-time, 250ms reveal of About highlight tints and edge bars as passages enter view; readable text stays still and fully visible, with static reduced-motion highlights.
+- Added a reference-inspired square corner-bracket cursor with three interaction colors, subtle smoothing, a precise center point, and native-cursor fallbacks for touch, reduced motion, forced colors, and editable fields.
+
 ### Fixed
+- Removed the awkward reverse fold on return to Home: layout and scroll reset immediately, while content fades in place over 180ms. Keyboard navigation skips transitions; the outgoing Home fold and reduced-motion support remain intact.
+- Removed the embedded white border from the Ship the Future with AI video and poster using dedicated cropped derivatives; kept the original clip intact.
 - Reduced Work's 31 PNG artwork sources from 39.16 MB to 3.14 MB at the largest served WebP sizes; added responsive image selection, trimmed invisible export areas, prioritized the first row, and deferred off-screen video posters. Original assets are preserved.
 
 ### Changed
+- Replaced the About highlight fade with a one-time, line-by-line selection sweep and moving end bar; preserved readable text, native selection, links, and static accessibility fallbacks.
+- Added more space below “Worked with”: 8px additional desktop heading margin and a 24px stacked-layout gap, preserving the bottom alignment of socials and logos.
+- Reduced the custom cursor to 23px and cycle its three color pairs on each new link/button hover, including re-entry onto the same control.
+- Restored the downward Home stamp unfold per feedback, with artwork followed by a delayed text fade and no separate text slide.
+- Swapped Ship the Future with AI and the orange Velar metrics card; metrics now sits beside Bento, with Ship the Future beside Nexus below.
+- Moved the Bento identity and Ship the Future with AI videos into the row immediately after “What have you created?”, preserving their order and all other card pairings.
+- Bottom-aligned desktop social text with the last client-logo row, removing the visible gap beneath the labels without reducing their 44px click targets.
+- Aligned homepage socials and client logos on shared desktop grid rows, with “Worked with” aligned to the paragraph's bottom edge; tightened paragraph-to-social spacing to 8px desktop/tablet and 4px phones while retaining 44px targets.
 - Updated the page, Open Graph, and Twitter titles to “Piyush Jain | Creative Generalist”; matched all preview descriptions and the standard meta description to the homepage introduction.
 - Set Open Graph and Twitter previews to the supplied stamp artwork, with an absolute public image URL, dimensions, and descriptive alt text.
 - Set Vercel Production branch tracking to `codex/figma-hero` with existing custom-domain auto-assignment; preserved the original Figma-style portfolio on `main`.

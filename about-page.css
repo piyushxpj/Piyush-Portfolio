@@ -26,7 +26,7 @@
   text-wrap: balance;
   scroll-margin-top: 112px;
 }
-.about-page__story { max-width: 68ch; }
+.about-page__story { position: relative; isolation: isolate; max-width: 68ch; }
 .about-page__story p { margin: 0 0 1.25em; }
 .about-page__story p:last-child { margin-bottom: 0; }
 .about-highlight {
@@ -43,6 +43,23 @@
 .about-highlight--yellow { --highlight-edge: #fccc30; --highlight-fill: rgb(252 204 48 / .28); }
 .about-highlight--green { --highlight-edge: #6da53d; --highlight-fill: rgb(109 165 61 / .22); }
 .about-highlight--pink { --highlight-edge: #f77fce; --highlight-fill: rgb(247 127 206 / .25); }
+.about-selections { position: absolute; inset: 0; z-index: -1; pointer-events: none; user-select: none; }
+.about-selection__line { position: absolute; }
+.about-selection__fill {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent .1em, var(--highlight-fill) .1em, var(--highlight-fill) calc(100% - .1em), transparent calc(100% - .1em));
+  clip-path: inset(0 100% 0 0);
+}
+.about-selection__caret {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
+  background: var(--highlight-edge); opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .about-highlight[data-highlight-pending] {
+    background: transparent;
+    border-color: transparent;
+  }
+}
 @media (forced-colors: active) {
   .about-highlight { background: transparent; border-color: Mark; text-decoration: underline; }
 }

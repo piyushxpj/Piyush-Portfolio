@@ -16,8 +16,10 @@ const cards = [
   { id: '22800', title: 'Crowwd — creators and initiatives', crop: 'top' },
   { id: '22803', title: 'Velar — DeFi liquidity on Bitcoin', composition: 'velar' },
   { id: '22804', title: 'What have you created?', video: 'created' },
-  { id: '22806', title: 'Nexus brand identity', crop: 'full' },
+  { id: 'bento-identity', title: 'Bento — animated brand identity', video: 'bento-identity', videoSrc: '/playground/twitter-gif-1988869773401215143.mp4', poster: `${MEDIA}bento-identity.png` },
   { id: '22811', title: 'Velar product metrics', composition: 'metrics' },
+  { id: '22806', title: 'Nexus brand identity', crop: 'full' },
+  { id: 'ship-future-ai', title: 'Ship the Future with AI — website concept', video: 'ship-future-ai', videoSrc: `${MEDIA}ship-future-ai-cropped.mp4`, poster: `${MEDIA}ship-future-ai-cropped.jpg` },
   { id: '22813', title: 'Character chat mobile app', crop: 'top' },
   { id: '22817', title: 'Based Fellowship', crop: 'top' },
   { id: '22819', title: 'Not another wrapper. A real workflow.', crop: 'top' },
@@ -57,9 +59,6 @@ const cards = [
     { file: 'event-30387', x: 24, y: 56.3, width: 260.374, height: 260.374 },
     { file: 'event-30435', x: 304.63, y: 56.3, width: 260.374, height: 260.374 },
   ] },
-  // Reuse the original Experiments media without removing it from that gallery.
-  { id: 'bento-identity', title: 'Bento — animated brand identity', video: 'bento-identity', videoSrc: '/playground/twitter-gif-1988869773401215143.mp4', poster: `${MEDIA}bento-identity.png` },
-  { id: 'ship-future-ai', title: 'Ship the Future with AI — website concept', video: 'ship-future-ai', videoSrc: '/playground/twitter-gif-2037805436561453374.mp4', poster: `${MEDIA}ship-future-ai.png` },
   { id: 'knox-brand', title: 'Knox — brand identity and stationery', src: '/playground/01.webp', inset: true },
 ];
 

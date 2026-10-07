@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import WorkPage from './WorkPage.jsx';
 import AboutPage from './AboutPage.jsx';
 import PlaygroundPage from './PlaygroundPage.jsx';
 import HeroSocialLinks from './HeroSocialLinks.jsx';
+import PortfolioCursor from './PortfolioCursor.jsx';
 import './hero.css';
 import './hero-v2.css';
 
@@ -23,13 +24,13 @@ const navigation = [
   { label: 'Contact', href: 'https://cal.com/piyushxpj' },
 ];
 const clients = [
-  ['coinbase.svg', 'Coinbase', 94, 16],
-  ['dacoit.svg', 'Dacoit', 40, 16],
-  ['base.svg', 'Base', 62, 16],
-  ['velar.svg', 'Velar', 70, 16],
-  ['/clients/bricx.webp', 'Bricx', 54, 19],
-  ['inner-circle.svg', 'Inner Circle', 56, 15],
-  ['bento.svg', 'Bento', 61, 17],
+  ['coinbase.svg', 'Coinbase', 94, 16, 'https://www.coinbase.com/'],
+  ['dacoit.svg', 'Dacoit', 40, 16, 'https://dacoit.design'],
+  ['base.svg', 'Base', 62, 16, 'https://www.base.org/'],
+  ['velar.svg', 'Velar', 70, 16, 'https://velar.co'],
+  ['/clients/bricx.webp', 'Bricx', 54, 19, 'https://bricxlabs.com'],
+  ['inner-circle.svg', 'Inner Circle', 56, 15, 'https://innercircle.so'],
+  ['bento.svg', 'Bento', 61, 17, 'https://bento.fun'],
 ];
 
 export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
@@ -42,12 +43,13 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
   const previousPage = useRef(activePage);
   const accentCursor = useRef(-1);
   const [linkAccents, setLinkAccents] = useState({});
+  const [instantNavigation, setInstantNavigation] = useState(false);
   const advanceAccent = href => {
     accentCursor.current = (accentCursor.current + 1) % navAccents.length;
     const accent = navAccents[accentCursor.current];
     setLinkAccents(previous => ({ ...previous, [href]: accent }));
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     shellRef.current.scrollTop = 0;
     if (previousPage.current !== activePage) {
       shellRef.current.querySelector(`#${headingId}`)?.focus({ preventScroll: true });
@@ -57,11 +59,13 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
   const navigate = (event, page) => {
     if (!page || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    setInstantNavigation(event.detail === 0);
     onPageChange(page);
   };
 
   return (
-    <div ref={shellRef} className={`hero-v2${isInnerPage ? ' hero-v2--inner' : ''}`}>
+    <div ref={shellRef} className={`hero-v2${isInnerPage ? ' hero-v2--inner' : ''}${instantNavigation ? ' hero-v2--instant' : ''}`}>
+      <PortfolioCursor scopeRef={shellRef} />
       {isInnerPage && <a className="work-skip" href={`#${headingId}`}>Skip to {isWork ? 'work' : isAbout ? 'about' : 'experiments'}</a>}
       <div className="hero-v2__stage" role={isInnerPage ? undefined : 'main'} aria-labelledby={isInnerPage ? undefined : 'hero-v2-title'} data-node-id="1012:7579">
         <div className="hero-paper hero-v2__paper" aria-hidden="true" data-node-id="1012:7580">
@@ -102,10 +106,14 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
           <section className="hero-v2__clients" aria-labelledby="hero-v2-clients-title" data-node-id="1063:9882">
             <h2 id="hero-v2-clients-title">Worked with</h2>
             <div className="hero-v2__logos">
-              {clients.map(([file, name, width, height]) => (
-                <img key={name} src={file.startsWith('/') ? file : `${assets}${file}`} alt={name}
-                  width={width} height={height} draggable={false} />
-              ))}
+              {clients.map(([file, name, width, height, href]) => {
+                const logo = <img src={file.startsWith('/') ? file : `${assets}${file}`} alt={name}
+                  width={width} height={height} draggable={false} />;
+                return href
+                  ? <a key={name} className="hero-v2__client-link" href={href} target="_blank" rel="noopener noreferrer"
+                      aria-label={`${name} — opens in a new tab`} title={`${name} — opens in a new tab`}>{logo}</a>
+                  : <React.Fragment key={name}>{logo}</React.Fragment>;
+              })}
             </div>
           </section>
         </div>

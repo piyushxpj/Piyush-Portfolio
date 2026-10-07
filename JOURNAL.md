@@ -1,5 +1,37 @@
 # Journal
 
+## 2026-10-07 — Selection-style highlight sweep
+
+Replaced the tint fade with the approved drag-selection metaphor. `getClientRects()` provides actual wrapped-line fragments without duplicating or splitting the author's text. Temporary aria-hidden spans animate only clip-path, transform, and opacity through WAAPI: 600ms of constant-speed selection progress is apportioned by line width, with a moving end bar on the active line and a fixed opening bar. Each passage is unobserved after its first entry; completion restores the original sliced inline decoration and removes all temporary spans. Resizes or font-load changes finish active animations immediately to avoid stale geometry.
+
+Verified fourteen marks and the two original story links, fully opaque stationary text, overlay removal after completion, and active narrow-screen frames containing a finished first line, partially clipped next line, and fully hidden later line. Computed end-bar transforms also advanced on the active line. The browser inspection API did not expose getAnimations, so verification used rendered clip/transform styles instead. Production build and whitespace checks passed. Reduced-motion/forced-color guards and cleanup were reviewed in code; OS preference changes and hardware frame-rate profiling were not exercised.
+
+## 2026-10-07 — Gentle highlight reveals
+
+Added one IntersectionObserver for the fourteen story highlights, rooted in the actual scrolling hero shell. Each highlight reveals once when at least 15% enters the reading area, then is unobserved. Only the gradient ink and edge-bar color fade over 250ms; the text remains fully opaque and stationary. A registered color property preserves the existing sliced multiline gradient without duplicating text or changing line wrapping. This small decoration-color transition does repaint; it is not described as compositor-only animation. Unsupported property interpolation falls back to an immediate tint change.
+
+Reduced-motion users and browsers without IntersectionObserver see the static highlights. Switching motion preference reveals everything and disconnects observation. Browser checks confirmed fourteen marks, off-screen pending decorations, an in-view reveal, and no replay after returning to the first highlight. OS-level preference changes and physical-device performance were not tested.
+
+## 2026-10-07 — Smaller cursor with changing hover colors
+
+Reduced the frame from 24px to 23px. Each new interactive hover advances yellow → coral → purple; moving within a control or its nested children does not advance the palette. Leaving and returning to the same control advances it again. Preserved the smoothing, exact center point, pressed state, and native-cursor fallbacks.
+
+## 2026-10-07 — Reference-inspired box cursor
+
+Recreated the supplied corner-bracket square as a small inline SVG, not a raster screenshot. Kept smoothing confined to the decorative frame (100ms ease-out) and a separate center point at the actual mouse coordinates, so the visual lag does not misrepresent click placement. Purple is the normal state, yellow marks links/buttons, and coral marks a press. A data attribute activates native-cursor hiding so React's route-related className updates cannot accidentally remove it. Listeners clean up on unmount; re-entry snaps to the current pointer rather than flying across the page.
+
+Browser checks confirmed the 100ms transform transition, pointer-events none, purple/yellow state changes, continued navigation, and Tab restoring the native cursor. Touch/reduced-motion/forced-color and editable-field fallbacks were inspected in code; physical-device, OS-preference, and screen-reader testing were not performed.
+
+## 2026-10-07 — Keep the stamp unfolding
+
+The user clarified that removing the return motion lost the intended stamp-coming-down effect. Restored the existing 600ms shell geometry transition rather than replacing the interaction. The decorative pattern now fades at 180ms and text at 300ms, after most of the ease-out travel, with no additional return translation. Kept the before-paint scroll/focus reset and keyboard/reduced-motion alternatives. Browser computed styles confirm the unfolding height transition and staggered fades; this is a timing refinement of the existing layout animation, not a claim of compositor-only motion or a frame-rate benchmark.
+
+## 2026-10-07 — Stable return to Home
+
+The homepage reused the outgoing 600ms stamp-height fold in reverse, but its content became visible within 180ms. Grid positioning therefore moved already-visible text during the remaining expansion. Following the animation skills' reduce/remove-first approach, the return path now resolves layout immediately and fades content in place for 180ms; outgoing navigation retains its intentional fold. Moved scroll reset/focus to a layout effect to avoid a painted frame at the old scroll position. Keyboard clicks bypass motion.
+
+Verified pointer return from Work, keyboard return from About, and a 390px Experiments-to-Home return: no stage transition, no content transform, correct heading focus, and zero shell scroll. The initial scripted frame-timing probe was unavailable in the browser tool's read-only scope; verification used computed transition rules and rendered geometry instead. Reduced-motion behavior was inspected in CSS, not tested through an OS preference toggle.
+
 ## 2026-10-07 — Work image loading
 
 The slow gallery was requesting multi-megabyte PNG artwork, including 1180 × 9368 Figma exports whose visible card occupies just 1180 × 744 pixels. Native lazy loading delayed those requests but did not reduce download or decode cost. Added non-destructive, reproducible WebP derivatives and responsive selection without changing layer positions or visible crops. The 31 affected sources total 39.16 MB; even the largest derivative of each totals only 3.14 MB (92% smaller). The first-row maximum-size artwork totals 293 KB instead of about 4 MB. Original assets and the old portfolio branch remain untouched.
