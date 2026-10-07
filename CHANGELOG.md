@@ -2,6 +2,9 @@
 
 ## 2026-10-07
 
+### Fixed
+- Reduced Work's 31 PNG artwork sources from 39.16 MB to 3.14 MB at the largest served WebP sizes; added responsive image selection, trimmed invisible export areas, prioritized the first row, and deferred off-screen video posters. Original assets are preserved.
+
 ### Changed
 - Updated the page, Open Graph, and Twitter titles to “Piyush Jain | Creative Generalist”; matched all preview descriptions and the standard meta description to the homepage introduction.
 - Set Open Graph and Twitter previews to the supplied stamp artwork, with an absolute public image URL, dimensions, and descriptive alt text.

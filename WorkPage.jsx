@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './work-page.css';
+import workImages from './workImageManifest.json';
 
 const ART = '/work-v2/artwork/';
 const MEDIA = '/work-v2/media/';
@@ -133,7 +134,7 @@ function WorkVideo({ card, audible, onSound, onQuiet }) {
 
   return <>
     <video ref={videoRef} src={load ? card.videoSrc || `${MEDIA}${card.video}.mp4` : undefined}
-      poster={card.poster || `${MEDIA}${card.video}.jpg`} loop muted={!audible} playsInline preload="metadata"
+      poster={load ? card.poster || `${MEDIA}${card.video}.jpg` : undefined} loop muted={!audible} playsInline preload="metadata"
       aria-label={card.title} aria-hidden={!load || undefined} onCanPlay={() => syncRef.current()}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
       onError={() => { setFailed(true); setPlaying(false); }} />
@@ -155,20 +156,30 @@ function WorkVideo({ card, audible, onSound, onQuiet }) {
   </>;
 }
 
-function WorkArtwork({ card }) {
+function WorkImage({ name, priority = false, scale = 1, ...props }) {
+  const { width, height, variants } = workImages[name];
+  // Match the actual one-/two-column card widths, including oversized layers.
+  const sizes = `(max-width: 42rem) calc((100vw - 40px) * ${scale}), (max-width: 1680px) calc((100vw - 100px) * ${scale / 2}), ${790 * scale}px`;
+  return <img {...props} src={variants.at(-1).src}
+    srcSet={variants.map(variant => `${variant.src} ${variant.width}w`).join(', ')} sizes={sizes}
+    width={width} height={height} loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'} decoding="async" />;
+}
+
+function WorkArtwork({ card, priority }) {
   if (card.src) return <img className={`work-art-image${card.inset ? ' work-art-image--inset' : ''}`} src={card.src} alt={card.title} loading="lazy" decoding="async" />;
   if (card.layers) return <div className="work-art work-art--layers" style={{ background: card.background }} role="img" aria-label={card.title}>
     {card.layers.map(layer => <div className={`work-art-layer${layer.insetShadow ? ' work-art-layer--inset' : ''}`} key={layer.file}
       style={{ left: `${layer.x / 590 * 100}%`, top: `${layer.y / 372 * 100}%`, width: `${layer.width / 590 * 100}%`, height: `${layer.height / 372 * 100}%`, borderRadius: layer.radius ? `${layer.radius / 590 * 100}cqw` : undefined }}>
-      <img src={`${ART}${layer.file}.png`} alt="" loading="lazy" decoding="async" style={layer.crop} />
+      <WorkImage name={layer.file} scale={layer.width / 590} alt="" style={layer.crop} />
     </div>)}
   </div>;
   if (['metrics', 'market'].includes(card.composition)) return <div className={`work-art work-art--${card.composition}`}>
-    <img src={`${ART}${card.composition}.png`} alt={card.title} loading="lazy" />
+    <WorkImage name={card.composition} scale={1.13} alt={card.title} />
   </div>;
   if (card.composition === 'editorial') return <div className="work-art work-art--editorial" role="img" aria-label={card.title}>
     {[0, 1].map(index => <div className="work-editorial-post" key={index}>
-      <img src={`${ART}editorial-${index}.png`} alt="" loading="lazy" />
+      <WorkImage name={`editorial-${index}`} scale={.415} alt="" />
       <div className="work-editorial-post__copy">
         <p className="work-editorial-post__date">Published July {index === 0 ? '20' : '23'}, 2026</p>
         <p className="work-editorial-post__headline">{index === 0 ? <>Intelligence isn’t static.<br />Neither is your business.</> : 'Every decision is another training example.'}</p>
@@ -177,21 +188,21 @@ function WorkArtwork({ card }) {
     </div>)}
   </div>;
   if (card.composition === 'ai') return <div className="work-art work-art--ai" role="img" aria-label={card.title}>
-    <img className="work-art__ai-background" src={`${ART}ai-background.png`} alt="" loading="lazy" />
+    <WorkImage className="work-art__ai-background" name="ai-background" scale={1.136} priority={priority} alt="" />
     <div className="work-art__ai-caption">
       <img src={`${ART}ai-wordmark.svg`} alt="" width="118" height="35" />
       <p>AI was supposed to make work easier. Instead it created a new kind of work managing AI</p>
     </div>
   </div>;
   if (card.composition === 'velar') return <div className="work-art work-art--velar">
-    <img src={`${ART}velar-website.png`} alt={card.title} loading="lazy" />
+    <WorkImage name="velar-website" alt={card.title} />
   </div>;
   if (card.composition === 'staking') return <div className="work-art work-art--staking" role="img" aria-label={card.title}>
-    <img className="work-art__staking-background" src={`${ART}velar-staking-0.png`} alt="" loading="lazy" />
-    <img className="work-art__staking-interface" src={`${ART}velar-staking-1.png`} alt="" loading="lazy" />
+    <WorkImage className="work-art__staking-background" name="velar-staking-0" alt="" />
+    <WorkImage className="work-art__staking-interface" name="velar-staking-1" scale={.824} alt="" />
   </div>;
-  return <img className={`work-art-export work-art-export--${card.crop}`}
-    src={`${ART}${card.id}.png`} alt={card.title} loading="lazy" decoding="async" />;
+  return <WorkImage className={`work-art-export work-art-export--${card.crop}`}
+    name={card.id} priority={priority} alt={card.title} />;
 }
 
 export default function WorkPage() {
@@ -201,10 +212,10 @@ export default function WorkPage() {
   return <main className="work-page" id="work-content" aria-labelledby="work-title" data-node-id="1071:22783">
     <h1 id="work-title" tabIndex={-1} data-node-id="1071:22784">Designing<br />Across Everything</h1>
     <section className="work-grid" aria-label="Selected design work" data-node-id="1071:22785">
-      {cards.map(card => <figure className={`work-card${card.startsRow ? ' work-card--starts-row' : ''}`}
+      {cards.map((card, index) => <figure className={`work-card${card.startsRow ? ' work-card--starts-row' : ''}`}
         key={card.id} data-node-id={card.nodeId || (card.src || card.videoSrc ? undefined : `1071:${card.id}`)}>
         {card.video ? <WorkVideo card={card} audible={audibleId === card.id} onSound={sound} onQuiet={quiet} />
-          : <WorkArtwork card={card} />}
+          : <WorkArtwork card={card} priority={index < 2} />}
       </figure>)}
     </section>
   </main>;

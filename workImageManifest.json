@@ -1,0 +1,548 @@
+{
+  "22786": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22786-600.webp",
+        "bytes": 30658
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22786-1180.webp",
+        "bytes": 136726
+      }
+    ]
+  },
+  "22796": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22796-600.webp",
+        "bytes": 16778
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22796-1180.webp",
+        "bytes": 39734
+      }
+    ]
+  },
+  "22800": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22800-600.webp",
+        "bytes": 18096
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22800-1180.webp",
+        "bytes": 51976
+      }
+    ]
+  },
+  "22806": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22806-600.webp",
+        "bytes": 25024
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22806-1180.webp",
+        "bytes": 78010
+      }
+    ]
+  },
+  "22813": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22813-600.webp",
+        "bytes": 24770
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22813-1180.webp",
+        "bytes": 63160
+      }
+    ]
+  },
+  "22817": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22817-600.webp",
+        "bytes": 27646
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22817-1180.webp",
+        "bytes": 79292
+      }
+    ]
+  },
+  "22819": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22819-600.webp",
+        "bytes": 76150
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22819-1180.webp",
+        "bytes": 278168
+      }
+    ]
+  },
+  "22825": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/22825-600.webp",
+        "bytes": 18246
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/22825-1180.webp",
+        "bytes": 47634
+      }
+    ]
+  },
+  "25883": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/25883-600.webp",
+        "bytes": 10852
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/25883-1180.webp",
+        "bytes": 26878
+      }
+    ]
+  },
+  "25891": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/25891-600.webp",
+        "bytes": 15600
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/25891-1180.webp",
+        "bytes": 34348
+      }
+    ]
+  },
+  "25893": {
+    "width": 1180,
+    "height": 744,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/25893-600.webp",
+        "bytes": 14778
+      },
+      {
+        "width": 1180,
+        "src": "/work-v2/optimized/25893-1180.webp",
+        "bytes": 36308
+      }
+    ]
+  },
+  "ai-background": {
+    "width": 1956,
+    "height": 1086,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/ai-background-600.webp",
+        "bytes": 27118
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/ai-background-1200.webp",
+        "bytes": 93748
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/ai-background-1600.webp",
+        "bytes": 156032
+      }
+    ]
+  },
+  "velar-website": {
+    "width": 3200,
+    "height": 2080,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/velar-website-600.webp",
+        "bytes": 23752
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/velar-website-1200.webp",
+        "bytes": 65652
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/velar-website-1600.webp",
+        "bytes": 97906
+      }
+    ]
+  },
+  "metrics": {
+    "width": 3083,
+    "height": 2194,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/metrics-600.webp",
+        "bytes": 11688
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/metrics-1200.webp",
+        "bytes": 31312
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/metrics-1600.webp",
+        "bytes": 47456
+      }
+    ]
+  },
+  "market": {
+    "width": 3332,
+    "height": 1928,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/market-600.webp",
+        "bytes": 9342
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/market-1200.webp",
+        "bytes": 26966
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/market-1600.webp",
+        "bytes": 39704
+      }
+    ]
+  },
+  "velar-staking-0": {
+    "width": 3200,
+    "height": 2080,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/velar-staking-0-600.webp",
+        "bytes": 15778
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/velar-staking-0-1200.webp",
+        "bytes": 34226
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/velar-staking-0-1600.webp",
+        "bytes": 49582
+      }
+    ]
+  },
+  "velar-staking-1": {
+    "width": 3024,
+    "height": 1964,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/velar-staking-1-600.webp",
+        "bytes": 9224
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/velar-staking-1-1200.webp",
+        "bytes": 24260
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/velar-staking-1-1600.webp",
+        "bytes": 34948
+      }
+    ]
+  },
+  "editorial-0": {
+    "width": 1456,
+    "height": 816,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/editorial-0-600.webp",
+        "bytes": 77080
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/editorial-0-1200.webp",
+        "bytes": 279754
+      },
+      {
+        "width": 1456,
+        "src": "/work-v2/optimized/editorial-0-1456.webp",
+        "bytes": 453320
+      }
+    ]
+  },
+  "editorial-1": {
+    "width": 1456,
+    "height": 816,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/editorial-1-600.webp",
+        "bytes": 67176
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/editorial-1-1200.webp",
+        "bytes": 249440
+      },
+      {
+        "width": 1456,
+        "src": "/work-v2/optimized/editorial-1-1456.webp",
+        "bytes": 437754
+      }
+    ]
+  },
+  "game-29803": {
+    "width": 322,
+    "height": 604,
+    "variants": [
+      {
+        "width": 322,
+        "src": "/work-v2/optimized/game-29803-322.webp",
+        "bytes": 41092
+      }
+    ]
+  },
+  "game-29587": {
+    "width": 322,
+    "height": 604,
+    "variants": [
+      {
+        "width": 322,
+        "src": "/work-v2/optimized/game-29587-322.webp",
+        "bytes": 37140
+      }
+    ]
+  },
+  "game-29695": {
+    "width": 322,
+    "height": 604,
+    "variants": [
+      {
+        "width": 322,
+        "src": "/work-v2/optimized/game-29695-322.webp",
+        "bytes": 37236
+      }
+    ]
+  },
+  "crowwd-profile": {
+    "width": 2880,
+    "height": 2048,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/crowwd-profile-600.webp",
+        "bytes": 17378
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/crowwd-profile-1200.webp",
+        "bytes": 53342
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/crowwd-profile-1600.webp",
+        "bytes": 80382
+      }
+    ]
+  },
+  "velar-trading": {
+    "width": 2880,
+    "height": 1782,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/velar-trading-600.webp",
+        "bytes": 16794
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/velar-trading-1200.webp",
+        "bytes": 44470
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/velar-trading-1600.webp",
+        "bytes": 63920
+      }
+    ]
+  },
+  "purple-brand": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/purple-brand-600.webp",
+        "bytes": 36264
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/purple-brand-1200.webp",
+        "bytes": 156292
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/purple-brand-1600.webp",
+        "bytes": 264278
+      }
+    ]
+  },
+  "bento-marks": {
+    "width": 2160,
+    "height": 2160,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/bento-marks-600.webp",
+        "bytes": 18320
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/bento-marks-1200.webp",
+        "bytes": 33754
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/bento-marks-1600.webp",
+        "bytes": 46172
+      }
+    ]
+  },
+  "bento-banner": {
+    "width": 3840,
+    "height": 2160,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/bento-banner-600.webp",
+        "bytes": 16098
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/bento-banner-1200.webp",
+        "bytes": 30420
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/bento-banner-1600.webp",
+        "bytes": 39112
+      }
+    ]
+  },
+  "wagadu": {
+    "width": 3840,
+    "height": 2160,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/wagadu-600.webp",
+        "bytes": 20258
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/wagadu-1200.webp",
+        "bytes": 49134
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/wagadu-1600.webp",
+        "bytes": 71436
+      }
+    ]
+  },
+  "fellowship-weeks": {
+    "width": 2560,
+    "height": 1642,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/fellowship-weeks-600.webp",
+        "bytes": 36358
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/fellowship-weeks-1200.webp",
+        "bytes": 108346
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/fellowship-weeks-1600.webp",
+        "bytes": 171398
+      }
+    ]
+  },
+  "event-30387": {
+    "width": 521,
+    "height": 521,
+    "variants": [
+      {
+        "width": 521,
+        "src": "/work-v2/optimized/event-30387-521.webp",
+        "bytes": 47656
+      }
+    ]
+  },
+  "event-30435": {
+    "width": 521,
+    "height": 521,
+    "variants": [
+      {
+        "width": 521,
+        "src": "/work-v2/optimized/event-30435-521.webp",
+        "bytes": 49424
+      }
+    ]
+  }
+}

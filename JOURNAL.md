@@ -1,5 +1,11 @@
 # Journal
 
+## 2026-10-07 — Work image loading
+
+The slow gallery was requesting multi-megabyte PNG artwork, including 1180 × 9368 Figma exports whose visible card occupies just 1180 × 744 pixels. Native lazy loading delayed those requests but did not reduce download or decode cost. Added non-destructive, reproducible WebP derivatives and responsive selection without changing layer positions or visible crops. The 31 affected sources total 39.16 MB; even the largest derivative of each totals only 3.14 MB (92% smaller). The first-row maximum-size artwork totals 293 KB instead of about 4 MB. Original assets and the old portfolio branch remain untouched.
+
+Prioritized the first two cards and made video posters follow the same near-viewport loading gate as their clips. Production build and diff checks passed; all 72 derivative paths were checked in public and built output. Browser checks at desktop and 390px confirmed first-row rendering, smaller mobile sources, no horizontal overflow, and absent src/poster attributes for distant videos. This verifies payload and rendering improvements, not a measured slow-network timing benchmark.
+
 ## 2026-10-07 — Publish the new branch without replacing main
 
 The user chose to serve the new portfolio on the existing domain while retaining the Figma-style portfolio on `main`. Verified both local and remote `main` at `56433b69fdd3b3f19fab79ce6aa30cc1b1280ae3`, matching the existing Vercel production deployment `54fwgh141oJdQuBeEdcWrDxVkbGQ`. Changed the existing project's Production branch tracking from `main` to `codex/figma-hero`, leaving automatic production-domain assignment enabled. No domain transfer, new hosting project, merge, or force push is needed. The latest design passed the production build before publication. The following push triggers the new production deployment; verify its Ready status and public routes before considering the cutover complete.

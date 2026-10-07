@@ -18,9 +18,8 @@
 .work-card video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .work-art-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .work-art-image--inset { position: absolute; inset: 8%; width: 84%; height: 84%; object-fit: contain; }
-/* Figma's isolated exports stretch FILL-height frames to their 4684px parent.
-   Keep the unmodified export and clip at the original 590 × 372 art bounds.
-   Top-constrained art stays at top; center-constrained art stays centered. */
+/* Runtime derivatives trim the invisible Figma FILL-height export area.
+   Original exports remain unchanged in artwork/ for editing and regeneration. */
 .work-art-export { position: absolute; inset-inline-start: 0; width: 100%; height: auto; max-width: none; }
 .work-art-export--top { top: 0; }
 .work-art-export--center { top: 50%; transform: translateY(-50%); }

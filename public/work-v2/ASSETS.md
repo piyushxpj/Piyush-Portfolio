@@ -4,6 +4,8 @@ Figma file `bCf51Jh7ebnEUdQ3Pyn4th`, frame `1071:22783` (1280 × 5144). The page
 
 ## Artwork slots
 
+Runtime optimization (2026-10-07): PNG filenames below identify preserved originals. The page serves corresponding WebP variants from `optimized/` using `workImageManifest.json`. Regenerate with `npm run optimize:work` (requires `cwebp`); the script never deletes or overwrites original artwork. Top-aligned numeric exports are trimmed to the visible card bounds; other composition sources retain their proportions and CSS crops. Output quality is 88 with sharp YUV conversion, responsive widths up to 600/1200/1600px and no upscaling.
+
 Each numeric PNG is the unmodified exported artwork of the matching `1071:<id>` node. The eleven numeric exports used at runtime are now explicitly exported at 2× (1180px wide), replacing the blurry 516px-wide defaults. Isolated FILL-height frames still export at 9368px tall; top-positioned artwork is clipped at the original card bounds in CSS. Nexus is 1180 × 744. Centered compositions use high-resolution original source layers instead. Unused malformed full-card exports are retained only as source references.
 
 | Slot | Runtime artwork |
