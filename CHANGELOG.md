@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-10
+
+### Added
+- Added four Work compositions from Figma frame 1140:15014: Leagues mobile screens, First Dollar profile, First Dollar mobile screens, and showcase editor. Preserved original layer geometry and added optimized responsive images.
+
+### Changed
+- Swapped the Fellowship/events row with the Leagues/First Dollar profile row, moving the latter above it without changing artwork or pairings.
+
 ## 2026-10-07
 
 ### Added

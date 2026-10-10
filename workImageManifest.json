@@ -544,5 +544,143 @@
         "bytes": 49424
       }
     ]
+  },
+  "leagues-wallet": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/leagues-wallet-600.webp",
+        "bytes": 41614
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/leagues-wallet-804.webp",
+        "bytes": 61610
+      }
+    ]
+  },
+  "leagues-funds": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/leagues-funds-600.webp",
+        "bytes": 25344
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/leagues-funds-804.webp",
+        "bytes": 36164
+      }
+    ]
+  },
+  "leagues-discover": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/leagues-discover-600.webp",
+        "bytes": 65522
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/leagues-discover-804.webp",
+        "bytes": 96356
+      }
+    ]
+  },
+  "first-dollar-campaigns": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/first-dollar-campaigns-600.webp",
+        "bytes": 44050
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/first-dollar-campaigns-804.webp",
+        "bytes": 65472
+      }
+    ]
+  },
+  "first-dollar-menu": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/first-dollar-menu-600.webp",
+        "bytes": 20308
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/first-dollar-menu-804.webp",
+        "bytes": 29928
+      }
+    ]
+  },
+  "first-dollar-winners": {
+    "width": 804,
+    "height": 1748,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/first-dollar-winners-600.webp",
+        "bytes": 38942
+      },
+      {
+        "width": 804,
+        "src": "/work-v2/optimized/first-dollar-winners-804.webp",
+        "bytes": 59874
+      }
+    ]
+  },
+  "first-dollar-profile": {
+    "width": 1440,
+    "height": 1159,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/first-dollar-profile-600.webp",
+        "bytes": 20920
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/first-dollar-profile-1200.webp",
+        "bytes": 52914
+      },
+      {
+        "width": 1440,
+        "src": "/work-v2/optimized/first-dollar-profile-1440.webp",
+        "bytes": 74970
+      }
+    ]
+  },
+  "first-dollar-showcase": {
+    "width": 2880,
+    "height": 2318,
+    "variants": [
+      {
+        "width": 600,
+        "src": "/work-v2/optimized/first-dollar-showcase-600.webp",
+        "bytes": 22764
+      },
+      {
+        "width": 1200,
+        "src": "/work-v2/optimized/first-dollar-showcase-1200.webp",
+        "bytes": 59706
+      },
+      {
+        "width": 1600,
+        "src": "/work-v2/optimized/first-dollar-showcase-1600.webp",
+        "bytes": 88440
+      }
+    ]
   }
 }

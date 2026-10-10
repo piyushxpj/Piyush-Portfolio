@@ -45,6 +45,17 @@ Eight 590 × 372 cards, in source row order. Source PNGs are unmodified; individ
 | 1073:29147 | `fellowship-weeks.png` from 1074:29991: 478 × 306.592 at (56,33) |
 | 1074:30385 | `event-30387.png` and `event-30435.png`: 260.374 square at (24,56.3) and (304.63,56.3) |
 
+## Additional artwork — frame 1140:15014
+
+Four 590 × 372 cards added before the final Knox card, preserving source pairings. Leagues/profile now occupy cards 31–32 above Fellowship/events at 33–34; First Dollar mobile/showcase stay at 35–36. The gallery retains its existing 20px gutter. Eight original PNG image assets are preserved in `artwork/`; `npm run optimize:work` generates responsive WebP versions. Phone layers have the source 10px corner radius and #ededed border; card geometry scales proportionally.
+
+| Card node | Local artwork and original placement |
+| --- | --- |
+| 1120:14 | `leagues-wallet.png` (1139:14459): 139 × 302 at (60,35); `leagues-funds.png` (1139:14461): 138 × 302 at (226,35); `leagues-discover.png` (1139:14462): 139 × 302 at (391,35); #f5f5f5 background |
+| 1139:14463 | `first-dollar-profile.png` (1139:14468): 400 × 322 at (95,24); #002ee7 background |
+| 1139:14475 | `first-dollar-campaigns.png` (1139:14634), `first-dollar-menu.png` (1139:14635), `first-dollar-winners.png` (1139:14636): each 139 × 302 at x=60,225,390, y=35; #f5f5f5 background |
+| 1139:14470 | `first-dollar-showcase.png` (1139:14473): 632 × 508 at (48,−184), clipped by the card; #002ee7 background |
+
 ## User-provided media
 
 ### Reused Experiments pieces

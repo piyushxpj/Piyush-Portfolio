@@ -1,5 +1,11 @@
 # Journal
 
+## 2026-10-10 — Four Figma Work compositions
+
+Implemented frame 1140:15014 using its eight original image assets, not a screenshot of the frame. Reused Work's layered artwork renderer and responsive-image pipeline. The four cards form two rows before Knox, retaining the existing gallery gutter while preserving the Figma geometry inside each 590 × 372 card. Phone screenshots retain rounded corners and a subtle inset border; the showcase image intentionally extends above and beyond its clipped blue frame.
+
+All eight images loaded in browser checks. Desktop layer positions matched the supplied Figma coordinates; at 390px each card was 350 × 220.67 with no horizontal overflow. Production build and whitespace checks passed. The existing uncommitted Experiments redesign was left intact. Nothing was pushed.
+
 ## 2026-10-07 — Selection-style highlight sweep
 
 Replaced the tint fade with the approved drag-selection metaphor. `getClientRects()` provides actual wrapped-line fragments without duplicating or splitting the author's text. Temporary aria-hidden spans animate only clip-path, transform, and opacity through WAAPI: 600ms of constant-speed selection progress is apportioned by line width, with a moving end bar on the active line and a fixed opening bar. Each passage is unobserved after its first entry; completion restores the original sliced inline decoration and removes all temporary spans. Resizes or font-load changes finish active animations immediately to avoid stale geometry.

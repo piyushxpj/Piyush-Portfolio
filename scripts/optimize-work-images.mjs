@@ -11,7 +11,9 @@ const topCrops = ['22786', '22796', '22800', '22813', '22817', '22819', '22825',
 const artwork = [...topCrops, '22806', 'ai-background', 'velar-website', 'metrics', 'market',
   'velar-staking-0', 'velar-staking-1', 'editorial-0', 'editorial-1',
   'game-29803', 'game-29587', 'game-29695', 'crowwd-profile', 'velar-trading',
-  'purple-brand', 'bento-marks', 'bento-banner', 'wagadu', 'fellowship-weeks', 'event-30387', 'event-30435'];
+  'purple-brand', 'bento-marks', 'bento-banner', 'wagadu', 'fellowship-weeks', 'event-30387', 'event-30435',
+  'leagues-wallet', 'leagues-funds', 'leagues-discover', 'first-dollar-campaigns',
+  'first-dollar-menu', 'first-dollar-winners', 'first-dollar-profile', 'first-dollar-showcase'];
 const manifest = {};
 let originalBytes = 0;
 let largestBytes = 0;

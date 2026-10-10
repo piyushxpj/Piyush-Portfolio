@@ -52,12 +52,29 @@ const cards = [
   { id: '29146', nodeId: '1073:29146', title: 'Wagadu — making DeFi accessible to all', background: '#05a139', layers: [
     { file: 'wagadu', x: 37, y: 41, width: 516, height: 290 },
   ] },
+  // Figma 1140:15014: first pair moved above the Fellowship/events row.
+  { id: 'leagues-mobile', nodeId: '1120:14', title: 'Leagues — wallet, add funds, and market discovery', background: '#f5f5f5', layers: [
+    { file: 'leagues-wallet', x: 60, y: 35, width: 139, height: 302, radius: 10, border: '#ededed' },
+    { file: 'leagues-funds', x: 226, y: 35, width: 138, height: 302, radius: 10, border: '#ededed' },
+    { file: 'leagues-discover', x: 391, y: 35, width: 139, height: 302, radius: 10, border: '#ededed' },
+  ] },
+  { id: 'first-dollar-profile', nodeId: '1139:14463', title: 'First Dollar — creator profile', background: '#002ee7', layers: [
+    { file: 'first-dollar-profile', x: 95, y: 24, width: 400, height: 322 },
+  ] },
   { id: '29147', nodeId: '1073:29147', title: 'Based Fellowship — two-week program', background: '#fafafa', layers: [
     { file: 'fellowship-weeks', x: 56, y: 33, width: 478, height: 306.592 },
   ] },
   { id: '30385', nodeId: '1074:30385', title: 'AI Bootcamp with Emergent and ElevenLabs AI Voice Buildathon', background: '#eceae9', layers: [
     { file: 'event-30387', x: 24, y: 56.3, width: 260.374, height: 260.374 },
     { file: 'event-30435', x: 304.63, y: 56.3, width: 260.374, height: 260.374 },
+  ] },
+  { id: 'first-dollar-mobile', nodeId: '1139:14475', title: 'First Dollar — campaigns, navigation, and winners', background: '#f5f5f5', layers: [
+    { file: 'first-dollar-campaigns', x: 60, y: 35, width: 139, height: 302, radius: 10, border: '#ededed' },
+    { file: 'first-dollar-menu', x: 225, y: 35, width: 139, height: 302, radius: 10, border: '#ededed' },
+    { file: 'first-dollar-winners', x: 390, y: 35, width: 139, height: 302, radius: 10, border: '#ededed' },
+  ] },
+  { id: 'first-dollar-showcase', nodeId: '1139:14470', title: 'First Dollar — creator showcase editor', background: '#002ee7', layers: [
+    { file: 'first-dollar-showcase', x: 48, y: -184, width: 632, height: 508 },
   ] },
   { id: 'knox-brand', title: 'Knox — brand identity and stationery', src: '/playground/01.webp', inset: true },
 ];
@@ -169,7 +186,7 @@ function WorkArtwork({ card, priority }) {
   if (card.src) return <img className={`work-art-image${card.inset ? ' work-art-image--inset' : ''}`} src={card.src} alt={card.title} loading="lazy" decoding="async" />;
   if (card.layers) return <div className="work-art work-art--layers" style={{ background: card.background }} role="img" aria-label={card.title}>
     {card.layers.map(layer => <div className={`work-art-layer${layer.insetShadow ? ' work-art-layer--inset' : ''}`} key={layer.file}
-      style={{ left: `${layer.x / 590 * 100}%`, top: `${layer.y / 372 * 100}%`, width: `${layer.width / 590 * 100}%`, height: `${layer.height / 372 * 100}%`, borderRadius: layer.radius ? `${layer.radius / 590 * 100}cqw` : undefined }}>
+      style={{ left: `${layer.x / 590 * 100}%`, top: `${layer.y / 372 * 100}%`, width: `${layer.width / 590 * 100}%`, height: `${layer.height / 372 * 100}%`, borderRadius: layer.radius ? `${layer.radius / 590 * 100}cqw` : undefined, '--layer-border': layer.border }}>
       <WorkImage name={layer.file} scale={layer.width / 590} alt="" style={layer.crop} />
     </div>)}
   </div>;

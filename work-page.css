@@ -27,6 +27,7 @@
 .work-art { position: absolute; inset: 0; }
 .work-card--starts-row { grid-column-start: 1; }
 .work-art-layer { position: absolute; overflow: hidden; }
+.work-art-layer::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px var(--layer-border, transparent); }
 .work-art-layer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .work-art-layer--inset::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 .4385cqw 0 rgb(0 0 0 / .06), inset 0 -.4385cqw 0 rgb(0 0 0 / .06); }
 .work-art img { display: block; max-width: none; }
