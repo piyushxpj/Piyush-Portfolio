@@ -1,7 +1,7 @@
 /* Figma 1071:22783: plain scrolling gallery, not the old canvas. */
 @font-face { font-family: 'Work DM Mono'; src: url('/fonts/DMMono-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Work Headland One'; src: url('/fonts/HeadlandOne-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-.work-page { padding: 40px 40px 231px; max-width: 1680px; margin-inline: auto; }
+.work-page { padding: 40px; max-width: 1680px; margin-inline: auto; }
 .work-arrange-link { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 20px; color: inherit; font: 16px 'Hero Roobert', Arial, sans-serif; text-decoration: underline; text-underline-offset: 4px; }
 .work-page h1 {
   margin: 0 0 40px;
@@ -69,7 +69,7 @@
 .work-media-error { position: absolute; inset-inline: 16px; top: 16px; color: #fff; background: #252525; font-size: 13px; line-height: 1.5; padding: 6px 10px; }
 .work-media-error:empty { display: none; }
 @media (max-width: 42rem) {
-  .work-page { padding: 32px 20px 80px; }
+  .work-page { padding: 32px 20px; }
   .work-page h1 { font-size: 32px; line-height: 1.2; margin-bottom: 32px; }
   .work-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .work-media-controls { bottom: 2px; inset-inline-end: 2px; }

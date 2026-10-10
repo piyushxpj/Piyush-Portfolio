@@ -8,6 +8,7 @@
 - Added four Work compositions from Figma frame 1140:15014: Leagues mobile screens, First Dollar profile, First Dollar mobile screens, and showcase editor. Preserved original layer geometry and added optimized responsive images.
 
 ### Changed
+- Reduced trailing Work gallery space from 231px to 40px on desktop and from 80px to 32px on mobile, preserving card gutters and artwork sizing.
 - Applied the author's saved 38-card Work arrangement, with First Dollar onboarding second. The arrangement editor and save endpoint remain development-only.
 - Swapped the Fellowship/events row with the Leagues/First Dollar profile row, moving the latter above it without changing artwork or pairings.
 
