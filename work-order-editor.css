@@ -1,0 +1,48 @@
+.work-editor { height: 100dvh; overflow: auto; background: #f7f7f7; color: #252525; font: 16px/1.5 'Hero Roobert', Arial, sans-serif; }
+.work-editor button:not(.work-media-control), .work-editor select { font: inherit; color: inherit; min-height: 44px; padding: 8px 14px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; }
+.work-editor button:disabled, .work-editor select:disabled { cursor: default; opacity: .45; }
+.work-editor :is(button, select, a):focus-visible { outline: 2px solid #7929dc; outline-offset: 3px; }
+.work-editor a { color: inherit; text-underline-offset: 4px; }
+.work-editor__header { padding: 28px 40px; background: white; display: flex; gap: 24px; align-items: end; justify-content: space-between; border-bottom: 1px solid #ddd; }
+.work-editor__header h1 { font-size: 36px; font-weight: 500; letter-spacing: -.04em; margin: 6px 0; }
+.work-editor__header p { margin: 0; max-width: 55ch; }
+.work-editor__header .work-editor__local { margin-top: 22px; font-size: 13px; color: #686868; }
+.work-editor__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.work-editor__toolbar { position: sticky; top: 0; z-index: 5; padding: 12px 40px; background: white; border-bottom: 1px solid #ddd; }
+.work-editor button.work-editor__save { color: white; background: #252525; border-color: #252525; }
+.work-editor__feedback { padding: 12px 40px; background: #fff; }
+.work-editor__feedback p { margin: 0; font-size: 14px; }
+.work-editor__feedback [role="alert"] { margin-top: 12px; padding: 12px; border: 1px solid #bd3030; }
+.work-editor__feedback [role="alert"] button { margin-top: 8px; }
+.work-editor__main { max-width: 1120px; margin-inline: auto; padding: 24px 40px 80px; }
+.work-editor__options { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+.work-editor__options label { flex-shrink: 0; display: flex; gap: 10px; align-items: center; }
+.work-editor__options p { margin: 0; font-size: 14px; color: #686868; }
+.work-editor__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; list-style: none; padding: 0; margin: 0; }
+.work-editor__grid--rows { grid-template-columns: minmax(0, 1fr); }
+.work-editor__tile { position: relative; min-width: 0; padding: 12px; background: white; border: 1px solid #ddd; border-radius: 10px; scroll-margin-block: 24px; }
+.work-editor__tile.is-drop-target { outline: 3px solid #7929dc; outline-offset: 2px; }
+.work-editor__tile-bar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 12px; }
+.work-editor__tile-bar > span { font-size: 13px; color: #686868; }
+.work-editor button.work-editor__handle { cursor: grab; font-variant-numeric: tabular-nums; }
+.work-editor__handle:active { cursor: grabbing; }
+.work-editor__images { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.work-editor__grid--rows .work-editor__images { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.work-editor__thumb { min-width: 0; }
+.work-editor__thumb .work-card { pointer-events: none; outline: 1px solid rgb(0 0 0 / .1); outline-offset: -1px; }
+.work-editor__thumb > p { font-size: 14px; line-height: 1.4; margin: 12px 0; overflow-wrap: anywhere; }
+.work-editor__moves { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.work-editor__moves button, .work-editor__moves label { font-size: 13px; }
+.work-editor__moves label { margin-inline-start: auto; display: flex; gap: 8px; align-items: center; }
+.work-editor__drop-label { position: absolute; top: 12px; inset-inline-end: 12px; padding: 8px 12px; background: #7929dc; color: white; pointer-events: none; }
+@media (max-width: 68rem) { .work-editor__header { align-items: start; flex-direction: column; } }
+@media (max-width: 44rem) {
+  .work-editor__header { padding: 24px 20px; }
+  .work-editor__toolbar { padding: 12px 20px; }
+  .work-editor__feedback { padding: 12px 20px; }
+  .work-editor__main { padding: 24px 20px 60px; }
+  .work-editor__options { align-items: start; flex-direction: column; gap: 12px; }
+  .work-editor__grid { grid-template-columns: minmax(0, 1fr); }
+  .work-editor__grid--rows .work-editor__images { gap: 10px; }
+}
+@media (forced-colors: active) { .work-editor :is(button, select, a):focus-visible, .work-editor__tile.is-drop-target { outline-color: Highlight; } }

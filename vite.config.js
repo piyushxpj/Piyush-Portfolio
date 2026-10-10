@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { fetchGithubContributions } from './api/github-contributions.js';
+import { workOrderDevApi } from './scripts/work-order-dev-api.mjs';
 
 function githubContributionsDevApi(token) {
   return {
@@ -30,7 +31,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
-    plugins: [react(), tailwindcss(), githubContributionsDevApi(env.GITHUB_TOKEN)],
+    plugins: [react(), tailwindcss(), githubContributionsDevApi(env.GITHUB_TOKEN), workOrderDevApi()],
     server: { port: 5176 },
   };
 });

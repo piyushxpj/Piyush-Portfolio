@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test:work-order": "node --test scripts/work-order.test.mjs",
     "webp": "node scripts/convert-images.js",
     "optimize:work": "node scripts/optimize-work-images.mjs"
   },

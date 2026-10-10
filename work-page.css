@@ -2,6 +2,7 @@
 @font-face { font-family: 'Work DM Mono'; src: url('/fonts/DMMono-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Work Headland One'; src: url('/fonts/HeadlandOne-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 .work-page { padding: 40px 40px 231px; max-width: 1680px; margin-inline: auto; }
+.work-arrange-link { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 20px; color: inherit; font: 16px 'Hero Roobert', Arial, sans-serif; text-decoration: underline; text-underline-offset: 4px; }
 .work-page h1 {
   margin: 0 0 40px;
   font-family: 'Season Mix Trial', Georgia, serif;

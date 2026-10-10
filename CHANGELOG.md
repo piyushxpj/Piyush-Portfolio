@@ -3,9 +3,12 @@
 ## 2026-10-10
 
 ### Added
+- Added the supplied First Dollar onboarding recording to Work and Arrange Work, with a 1440px fast-start MP4 and JPEG thumbnail. Appended it without changing the existing saved order.
+- Added a development-only Work arrangement editor with real thumbnails, card/row drag-and-drop, keyboard/touch move controls, undo, reset, preview, and local JSON saving. Includes validation, stale-save protection, and ordering/API tests; no publishing action.
 - Added four Work compositions from Figma frame 1140:15014: Leagues mobile screens, First Dollar profile, First Dollar mobile screens, and showcase editor. Preserved original layer geometry and added optimized responsive images.
 
 ### Changed
+- Applied the author's saved 38-card Work arrangement, with First Dollar onboarding second. The arrangement editor and save endpoint remain development-only.
 - Swapped the Fellowship/events row with the Leagues/First Dollar profile row, moving the latter above it without changing artwork or pairings.
 
 ## 2026-10-07

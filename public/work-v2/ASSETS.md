@@ -58,9 +58,13 @@ Four 590 × 372 cards added before the final Knox card, preserving source pairin
 
 ## User-provided media
 
+### First Dollar onboarding recording
+
+Source: `/Users/PIYUSH/Documents/CleanShot 2026-10-10 at 12.02.40.mp4` (unchanged). Work card `first-dollar-onboarding` uses `media/first-dollar-onboarding.mp4` and `media/first-dollar-onboarding.jpg`. The silent 14.433-second clip is encoded with H.264 CRF 21, yuv420p, 1440 × 868, and fast-start metadata (1.04 MB); the JPEG poster is extracted at two seconds. Appended as card 38 after Knox in the initial saved order; Arrange Work can move it freely. Uses the standard centered cover crop and playback controls.
+
 ### Reused Experiments pieces
 
-Bento identity occupies card 11, beside Velar metrics at card 12. Ship the Future with AI occupies card 14, beside Nexus. Knox remains the final card. They reference the preserved Experiments assets directly, avoiding duplicate media. Both videos use centered `object-fit: cover` to fill the 590 × 372 frames edge to edge. The Knox artwork uses a centered 84% image area with `object-fit: contain`, leaving breathing room inside the unchanged card frame per the user's follow-up.
+Bento identity occupies card 11, beside Velar metrics at card 12. Ship the Future with AI occupies card 14, beside Nexus. Knox occupies card 37, before the added onboarding recording. They reference the preserved Experiments assets directly, avoiding duplicate media. Both videos use centered `object-fit: cover` to fill the 590 × 372 frames edge to edge. The Knox artwork uses a centered 84% image area with `object-fit: contain`, leaving breathing room inside the unchanged card frame per the user's follow-up.
 
 | Work card | Existing source | Work poster |
 | --- | --- | --- |

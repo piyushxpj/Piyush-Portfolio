@@ -1,5 +1,19 @@
 # Journal
 
+## 2026-10-10 — Work order release
+
+Prepared the author's saved 38-card arrangement for publication on `codex/figma-hero`, including the First Dollar onboarding media and the shared order-data renderer. The editor route/link and save API remain development-only. Scoped this release to Work and its documentation; the Experiments draft remains uncommitted.
+
+## 2026-10-10 — First Dollar onboarding video
+
+Added the supplied CleanShot recording as `first-dollar-onboarding`, appended after the existing 37 cards without reordering them. Preserved the Documents original and encoded a silent H.264/yuv420p, CRF 21, fast-start derivative at 1440 × 868, retaining the full 14.433-second duration. The derivative is 1.04 MB versus the 6.10 MB original; its poster uses the two-second frame. Reused visibility-aware playback and the editor's static poster thumbnail. Browser verification confirmed 38 editor cards and successful video playback; build and all three ordering/API tests passed. Nothing was pushed.
+
+## 2026-10-10 — Local Work arrangement editor
+
+Separated artwork definitions into workCards.js and saved ordering into workOrder.json. This lets the author arrange thumbnails without editing JSX or changing artwork geometry. The editor uses native drag-and-drop plus explicit position and move controls; row mode moves complete pairs while keeping an unpaired final card last. Preview uses the real gallery, and saving is independent of publishing. The local Vite endpoint can write only the order file, with loopback/origin/token checks, permutation validation, serialized revision checks, and atomic replacement.
+
+Verified card drag-and-drop, row movement, keyboard Enter/Space controls, undo/reset, preview order, save/reload persistence, and 320px reflow. Test rearrangements were restored to the original saved sequence. Unit/API tests cover invalid IDs, hostile Host/origin/token requests, oversized bodies, and concurrent stale writes. The initial Host-header test used fetch, which ignored the supplied Host; switching that test to Node's HTTP client exercised the real guard. Production builds omit the editor module and local API markers. Physical touch dragging, OS accessibility modes, and screen-reader output were not verified; touch users can use the explicit controls. Nothing was committed or pushed.
+
 ## 2026-10-10 — Four Figma Work compositions
 
 Implemented frame 1140:15014 using its eight original image assets, not a screenshot of the frame. Reused Work's layered artwork renderer and responsive-image pipeline. The four cards form two rows before Knox, retaining the existing gallery gutter while preserving the Figma geometry inside each 590 × 372 card. Phone screenshots retain rounded corners and a subtle inset border; the showcase image intentionally extends above and beyond its clipped blue frame.

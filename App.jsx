@@ -13,6 +13,8 @@ import PlaygroundPage from './PlaygroundPage.jsx';
 import HeroSectionV2 from './HeroSectionV2.jsx';
 import { PAGES } from './canvasData.js';
 
+const WorkOrderEditor = import.meta.env.DEV ? React.lazy(() => import('./WorkOrderEditor.jsx')) : null;
+
 function pageFromPath() {
   if (window.location.pathname === '/about') return 'about';
   if (window.location.pathname === '/work') return 'work';
@@ -87,6 +89,10 @@ export default function App() {
   }, [isDark]);
 
   const closeModal = useCallback(() => setModalProject(null), []);
+
+  if (import.meta.env.DEV && window.location.pathname === '/arrange-work') {
+    return <React.Suspense fallback={<p>Loading Work editor…</p>}><WorkOrderEditor /></React.Suspense>;
+  }
 
   return (
     <>
