@@ -4,6 +4,7 @@ import AboutPage from './AboutPage.jsx';
 import PlaygroundPage from './PlaygroundPage.jsx';
 import HeroSocialLinks from './HeroSocialLinks.jsx';
 import PortfolioCursor from './PortfolioCursor.jsx';
+import HeroStampPattern from './HeroStampPattern.jsx';
 import './hero.css';
 import './hero-v2.css';
 
@@ -41,6 +42,7 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
   const headingId = isWork ? 'work-title' : isAbout ? 'about-title' : isExperiments ? 'playground-content' : 'hero-v2-title';
   const shellRef = useRef(null);
   const previousPage = useRef(activePage);
+  const focusAfterNavigation = useRef(false);
   const accentCursor = useRef(-1);
   const [linkAccents, setLinkAccents] = useState({});
   const [instantNavigation, setInstantNavigation] = useState(false);
@@ -51,14 +53,18 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
   };
   useLayoutEffect(() => {
     shellRef.current.scrollTop = 0;
-    if (previousPage.current !== activePage) {
+    if (previousPage.current !== activePage && focusAfterNavigation.current) {
       shellRef.current.querySelector(`#${headingId}`)?.focus({ preventScroll: true });
     }
+    focusAfterNavigation.current = false;
     previousPage.current = activePage;
   }, [activePage, headingId]);
   const navigate = (event, page) => {
     if (!page || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    // Move keyboard/assistive navigation into the new content, but don't
+    // focus static headings (and draw a browser outline) after a click/tap.
+    focusAfterNavigation.current = event.detail === 0;
     setInstantNavigation(event.detail === 0);
     onPageChange(page);
   };
@@ -68,12 +74,6 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
       <PortfolioCursor scopeRef={shellRef} />
       {isInnerPage && <a className="work-skip" href={`#${headingId}`}>Skip to {isWork ? 'work' : isAbout ? 'about' : 'experiments'}</a>}
       <div className="hero-v2__stage" role={isInnerPage ? undefined : 'main'} aria-labelledby={isInnerPage ? undefined : 'hero-v2-title'} data-node-id="1012:7579">
-        <div className="hero-paper hero-v2__paper" aria-hidden="true" data-node-id="1012:7580">
-          <div className="hero-v2__pattern" data-node-id="1012:7583">
-            <img src={`${assets}pattern-animated.svg`} alt="" draggable={false} />
-          </div>
-        </div>
-
         <nav className="hero-v2__navigation" aria-label="Portfolio" data-node-id="1063:9848">
           {navigation.map(({ label, href, page }) => (
             <a className="hero-v2__nav-link" key={label} href={href} onClick={event => navigate(event, page)}
@@ -105,17 +105,25 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
 
           <section className="hero-v2__clients" aria-labelledby="hero-v2-clients-title" data-node-id="1063:9882">
             <h2 id="hero-v2-clients-title">Worked with</h2>
-            <div className="hero-v2__logos">
+            <div className="hero-v2__client-window">
+              <div className="hero-v2__client-track">
+              {[false, true].map(copy => <div key={String(copy)} className={`hero-v2__logos${copy ? ' hero-v2__logos--copy' : ''}`} aria-hidden={copy || undefined}>
               {clients.map(([file, name, width, height, href]) => {
                 const logo = <img src={file.startsWith('/') ? file : `${assets}${file}`} alt={name}
                   width={width} height={height} draggable={false} />;
                 return href
                   ? <a key={name} className="hero-v2__client-link" href={href} target="_blank" rel="noopener noreferrer"
+                      tabIndex={copy ? -1 : undefined}
                       aria-label={`${name} — opens in a new tab`} title={`${name} — opens in a new tab`}>{logo}</a>
                   : <React.Fragment key={name}>{logo}</React.Fragment>;
               })}
+              </div>)}
+              </div>
             </div>
           </section>
+        </div>
+        <div className="hero-paper hero-v2__paper" data-node-id="1012:7580">
+          <HeroStampPattern active={!isInnerPage} />
         </div>
       </div>
       {isWork && <WorkPage />}

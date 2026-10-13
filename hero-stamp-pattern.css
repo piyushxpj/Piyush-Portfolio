@@ -1,0 +1,31 @@
+.hero-stamp-pattern { pointer-events: auto; }
+.hero-stamp-cutouts { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hero-stamp-cutout, .hero-stamp-aim, .hero-stamp-carried img, .hero-stamp-placed {
+  display: block; mask-size: 100% 100%; mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
+}
+.hero-stamp-cutout { position: absolute; background: #fff; }
+.hero-stamp-surface { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: crosshair; touch-action: pan-y; }
+.hero-v2 .hero-stamp-surface:focus-visible { outline: 3px solid #252525; outline-offset: -6px; box-shadow: inset 0 0 0 9px #fff; }
+.hero-stamp-aim { position: absolute; display: none; background: #fff; opacity: .7; transform: translate(-50%, -50%); }
+.hero-stamp-surface:focus-visible .hero-stamp-aim { display: block; }
+.hero-stamp-placement { position: fixed; inset: 0; z-index: 10001; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: none; touch-action: pan-y; }
+.hero-stamp-placement:focus-visible { outline: 2px solid #252525; outline-offset: -4px; }
+.hero-stamp-carried { position: absolute; top: 0; left: 0; display: block; pointer-events: none; }
+.hero-stamp-carried img { width: 100%; height: 100%; }
+.hero-stamp-placement:focus-visible .hero-stamp-carried { outline: 2px solid #252525; outline-offset: 3px; }
+.hero-stamp-placed-layer { position: absolute; inset: 0; z-index: 100; overflow: hidden; pointer-events: none; }
+.hero-stamp-placed { position: absolute; transform: translate(-50%, -50%); pointer-events: none; }
+.hero-stamp-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hero-stamp-reset { position: fixed; right: max(40px, env(safe-area-inset-right)); bottom: max(40px, env(safe-area-inset-bottom)); z-index: 10002; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #252525; cursor: pointer; }
+.hero-stamp-reset::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; background: #fff; }
+.hero-stamp-reset svg { position: relative; width: 14px; height: 14px; }
+@media (max-width: 35rem) {
+  .hero-stamp-reset { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
+}
+.hero-stamp-reset:focus-visible { outline: 2px solid #252525; outline-offset: 3px; }
+@media (forced-colors: active) {
+  .hero-stamp-reset { background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; }
+  .hero-stamp-cutout { background: Canvas; border: 2px solid CanvasText; }
+  .hero-v2 .hero-stamp-surface:focus-visible, .hero-stamp-placement:focus-visible, .hero-stamp-placement:focus-visible .hero-stamp-carried { outline-color: Highlight; }
+}

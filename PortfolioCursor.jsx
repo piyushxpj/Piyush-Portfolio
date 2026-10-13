@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './portfolio-cursor.css';
+import { STAMP_PATH, STAMP_WIDTH, STAMP_HEIGHT } from './stampGeometry.js';
 
 // The tiny center mark follows the real pointer exactly; only the decorative
 // frame eases toward it. No React renders or permanent animation loop on move.
@@ -25,12 +26,14 @@ export default function PortfolioCursor({ scopeRef }) {
       scope.removeAttribute('data-portfolio-cursor');
       frame.removeAttribute('data-visible');
       point.removeAttribute('data-visible');
+      frame.removeAttribute('data-stamp');
     };
     const move = event => {
       if (event.pointerType !== 'mouse' || !preference.matches) return hide();
       const target = event.target;
       if (!(target instanceof Element) || target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"]), iframe, [data-native-cursor]')) return hide();
       lastPosition = { clientX: event.clientX, clientY: event.clientY };
+      frame.toggleAttribute('data-stamp', !!target.closest('[data-stamp-surface]'));
       const position = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
       // Re-entry starts at the pointer rather than flying in from an old spot.
       if (!visible) frame.style.transition = 'none';
@@ -92,6 +95,9 @@ export default function PortfolioCursor({ scopeRef }) {
       <svg viewBox="0 0 24 24" focusable="false">
         <path className="portfolio-cursor__box" d="M0 0h24v24H0z" />
         <path className="portfolio-cursor__corners" d="M8 2H2v6 M16 2h6v6 M2 16v6h6 M22 16v6h-6" />
+      </svg>
+      <svg className="portfolio-cursor__stamp" viewBox={`-2 -2 ${STAMP_WIDTH + 4} ${STAMP_HEIGHT + 4}`} focusable="false">
+        <path d={STAMP_PATH} fill="none" stroke="#fff" strokeWidth="3" strokeLinejoin="round" />
       </svg>
     </div>
     <div ref={pointRef} className="portfolio-cursor-point" aria-hidden="true" />

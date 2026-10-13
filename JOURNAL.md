@@ -1,5 +1,57 @@
 # Journal
 
+## 2026-10-13 — Homepage-only release
+
+Prepared the stamp pick-and-place interaction, white cutter, carry tilt, compact reset, mobile full-width client marquee, and shared navigation focus fix for the production branch. The Experiments project-browser draft and its documentation changes are deliberately excluded from the release and preserved locally. Main remains untouched.
+
+## 2026-10-13 — Full-width mobile logos
+
+Removed the logo pause/play button at the author's explicit request and expanded the mobile reel beyond the text margins to the stamp's inner edges. Existing inset tokens produce 12px page-edge offsets at both 320px and 375px, with no horizontal page overflow. Desktop and the reduced-motion/keyboard static-scroller fallbacks remain unchanged. There is no longer an explicit persistent pause control. Layout checks, production build, and whitespace checks pass; no push.
+
+## 2026-10-13 — Mobile client logo marquee
+
+Reused the seven client assets and destinations in two equal-width groups, animated left with a 28-second linear CSS transform only below 35rem. Desktop wrappers use display: contents to preserve the existing shared grid rows. The visible heading disappears only on mobile. Added mobile pause/play; keyboard focus removes animation and the duplicate group, allowing native horizontal focus scrolling. Reduced motion uses that static single-row fallback. Duplicate links stay pointer-usable but are hidden from accessibility navigation. A first browser check exposed intrinsic track width expanding the hero; `min-width: 0` on the mobile grid item fixed it. Checked mobile fit, pause, keyboard link focus, and desktop heading/wrapping; physical touch and OS reduced-motion modes were not tested. Project notes updated, nothing pushed.
+
+## 2026-10-13 — Compact stamp reset
+
+Added an 18px reset icon in a 44px white circular button at the viewport bottom-right, visible only on Home. It is rendered above the carry overlay so it remains usable mid-pickup; it clears cutouts, placed pieces, and the held image together while leaving the animated artwork mounted. Includes a native button label, focus ring, safe-area positioning, and polite completion status. No shadow or Pause control was reintroduced.
+
+## 2026-10-13 — White cutter and directional carry tilt
+
+Interpreted the requested left/right “tinting” as tilting the cut piece while moving, and stated that assumption before implementing. Retained the live cut preview and changed its stroke from 1px charcoal to 3px white. The carried image rotates with horizontal mouse velocity, clamped to ±7°, using the installed Motion spring (.5 duration, .2 bounce) and an 80ms idle return target. Outer position tracking stays exact; no shadow or added translation lag. Keyboard, touch, pen, and reduced-motion use remain upright. The animation skill guided the transform-only spring and interruption/cleanup behavior. Build and geometry tests pass; pickup/placement were checked in the browser. Continuous free-pointer tilt feel and OS reduced-motion switching need a manual feel-check because the available browser input drag completed as a placement click. Nothing was pushed.
+
+## 2026-10-13 — Keep the cutter as a live preview
+
+The author clarified that the cursor must show the area about to be cut, not just a tool illustration. Restored the shared perforated mask outline with no fill, so the animated artwork remains visible and its exact capture boundary is clear. Retained the smaller height, shadow-free pieces, and pick-and-place behavior.
+
+## 2026-10-13 — Illustrated cutter cursor
+
+Replaced the hover cursor's empty perforated rectangle with a small authored SVG hand-held punch: purple grip, pink stem, yellow platform, and lilac scalloped cutting foot. Kept the existing 76×80px cursor box and exact pointer tracking. The illustration is decorative only; the 72×76px capture mask, carrying preview, and placement behavior are unchanged. Cut pieces remain shadow-free. UI-polish guidance informed the consistent outline weight and portfolio palette; no new motion or dependencies were added.
+
+## 2026-10-13 — Carry and place the cut stamp
+
+Revised the stamp interaction per feedback: no plus, inner frame, Pause, or Reset, with the height reduced from 88px to 76px. A click now captures the selected artwork into a small canvas and carries that visible still until the next click/tap places it anywhere on Home. The animated source stays mounted; prior holes are included in new snapshots. A temporary full-screen placement button consumes only the placement click, then disappears, so clicking a link while carrying places the piece rather than navigating accidentally. Placed pieces never intercept clicks. Escape/Tab cancels and restores the held piece; keyboard arrows and Enter/Space provide the same flow. The earlier fly-away effect was removed in favor of immediate, direct manipulation. Pause was removed at the author's explicit request; the existing reduced-motion static SVG fallback remains, but there is no visible pause control.
+
+Verified desktop pickup with visible captured artwork, exact 72×76px placement, keyboard placement/cancellation and focus return, 375px viewport pickup/placement without horizontal overflow, and cleanup on navigation to Work. Production build and all four geometry tests pass. Physical touchscreen, screen-reader output, and OS accessibility modes were not verified. Project-memory notes updated; no push.
+
+## 2026-10-13 — Punchable homepage artwork
+
+Added `HeroStampPattern` around the existing animated SVG. Each click overlays a white, perforated 72×88px stamp and briefly lifts a cropped copy away; the original image is never remounted by stamping, so its animation keeps running. Shared geometry drives the cursor and masks. Normalized positions preserve placement across resizing, with at most 40 cutouts and a Reset button; leaving Home clears them. Pause switches to a static derivative of the same artwork, and resuming restarts its loop.
+
+The animation/accessibility skills guided the 240ms transform/opacity feedback, immediate keyboard and reduced-motion stamping, native buttons, arrow-key aiming, 44px toolbar targets, and visible focus. The paper moved after the content in DOM order so keyboard users reach navigation before the artwork. Browser checks covered desktop cutouts/cursor, pause/reset, keyboard focus/aim/Enter, a 375px layout without overflow, and inactive controls on Work. Geometry tests and production build pass. Physical touch, screen readers, and OS reduced-motion/forced-colors modes were not exercised; their fallbacks were inspected in code. Nothing was pushed.
+
+## 2026-10-13 — Restore mobile navigation and scope heading focus
+
+Reverted the two-row mobile navigation trial exactly to the previous CSS at the author's request. The blue “selection” border around headings was the browser focus indicator: the shared shell focused every destination heading after all navigation. A one-shot ref now requests that focus transfer only for keyboard/assistive activation. Pointer navigation keeps native link focus behavior, and initial loads never autofocus headings. No global outline suppression was added.
+
+Verified pointer navigation across Home, Work, About, and Experiments leaves headings unfocused; Enter navigation still focuses the destination heading with its native outline. Direct Work reload leaves focus on the body. The mobile row is restored and the production build passes. Screen-reader testing and physical touch-device testing were not performed. Changes remain local.
+
+## 2026-10-13 — Mobile navigation breathing room
+
+The five-link mobile row felt crowded despite shrinking labels to 13–14px. Replaced it with a CSS-only 3+2 grid, keeping every destination visible and preserving native link behavior. The layout and accessibility skills guided the two-row structure, 16px labels, 44px targets, and larger mobile stamp/header clearance. Desktop behavior and navigation animations remain unchanged.
+
+Verified 320, 375, 560, 561, and 1280px layouts, no horizontal overflow, keyboard Tab order/focus rings, and Enter navigation between Home and Work. Build and whitespace checks pass. Screen-reader output, automated accessibility auditing, 200% browser zoom, and RTL mirroring were not verified. This change is local only; the Experiments draft is preserved.
+
 ## 2026-10-10 — Work order release
 
 Prepared the author's saved 38-card arrangement for publication on `codex/figma-hero`, including the First Dollar onboarding media and the shared order-data renderer. The editor route/link and save API remain development-only. Scoped this release to Work and its documentation; the Experiments draft remains uncommitted.

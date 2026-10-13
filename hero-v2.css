@@ -186,6 +186,8 @@
   gap: 15px 30px;
 }
 .hero-v2__logos img { flex: none; max-width: none; }
+.hero-v2__client-window, .hero-v2__client-track { display: contents; }
+.hero-v2__logos--copy { display: none; }
 .hero-v2__client-link { position: relative; display: inline-flex; flex: none; }
 .hero-v2__client-link img { display: block; }
 /* Enlarge the logo's hit area without moving its visual alignment or wrapping. */
@@ -320,4 +322,32 @@
 .hero-v2--instant :is(.work-page, .about-page, .playground-page) { animation: none; }
 @media (max-width: 35rem) {
   .hero-v2--inner .hero-v2__navigation { inset-inline: 24px; }
+}
+
+/* Mobile client reel; desktop keeps the original two-row logo layout. */
+@media (max-width: 35rem) {
+  .hero-v2__content { min-width: 0; }
+  .hero-v2__clients { display: flex; align-items: center; width: calc(100% + 2 * (var(--content-inset) - var(--frame-inset))); margin-inline: calc(var(--frame-inset) - var(--content-inset)); min-width: 0; }
+  .hero-v2__clients h2 { display: none; }
+  .hero-v2__client-window { display: block; flex: 1; min-width: 0; overflow: hidden; }
+  .hero-v2__client-track { display: flex; width: max-content; }
+  .hero-v2__clients .hero-v2__logos { display: flex; flex-wrap: nowrap; flex: none; gap: 28px; padding-inline-end: 28px; }
+  .hero-v2__clients .hero-v2__client-link { align-items: center; min-height: 44px; }
+  .hero-v2__clients .hero-v2__client-link::after { display: none; }
+  .hero-v2__client-link:focus-visible { outline: 2px solid #252525; outline-offset: -2px; }
+  .hero-v2__client-window:focus-within { overflow-x: auto; }
+  .hero-v2__client-window:focus-within .hero-v2__client-track { animation: none; }
+  .hero-v2__client-window:focus-within .hero-v2__logos--copy { display: none; }
+}
+@media (max-width: 35rem) and (prefers-reduced-motion: no-preference) {
+  .hero-v2__client-track { animation: client-logo-travel 28s linear infinite; }
+  .hero-v2--inner .hero-v2__client-track { animation-play-state: paused; }
+  @keyframes client-logo-travel { to { transform: translateX(-50%); } }
+}
+@media (max-width: 35rem) and (hover: hover) {
+  .hero-v2__client-window:hover .hero-v2__client-track { animation-play-state: paused; }
+}
+@media (max-width: 35rem) and (prefers-reduced-motion: reduce) {
+  .hero-v2__client-window { overflow-x: auto; }
+  .hero-v2__clients .hero-v2__logos--copy { display: none; }
 }

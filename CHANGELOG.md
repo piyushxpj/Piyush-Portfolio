@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-13
+
+### Added
+- Added a small bottom-right reset icon that clears holes, placed stamps, and any carried piece without restarting the background animation.
+- Added an interactive homepage stamp punch: larger perforated cursor over the artwork, white cutouts, a 240ms lift-away piece, reset/pause controls, keyboard aiming, and reduced-motion support. Local only.
+
+### Fixed
+- Reflowed mobile stamp navigation into two rows with 16px labels and 44px touch targets; increased the mobile sticky header to 128px and retained the desktop single-row layout.
+- Prevented automatic heading focus outlines after pointer navigation; retained heading focus for keyboard/assistive navigation and skip links.
+
+### Changed
+- Removed the mobile logo pause control and expanded the marquee to both inner edges of the stamp frame; kept desktop unchanged.
+- Changed mobile client logos to a seamless single-row marquee and hid the visible “Worked with” heading; retained desktop layout, brand links, pause/play, keyboard access, and reduced-motion scrolling.
+- Made the cutter preview border 3px white and added a subtle left/right spring tilt to carried stamps, with upright settling and static keyboard/reduced-motion behavior.
+- Restored the live stamp-area preview instead of the illustrated-tool cursor, with a fully transparent interior matching the capture footprint.
+- Replaced the empty stamp-cutter outline with a purple/pink/yellow illustrated hand-held punch; retained shadow-free cut pieces and unchanged pickup/placement behavior.
+- Changed the homepage stamp to pick up a visible artwork crop and place it with the next click/tap anywhere on Home; shortened it to 72×76px, removed the plus/inner border and Pause/Reset controls, and added keyboard placement/cancellation.
+- Reverted the two-row mobile navigation trial at the author's request, restoring the original single-row links, typography, and stamp sizing.
+
 ## 2026-10-10
 
 ### Added
