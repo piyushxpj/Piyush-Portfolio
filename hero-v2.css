@@ -17,7 +17,7 @@
   height: 100vh;
   height: 100svh;
   overflow: auto;
-  background: #252525;
+  background: var(--portfolio-frame-background);
   color: #000;
   font-family: 'Hero Roobert', Arial, sans-serif;
   letter-spacing: -0.02em;
@@ -36,7 +36,7 @@
 }
 .hero-v2__paper {
   inset: var(--frame-inset);
-  background: #fff url('/hero-v2/paper.svg') center / 106% 106% no-repeat;
+  background: var(--portfolio-paper-background) url('/hero-v2/paper.svg') center / 106% 106% no-repeat;
   /* Fixed pitches prevent the side perforations from re-counting on every
      frame while the stamp collapses. Top anchoring keeps the cuts stationary. */
   mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
@@ -46,7 +46,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: #252525;
+  background: var(--portfolio-frame-background);
   opacity: 0;
   pointer-events: none;
 }
@@ -284,7 +284,7 @@
 }
 .hero-v2__stage { overflow: visible; }
 .hero-v2__navigation { color: #000; }
-.hero-v2--inner { background: #fff; }
+.hero-v2--inner { background: var(--portfolio-paper-background); }
 .hero-v2--inner .playground-page { height: auto; overflow: visible; scrollbar-gutter: auto; }
 .hero-v2--inner .hero-v2__stage { position: sticky; top: 0; z-index: 10; height: 80px; color: #fff; }
 .hero-v2--inner .hero-v2__paper {
@@ -350,4 +350,27 @@
 @media (max-width: 35rem) and (prefers-reduced-motion: reduce) {
   .hero-v2__client-window { overflow-x: auto; }
   .hero-v2__clients .hero-v2__logos--copy { display: none; }
+}
+
+/* Home fits the visible phone viewport, with the safe-area strips included.
+   Content keeps its natural height; the artwork gives up space first. */
+@media (max-width: 35rem) {
+  .hero-v2:not(.hero-v2--inner) { overscroll-behavior-y: none; }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__stage {
+    --home-nav-top: 24px;
+    --home-nav-space: calc(var(--home-nav-top) + var(--home-nav-height, 44px) + 16px);
+    --home-min-art: 80px;
+    --home-required-height: calc(var(--home-nav-space) + var(--home-content-height, 340px) + var(--frame-inset) + var(--home-min-art));
+    --stage-height: max(calc(100dvh - var(--edge-top-height) - var(--edge-bottom-height)), var(--home-required-height));
+    --pattern-height: max(var(--home-min-art), min(calc(var(--stage-height) * .28), calc(var(--stage-height) - var(--home-nav-space) - var(--home-content-height, 340px) - var(--frame-inset))));
+  }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__navigation { top: var(--home-nav-top); }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__content {
+    gap: clamp(12px, 2dvh, 20px);
+    padding-bottom: clamp(12px, 2dvh, 20px);
+  }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__identity { margin-block-end: 8px; }
+  .hero-v2:not(.hero-v2--inner) .hero-v2__intro p { line-height: 1.4; }
+  /* No overflow lock: enlarged text or an exceptionally short viewport may
+     still scroll, rather than losing copy, navigation or stamp controls. */
 }

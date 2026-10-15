@@ -7,6 +7,8 @@ import PortfolioCursor from './PortfolioCursor.jsx';
 import HeroStampPattern from './HeroStampPattern.jsx';
 import './hero.css';
 import './hero-v2.css';
+import PageEdges from './PageEdges.jsx';
+import { observeHomeContentSize } from './homeContentSize.js';
 
 const assets = '/hero-v2/';
 // Pattern colors on charcoal; darker counterparts keep the paper nav readable.
@@ -21,7 +23,7 @@ const navigation = [
   { label: 'Home', href: '/', page: 'home' },
   { label: 'About', href: '/about', page: 'about' },
   { label: 'Work', href: '/work', page: 'work' },
-  { label: 'Experiments', href: '/playground', page: 'playground' },
+  // Experiments is temporarily hidden from navigation; /playground stays intact.
   { label: 'Contact', href: 'https://cal.com/piyushxpj' },
 ];
 const clients = [
@@ -46,6 +48,10 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
   const accentCursor = useRef(-1);
   const [linkAccents, setLinkAccents] = useState({});
   const [instantNavigation, setInstantNavigation] = useState(false);
+  useLayoutEffect(() => {
+    if (isInnerPage) return undefined;
+    return observeHomeContentSize(shellRef.current);
+  }, [isInnerPage]);
   const advanceAccent = href => {
     accentCursor.current = (accentCursor.current + 1) % navAccents.length;
     const accent = navAccents[accentCursor.current];
@@ -71,6 +77,7 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
 
   return (
     <div ref={shellRef} className={`hero-v2${isInnerPage ? ' hero-v2--inner' : ''}${instantNavigation ? ' hero-v2--instant' : ''}`}>
+      <PageEdges scopeRef={shellRef} />
       <PortfolioCursor scopeRef={shellRef} />
       {isInnerPage && <a className="work-skip" href={`#${headingId}`}>Skip to {isWork ? 'work' : isAbout ? 'about' : 'experiments'}</a>}
       <div className="hero-v2__stage" role={isInnerPage ? undefined : 'main'} aria-labelledby={isInnerPage ? undefined : 'hero-v2-title'} data-node-id="1012:7579">
