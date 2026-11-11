@@ -11,7 +11,7 @@ function Thumbnail({ id }) {
   const card = byId.get(id);
   return <div className="work-editor__thumb">
     <div className="work-card" aria-hidden="true">
-      {card.video ? <img className="work-art-image" src={card.poster || `/work-v2/media/${card.video}.jpg`} alt="" loading="lazy" />
+      {card.video ? <img className="work-art-image" style={{ objectFit: card.mediaFit }} src={card.poster || `/work-v2/media/${card.video}.jpg`} alt="" loading="lazy" />
         : <WorkArtwork card={card} />}
     </div>
     <p>{card.title}</p>

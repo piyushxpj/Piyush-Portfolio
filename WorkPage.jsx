@@ -78,7 +78,7 @@ function WorkVideo({ card, audible, onSound, onQuiet }) {
   };
 
   return <>
-    <video ref={videoRef} src={load ? card.videoSrc || `${MEDIA}${card.video}.mp4` : undefined}
+    <video ref={videoRef} style={{ objectFit: card.mediaFit }} src={load ? card.videoSrc || `${MEDIA}${card.video}.mp4` : undefined}
       poster={load ? card.poster || `${MEDIA}${card.video}.jpg` : undefined} loop muted={!audible} playsInline preload="metadata"
       aria-label={card.title} aria-hidden={!load || undefined} onCanPlay={() => syncRef.current()}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}

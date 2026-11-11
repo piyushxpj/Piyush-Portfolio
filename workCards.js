@@ -73,4 +73,5 @@ export const workCards = [
   ] },
   { id: 'knox-brand', title: 'Knox — brand identity and stationery', src: '/playground/01.webp', inset: true },
   { id: 'first-dollar-onboarding', title: 'First Dollar — onboarding interaction', video: 'first-dollar-onboarding' },
+  { id: 'cute-mascots', title: 'Cute mascot — animated character design', video: 'cute-mascots', mediaFit: 'cover', sourceUrl: 'https://x.com/piyushxpj/status/2112103352482041922' },
 ];

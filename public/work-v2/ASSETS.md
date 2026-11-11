@@ -76,6 +76,10 @@ Both videos are silent and reuse Work's visibility-aware playback, play/pause, a
 
 Ship the Future's 720 × 534 source has a baked-in white margin. Its Work derivative uses FFmpeg `crop=636:450:42:42`, H.264 CRF 18, yuv420p and fast-start metadata. The 2px safety inset removes anti-aliased border pixels. Its JPEG poster is extracted from the cropped clip. The card retains centered `object-fit: cover`; the original clip and uncropped PNG poster remain unchanged.
 
+### Mascot design from X (2026-11-11)
+
+`media/cute-mascots.mp4` and `media/cute-mascots.jpg` are the original public animation and poster from the author's post https://x.com/piyushxpj/status/2112103352482041922 (caption: “I love designing cute mascots”). Source media: `https://video.twimg.com/tweet_video/HU-yZwDaMAAGnsT.mp4` and `https://pbs.twimg.com/tweet_video_thumb/HU-yZwDaMAAGnsT.jpg`. The silent H.264/yuv420p clip is 1280 × 960 and 0.75 seconds; no re-encoding or retiming. The card uses centered `mediaFit: 'cover'` in Work and the local order editor to fill the card without side gaps, cropping some sky and foreground from the 4:3 composition. It reuses the existing pause/reduced-motion handling. Added at the end of the saved order without moving existing cards.
+
 ### Original supplied clips
 
 Sources are the exact files supplied from `/Users/PIYUSH/Documents/`. Originals are unchanged. Web derivatives use H.264/yuv420p, CRF 21, maximum 1440px width, AAC 128kbps where present, and fast-start metadata. Posters are the first frame. The GIF uses MP4 for native pause/reduced-motion control without audio.
