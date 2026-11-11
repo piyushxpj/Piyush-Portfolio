@@ -102,8 +102,10 @@ export default function HeroSectionV2({ activePage = 'home', onPageChange }) {
         <div className="hero-v2__content" aria-hidden={isInnerPage || undefined} inert={isInnerPage ? '' : undefined}>
           <header className="hero-v2__intro" data-node-id="1012:7589">
             <div className="hero-v2__identity" data-node-id="1012:7590">
-              <img className="hero-v2__portrait" src={`${assets}portrait.png`} alt="Piyush Jain"
-                width="83" height="74" draggable={false} fetchPriority="high" data-node-id="1012:7591" />
+              <span className="hero-v2__portrait" data-node-id="1012:7591">
+                <img src={`${assets}portrait-beach.webp`} alt="Piyush Jain"
+                  width="83" height="74" draggable={false} fetchPriority="high" />
+              </span>
               <h1 id="hero-v2-title" tabIndex={-1} data-node-id="1012:7592">Piyush Jain</h1>
             </div>
             <p data-node-id="1012:7593">Designing things across products, brands &amp; everything between, building with AI, breaking things to understand them, and making them better.</p>

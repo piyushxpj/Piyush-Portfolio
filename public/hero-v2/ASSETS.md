@@ -8,7 +8,8 @@ Source: Figma `bCf51Jh7ebnEUdQ3Pyn4th`, frame `1012:7579` (1280 × 832). Assets 
 | `stamp-mask.svg` | mask under `1012:7581` | 1240 × 792; retained reference, replaced at runtime by the existing responsive circular CSS mask |
 | `pattern.png` | image fill of `1012:7583` | 1851 × 850; original raster retained as reference, no longer rendered |
 | `pattern-animated.svg` | recreation of `1012:7583` | 1851 × 850; authored vector patterns and five independently animated tracks, cropped to the footer |
-| `portrait.png` | `1012:7591` | 166 × 148 transparent PNG, displayed 83 × 74 on desktop |
+| `portrait.png` | `1012:7591` | Original 166 × 148 transparent PNG, retained but no longer displayed |
+| `portrait-beach.webp` | Home portrait replacement | User-supplied `IMG_7089.jpeg`, orientation corrected and resized to 600px wide; metadata stripped. Displayed in the existing 83 × 74 desktop slot, with CSS grayscale and the original `portrait.png` alpha mask preserving its slanted shape. An inner image is zoomed 20% without enlarging the mask. Same ratio on mobile. |
 | `coinbase.svg` | `1063:9885` | 94 × 16 |
 | `dacoit.svg` | `1063:9886` | 40 × 16 |
 | `base.svg` | `1063:9887` | 62 × 16 |
