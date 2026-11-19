@@ -1,5 +1,5 @@
 import React from 'react';
-import useTouchCanvas from './useTouchCanvas.js';
+import useTouchCanvas from '../../hooks/useTouchCanvas.js';
 
 // Import same data from PlaygroundSection
 const PLAYGROUND_IMAGES = [

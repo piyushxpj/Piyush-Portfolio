@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { PAGES, SOCIAL_LINKS } from './canvasData.js';
+import { PAGES, SOCIAL_LINKS } from '../../data/canvasData.js';
 
 // Pikaicons stroke SVG paths
 const socialIcons = {

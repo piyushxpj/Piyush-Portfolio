@@ -1,5 +1,5 @@
 import React from 'react';
-import { WORK_PROJECTS } from './WorkSection.jsx';
+import { WORK_PROJECTS } from '../sections/WorkSection.jsx';
 
 const TAG_STYLES = {
   'Rebrand': { color: '#009EFF', bg: 'rgba(0, 158, 255, 0.10)' },

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SOCIAL_LINKS } from './canvasData.js';
+import { SOCIAL_LINKS } from '../../data/canvasData.js';
 
 const MOBILE_ITEMS = [
   { id: 'notebook', src: '/notebook.webp', x: 0, y: 15, w: 35, rotate: -3, zIndex: 0 },

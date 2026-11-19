@@ -1,5 +1,5 @@
 import React from 'react';
-import { BUILDS_PROJECTS } from './BuildsSection.jsx';
+import { BUILDS_PROJECTS } from '../sections/BuildsSection.jsx';
 
 const TAG_STYLES = {
   'Rebrand': { color: '#009EFF', bg: 'rgba(0, 158, 255, 0.10)' },
@@ -13,7 +13,7 @@ const TAG_STYLES = {
 function MobileCard({ project }) {
   return (
     <div
-      onClick={() => { if (project.url) window.open(project.url, '_blank'); }}
+      onClick={() => { if (project.url) window.open(project.url, '_blank', 'noopener,noreferrer'); }}
       style={{ cursor: project.url ? 'pointer' : 'default' }}
     >
       <div style={{

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { PROJECTS, SOCIAL_LINKS } from './canvasData.js';
-import { WORK_PROJECTS } from './WorkSection.jsx';
-import { BUILDS_PROJECTS } from './BuildsSection.jsx';
+import { SOCIAL_LINKS } from '../../data/canvasData.js';
 
 const ArrowUpRight = ({ size = 14 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -9,9 +7,7 @@ const ArrowUpRight = ({ size = 14 }) => (
   </svg>
 );
 
-export default function RightSidebar({ selectedCard, canvasBg, onCanvasBgChange, isDark, onToggleTheme }) {
-  const card = selectedCard ? PROJECTS.find(p => p.id === selectedCard) : null;
-
+export default function RightSidebar({ canvasBg, onCanvasBgChange, isDark, onToggleTheme }) {
   return (
     <div className="sidebar" style={{
       width: 256,
@@ -226,85 +222,3 @@ function PageProperties({ canvasBg = '#F2F2F2', onCanvasBgChange = () => {} }) {
   );
 }
 
-const TAG_STYLES = {
-  'Rebrand': { color: '#009EFF', bg: 'rgba(0, 158, 255, 0.10)' },
-  'Visual Design': { color: '#FF5100', bg: 'rgba(255, 81, 0, 0.10)' },
-  'Product Design': { color: '#00B25D', bg: 'rgba(0, 178, 93, 0.10)' },
-  'Website Design': { color: '#8253FF', bg: 'rgba(130, 83, 255, 0.10)' },
-  'Mini App Design': { color: '#FF2ADF', bg: 'rgba(255, 42, 223, 0.10)' },
-};
-
-function CardProperties({ card }) {
-  // Check if it's a work or builds project
-  const workProject = WORK_PROJECTS.find(p => card.id === `work-${p.id}`) || BUILDS_PROJECTS.find(p => card.id === `build-${p.id}`);
-
-  if (workProject) {
-    return (
-      <>
-        {/* Project image */}
-        <div style={{ padding: '12px' }}>
-          <img
-            src={workProject.image}
-            alt={workProject.title}
-            style={{ width: '100%', borderRadius: 8 }}
-          />
-        </div>
-        <div style={{ height: 1, background: 'var(--figma-border)' }} />
-
-        {/* Title */}
-        <div style={{ padding: '12px 12px 4px', fontSize: 16, fontWeight: 600, color: 'var(--figma-text)' }}>
-          {workProject.title}
-        </div>
-
-        {/* Description */}
-        <div style={{ padding: '0 12px 8px', fontSize: 13, color: 'var(--figma-text-secondary)', lineHeight: 1.5 }}>
-          {workProject.description}
-        </div>
-
-        {/* Tags */}
-        <div style={{ padding: '4px 12px 12px', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          {workProject.tags.map((tag, i) => {
-            const style = TAG_STYLES[tag] || { color: '#666', bg: 'rgba(0,0,0,0.05)' };
-            return (
-              <span key={i} style={{
-                padding: '3px 8px', fontSize: 12, fontWeight: 500,
-                color: style.color, background: style.bg, borderRadius: 6,
-              }}>
-                {tag}
-              </span>
-            );
-          })}
-        </div>
-
-        {workProject.url && (
-          <>
-            <div style={{ height: 1, background: 'var(--figma-border)' }} />
-            <a
-              href={workProject.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: 'none' }}
-            >
-              <div className="prop-row" style={{ justifyContent: 'space-between', cursor: 'pointer', padding: '10px 12px' }}>
-                <span style={{ color: '#0d99ff', fontSize: 13, fontWeight: 500 }}>Visit Project</span>
-                <ArrowUpRight size={14} />
-              </div>
-            </a>
-          </>
-        )}
-      </>
-    );
-  }
-
-  return (
-    <>
-      <div style={{ padding: '12px', fontSize: 15, fontWeight: 600, color: 'var(--figma-text)' }}>
-        {card.title}
-      </div>
-      <div style={{ height: 1, background: 'var(--figma-border)' }} />
-      <div style={{ padding: '10px 12px', fontSize: 12, color: 'var(--figma-text-secondary)', lineHeight: 1.5 }}>
-        {card.description}
-      </div>
-    </>
-  );
-}

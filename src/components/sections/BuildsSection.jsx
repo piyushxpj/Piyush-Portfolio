@@ -43,11 +43,14 @@ export const BUILDS_PROJECTS = [
   },
 ];
 
-function BuildCard({ project, x, y, onSelect }) {
+function BuildCard({ project, x, y }) {
   return (
     <div
       data-card
-      onClick={(e) => { e.stopPropagation(); onSelect && onSelect(`build-${project.id}`); }}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (project.url) window.open(project.url, '_blank', 'noopener,noreferrer');
+      }}
       style={{
         position: 'absolute',
         left: x,
@@ -129,7 +132,7 @@ function BuildCard({ project, x, y, onSelect }) {
   );
 }
 
-export default function BuildsSection({ onSelectCard }) {
+export default function BuildsSection() {
   const gap = 40;
   const cardW = 420;
   const startX = 2200;
@@ -153,7 +156,6 @@ export default function BuildsSection({ onSelectCard }) {
           project={project}
           x={positions[i].x}
           y={positions[i].y}
-          onSelect={onSelectCard}
         />
       ))}
     </>

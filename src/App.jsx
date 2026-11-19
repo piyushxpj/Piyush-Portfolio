@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import LeftSidebar from './LeftSidebar.jsx';
-import RightSidebar from './RightSidebar.jsx';
-import Canvas from './Canvas.jsx';
-import BottomToolbar from './BottomToolbar.jsx';
-import useCanvas from './useCanvas.js';
-import useIsMobile from './useIsMobile.js';
-import MobileShell from './MobileShell.jsx';
+import { Agentation } from 'agentation';
+import LeftSidebar from './components/layout/LeftSidebar.jsx';
+import RightSidebar from './components/layout/RightSidebar.jsx';
+import Canvas from './components/canvas/Canvas.jsx';
+import BottomToolbar from './components/layout/BottomToolbar.jsx';
+import useCanvas from './hooks/useCanvas.js';
+import useIsMobile from './hooks/useIsMobile.js';
+import MobileShell from './components/mobile/MobileShell.jsx';
 
 function applyTheme(isDark) {
   const root = document.documentElement;
@@ -108,18 +109,21 @@ function DesktopApp({ isDark, onToggleTheme }) {
   }, [activeTool, stickyColor]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
-        <LeftSidebar activePage={activePage} onPageClick={handlePageClick} selectedCard={selectedCard} onCardClick={handleCardClick} />
-        <Canvas transform={transform} handlers={handlers} containerRef={containerRef} isPanning={isPanning}
-          selectedCard={selectedCard} onSelectCard={(id) => setSelectedCard(id)} canvasBg={canvasBg}
-          activeTool={activeTool} shapeType={shapeType} onCanvasClick={handleCanvasClick}
-          canvasItems={canvasItems} setCanvasItems={setCanvasItems} onResetTool={resetTool} stickyColor={stickyColor} />
-        <BottomToolbar activeTool={activeTool} shapeType={shapeType} stickyColor={stickyColor}
-          onToolChange={setActiveTool} onShapeTypeChange={setShapeType} onStickyColorChange={setStickyColor} />
-        <RightSidebar selectedCard={selectedCard} canvasBg={canvasBg} onCanvasBgChange={setCanvasBg}
-          isDark={isDark} onToggleTheme={onToggleTheme} />
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
+          <LeftSidebar activePage={activePage} onPageClick={handlePageClick} selectedCard={selectedCard} onCardClick={handleCardClick} />
+          <Canvas transform={transform} handlers={handlers} containerRef={containerRef} isPanning={isPanning}
+            selectedCard={selectedCard} onSelectCard={(id) => setSelectedCard(id)} canvasBg={canvasBg}
+            activeTool={activeTool} shapeType={shapeType} onCanvasClick={handleCanvasClick}
+            canvasItems={canvasItems} setCanvasItems={setCanvasItems} onResetTool={resetTool} stickyColor={stickyColor} />
+          <BottomToolbar activeTool={activeTool} shapeType={shapeType} stickyColor={stickyColor}
+            onToolChange={setActiveTool} onShapeTypeChange={setShapeType} onStickyColorChange={setStickyColor} />
+          <RightSidebar canvasBg={canvasBg} onCanvasBgChange={setCanvasBg}
+            isDark={isDark} onToggleTheme={onToggleTheme} />
+        </div>
       </div>
-    </div>
+      <Agentation endpoint="http://localhost:4747" />
+    </>
   );
 }

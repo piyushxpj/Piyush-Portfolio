@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PAGES, PROJECTS } from './canvasData.js';
+import { PAGES, PROJECTS } from '../../data/canvasData.js';
 
 // Pikaicons stroke paths (viewBox 0 0 24 24)
 const icons = {

@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import AboutSection from './AboutSection.jsx';
-import PlaygroundSection from './PlaygroundSection.jsx';
-import WorkSection from './WorkSection.jsx';
-import BuildsSection from './BuildsSection.jsx';
-import { PAGES } from './canvasData.js';
+import AboutSection from '../sections/AboutSection.jsx';
+import PlaygroundSection from '../sections/PlaygroundSection.jsx';
+import WorkSection from '../sections/WorkSection.jsx';
+import BuildsSection from '../sections/BuildsSection.jsx';
+import { PAGES } from '../../data/canvasData.js';
 
 const STICKY_COLORS = [
   { id: 'yellow', bg: '#FEFF9C', fold: '#E6E78C', shadow: 'rgba(200,180,0,0.2)' },
@@ -467,7 +467,7 @@ export default function Canvas({
         <PlaygroundSection transform={transform} />
 
         {/* Builds Section */}
-        <BuildsSection onSelectCard={onSelectCard} />
+        <BuildsSection />
 
         {/* User-placed items */}
         {canvasItems.map(item => {

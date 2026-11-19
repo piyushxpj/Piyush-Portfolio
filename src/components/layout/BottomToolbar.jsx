@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { STICKY_COLORS } from './Canvas.jsx';
+import { STICKY_COLORS } from '../canvas/Canvas.jsx';
 
 const toolIcons = {
   move: (
