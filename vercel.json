@@ -1,8 +1,20 @@
 {
   "rewrites": [
     {
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
       "source": "/cv",
       "destination": "/cv.pdf"
+    },
+    {
+      "source": "/playground",
+      "destination": "/index.html"
     }
   ]
 }

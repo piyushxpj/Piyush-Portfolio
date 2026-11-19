@@ -1,0 +1,39 @@
+/* A single palette drives the page surfaces and their browser-edge mirrors. */
+:root {
+  --portfolio-frame-background: #252525;
+  --portfolio-paper-background: #ffffff;
+  --edge-top-background: var(--portfolio-frame-background);
+  --edge-bottom-background: var(--portfolio-frame-background);
+  --edge-top-height: max(12px, env(safe-area-inset-top, 0px));
+  --edge-bottom-height: max(12px, env(safe-area-inset-bottom, 0px));
+}
+.edge-top, .edge-bottom {
+  display: none;
+  position: fixed;
+  inset-inline: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 10001;
+}
+.edge-top { top: var(--edge-viewport-top, 0px); height: var(--edge-top-height); }
+.edge-bottom { bottom: var(--edge-viewport-bottom, 0px); height: var(--edge-bottom-height); }
+.edge-top::after, .edge-bottom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.edge-top::after { background: var(--edge-top-background); }
+.edge-bottom::after { background: var(--edge-bottom-background); }
+
+@media (max-width: 62rem), (pointer: coarse) {
+  .edge-top, .edge-bottom { display: block; }
+  .hero-v2 {
+    height: 100dvh;
+    padding-block: var(--edge-top-height) var(--edge-bottom-height);
+    padding-inline: env(safe-area-inset-left, 0px) env(safe-area-inset-right, 0px);
+    scroll-padding-block: calc(80px + var(--edge-top-height)) var(--edge-bottom-height);
+  }
+  .hero-v2--inner .hero-v2__stage { top: var(--edge-top-height); }
+  .hero-v2 .work-skip { inset-block-start: calc(var(--edge-top-height) + 8px); }
+}

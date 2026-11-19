@@ -5,20 +5,17 @@ import MobileBottomSheet from './MobileBottomSheet.jsx';
 import MobileAbout from './MobileAbout.jsx';
 import MobileWorkSection from './MobileWorkSection.jsx';
 import MobileBuildsSection from './MobileBuildsSection.jsx';
-import MobilePlayground from './MobilePlayground.jsx';
+import PlaygroundPage from './PlaygroundPage.jsx';
 
-export default function MobileShell({ isDark, onToggleTheme, onOpenWork }) {
-  const [activePage, setActivePage] = useState('about');
+export default function MobileShell({ activePage, onPageChange, isDark, onToggleTheme, onOpenWork }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handlePageChange = useCallback((pageId) => {
-    setActivePage(pageId);
+    onPageChange(pageId);
     setMenuOpen(false);
-  }, []);
+  }, [onPageChange]);
   const openMenu = useCallback(() => setMenuOpen(true), []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-
-  const isPlayground = activePage === 'playground';
 
   return (
     <div style={{
@@ -48,7 +45,7 @@ export default function MobileShell({ isDark, onToggleTheme, onOpenWork }) {
           >
             {activePage === 'about' && <MobileAbout />}
             {activePage === 'work' && <MobileWorkSection onOpenWork={onOpenWork} />}
-            {activePage === 'playground' && <MobilePlayground />}
+            {activePage === 'playground' && <PlaygroundPage />}
             {activePage === 'builds' && <MobileBuildsSection />}
           </motion.div>
         </AnimatePresence>

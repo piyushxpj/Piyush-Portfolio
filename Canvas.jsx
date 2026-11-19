@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback, memo } from 'react';
 import AboutSection from './AboutSection.jsx';
-import PlaygroundSection from './PlaygroundSection.jsx';
 import WorkSection from './WorkSection.jsx';
 import WorkedWithSection from './WorkedWithSection.jsx';
 import BuildsSection from './BuildsSection.jsx';
@@ -491,7 +490,6 @@ export default function Canvas({
         <AboutSection transformRef={transformRef} />
         <WorkedWithSection />
         <WorkSection onOpenWork={onOpenWork} />
-        <PlaygroundSection transformRef={transformRef} />
         <BuildsSection />
 
         {canvasItems.map(item => {

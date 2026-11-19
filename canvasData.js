@@ -19,9 +19,6 @@ export const PROJECTS = [
   { id: 'work-emerge', title: 'Emerge', page: 'work', x: 2430, y: 500, width: 420, height: 380, color: 'transparent', description: 'Visual & Mini App Design' },
   { id: 'work-crowwd', title: 'Crowwd', page: 'work', x: 2890, y: 500, width: 420, height: 380, color: 'transparent', description: 'Product Design' },
 
-  // Playground region — image collage (rendered by PlaygroundSection component)
-  { id: 'playground-collage', title: 'Playground Collage', page: 'playground', x: 0, y: 1700, width: 1400, height: 900, color: 'transparent', description: 'Experiments and explorations' },
-
   // Builds region — rendered by BuildsSection component
   ...BUILDS_PROJECTS.map((project, index) => ({
     id: `build-${project.id}`,

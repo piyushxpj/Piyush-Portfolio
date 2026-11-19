@@ -78,6 +78,300 @@ html, body, #root {
   overflow: visible;
 }
 
+.playground-page {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  background: var(--figma-bg);
+  scrollbar-gutter: stable;
+}
+
+.playground-page__inner {
+  width: min(100%, 1600px);
+  margin-inline: auto;
+  padding: 24px clamp(24px, 3vw, 48px) 112px;
+}
+
+.playground-page--with-sidebar .playground-page__inner {
+  padding-inline-start: 288px;
+}
+
+.playground-masonry {
+  column-count: 4;
+  column-gap: 16px;
+}
+
+.playground-masonry__item {
+  width: 100%;
+  margin-block-end: 16px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+
+.playground-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  outline: 1px solid var(--figma-image-outline);
+  outline-offset: -1px;
+  background: var(--figma-surface-hover);
+}
+
+.github-contributions {
+  --github-level-0: #ebedf0;
+  --github-level-1: #9be9a8;
+  --github-level-2: #40c463;
+  --github-level-3: #30a14e;
+  --github-level-4: #216e39;
+  width: 100%;
+  padding: 28px;
+  border: 1px solid var(--figma-border);
+  border-radius: 12px;
+  background: var(--figma-surface);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--figma-text) 5%, transparent);
+  color: var(--figma-text);
+  container-type: inline-size;
+}
+
+.github-contributions__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-block-end: 24px;
+}
+
+.github-contributions__kicker {
+  margin-block-end: 5px;
+  color: var(--figma-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.github-contributions h2 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.github-contributions__profile-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 6px;
+  padding-inline: 12px;
+  border: 1px solid var(--figma-border);
+  border-radius: 8px;
+  color: var(--figma-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition-property: color, background-color, border-color, scale;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+.github-contributions__profile-link:active {
+  scale: 0.96;
+}
+
+.github-contributions__scroller {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-block-end: 8px;
+  scrollbar-width: thin;
+}
+
+.github-contributions__chart {
+  width: max-content;
+  min-width: 100%;
+}
+
+.github-contributions__chart--muted {
+  opacity: 0.55;
+}
+
+.github-contributions__months {
+  display: grid;
+  grid-template-columns: repeat(53, 12px);
+  column-gap: 3px;
+  min-width: max-content;
+  margin-inline-start: 40px;
+  margin-block-end: 7px;
+  color: var(--figma-text-secondary);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.github-contributions__months span {
+  white-space: nowrap;
+}
+
+.github-contributions__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.github-contributions__weekdays {
+  display: grid;
+  flex: 0 0 30px;
+  grid-template-rows: repeat(7, 12px);
+  row-gap: 3px;
+  color: var(--figma-text-secondary);
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.github-contributions__weekdays span:nth-child(1) { grid-row: 2; }
+.github-contributions__weekdays span:nth-child(2) { grid-row: 4; }
+.github-contributions__weekdays span:nth-child(3) { grid-row: 6; }
+
+.github-contributions__weeks {
+  display: flex;
+  gap: 3px;
+  width: max-content;
+}
+
+.github-contributions__week {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+}
+
+.github-contributions__day {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--figma-text) 5%, transparent);
+  outline-offset: -1px;
+}
+
+.github-contributions__day--0 { background: var(--github-level-0); }
+.github-contributions__day--1 { background: var(--github-level-1); }
+.github-contributions__day--2 { background: var(--github-level-2); }
+.github-contributions__day--3 { background: var(--github-level-3); }
+.github-contributions__day--4 { background: var(--github-level-4); }
+
+.github-contributions__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-block-start: 16px;
+}
+
+.github-contributions__status {
+  color: var(--figma-text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.github-contributions__legend {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  color: var(--figma-text-secondary);
+  font-size: 11px;
+}
+
+.github-contributions__legend .github-contributions__day {
+  width: 11px;
+  height: 11px;
+}
+
+@media (hover: hover) {
+  .github-contributions__profile-link:hover {
+    border-color: var(--figma-text-tertiary);
+    background: var(--figma-surface-hover);
+    color: var(--figma-text);
+  }
+}
+
+@container (max-width: 560px) {
+  .github-contributions {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .github-contributions__header {
+    gap: 16px;
+    margin-block-end: 20px;
+  }
+
+  .github-contributions h2 {
+    font-size: 22px;
+  }
+
+  .github-contributions__profile-link {
+    min-height: 36px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .github-contributions__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+:root[data-theme="dark"] .github-contributions {
+  --github-level-0: #161b22;
+  --github-level-1: #0e4429;
+  --github-level-2: #006d32;
+  --github-level-3: #26a641;
+  --github-level-4: #39d353;
+}
+
+@media (min-width: 1680px) {
+  .playground-masonry {
+    column-count: 5;
+  }
+}
+
+@media (max-width: 1200px) {
+  .playground-masonry {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .playground-page {
+    height: auto;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+
+  .playground-page__inner,
+  .playground-page--with-sidebar .playground-page__inner {
+    padding: 10px 10px 64px;
+  }
+
+  .playground-masonry {
+    column-count: 2;
+    column-gap: 10px;
+  }
+
+  .playground-masonry__item {
+    margin-block-end: 10px;
+  }
+
+  .playground-media {
+    border-radius: 6px;
+  }
+}
+
 .sidebar {
   background: var(--figma-surface);
   border-color: var(--figma-border);
